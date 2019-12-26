@@ -21,6 +21,9 @@ import com.flying.cattle.exchange.model.JsonResult;
 import com.flying.cattle.exchange.model.OrderParam;
 import com.flying.cattle.exchange.util.DataUtil;
 import com.flying.cattle.exchange.util.SnowflakeIdWorker;
+import com.flying.cattle.exchange.util.ValidationResult;
+import com.flying.cattle.exchange.util.ValidationUtils;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -48,11 +51,12 @@ public class OrderMatchInputResources {
 	 * @throws
 	 */
 	@PostMapping("/addNewOrder")
-	public JsonResult<Order> addNewOrder(@RequestBody @Valid OrderParam param, BindingResult result) {
+	public JsonResult<Order> addNewOrder(@RequestBody OrderParam param) {
 		try {
 			JsonResult<Order> res=new JsonResult<Order>();
-			if (result.hasErrors()) { //参数校验失败
-				return res.error(result, messageSource);
+			ValidationResult vr = ValidationUtils.validateEntity(param);
+			if (vr.isHasErrors()) {
+				return res.error(vr.getFirstErrors());
 			}
 			Order order = DataUtil.paramToOrder(param);
 			order.setId(SnowflakeIdWorker.generateId());
