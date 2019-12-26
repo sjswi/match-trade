@@ -107,3 +107,5 @@ Order outOrder = outMap.values().parallelStream().min(HzltUtil::compareOrder).ge
 
 ## 学习讨论群
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/1226/141023_35b45286_538536.png "IT技术分享群聊二维码.png")
+
+## 想实现内存集群，或者撮合集群的（保证多台撮合，其中一台宕机，撮合正常），请加群。
