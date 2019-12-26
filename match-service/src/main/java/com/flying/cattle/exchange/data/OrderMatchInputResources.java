@@ -7,7 +7,6 @@
 package com.flying.cattle.exchange.data;
 
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -16,15 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.flying.cattle.exchange.entity.Order;
 import com.flying.cattle.exchange.model.CancelOrderParam;
 import com.flying.cattle.exchange.model.JsonResult;
 import com.flying.cattle.exchange.model.OrderParam;
 import com.flying.cattle.exchange.util.DataUtil;
 import com.flying.cattle.exchange.util.SnowflakeIdWorker;
-
-import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -36,7 +32,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequestMapping("/exchange/order")
-@Api(value = "订单服务", tags = {"订单服务"})
 public class OrderMatchInputResources {
 	
 	@Autowired

@@ -1,8 +1,8 @@
 package com.flying.cattle.me.disruptor.producer;
 
 import org.springframework.beans.BeanUtils;
-
 import com.flying.cattle.me.entity.MatchOrder;
+import com.lmax.disruptor.EventTranslatorOneArg;
 import com.lmax.disruptor.RingBuffer;
 
 public class OrderProducer {
@@ -13,13 +13,13 @@ public class OrderProducer {
 		this.ringBuffer = ringBuffer;
 	}
 
-	public void onData(MatchOrder input) {
-		long sequence = ringBuffer.next();
-		try {
-			MatchOrder order = ringBuffer.get(sequence);
-			BeanUtils.copyProperties(input, order);
-		} finally {
-			ringBuffer.publish(sequence);
+	private static final EventTranslatorOneArg<MatchOrder, MatchOrder> TRANSLATOR = new EventTranslatorOneArg<MatchOrder, MatchOrder>() {
+		public void translateTo(MatchOrder event, long sequence, MatchOrder input) {
+			BeanUtils.copyProperties(input,event);
 		}
+	};
+
+	public void onData(MatchOrder input) {
+		ringBuffer.publishEvent(TRANSLATOR, input);
 	}
 }
