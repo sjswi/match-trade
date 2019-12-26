@@ -104,3 +104,6 @@ Order outOrder = outMap.values().parallelStream().min(HzltUtil::compareOrder).ge
 - Disruptor单生产者初始化10万不能撮合的订单耗时：约700毫秒    
 - Disruptor多生产者初始化10万不能撮合的订单耗时：约20秒    
 - 实际单吃完1-100价格内随机数量的10万订单耗时：约400毫秒    
+
+## 学习讨论群
+![输入图片说明](https://images.gitee.com/uploads/images/2019/1226/141023_35b45286_538536.png "IT技术分享群聊二维码.png")
