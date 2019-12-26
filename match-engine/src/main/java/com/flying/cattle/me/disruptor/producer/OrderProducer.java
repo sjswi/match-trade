@@ -18,7 +18,7 @@ public class OrderProducer {
 			BeanUtils.copyProperties(input,event);
 		}
 	};
-
+ 
 	public void onData(MatchOrder input) {
 		ringBuffer.publishEvent(TRANSLATOR, input);
 	}
