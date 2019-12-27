@@ -15,6 +15,7 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -50,29 +51,36 @@ public class PushDepthJob {
 	@Autowired
 	private KafkaTemplate<String, String> template;
 
+	@Value("#{'${match.engine.coinTeams}'.split(',')}")
+	private List<String> coinTeams;
+
 	/**
 	 * -推送深度
 	 */
 	@Scheduled(fixedDelay = 1000)
 	public void pushDepth() {
 		try {
-			// XBIT-USDT 买盘
-			List<Depth> buyList = this.getMarketDepth("XBIT-USDT", Boolean.TRUE);
-			// XBIT-USDT 卖盘
-			List<Depth> sellList = this.getMarketDepth("XBIT-USDT", Boolean.FALSE);
-			// 盘口过大处理
-			if (buyList.size() > 100) {
-				buyList.subList(0, 100);
+			if (!coinTeams.isEmpty()) {
+				for (String coinTeam : coinTeams) {
+					// XBIT-USDT 买盘
+					List<Depth> buyList = this.getMarketDepth(coinTeam, Boolean.TRUE);
+					// XBIT-USDT 卖盘
+					List<Depth> sellList = this.getMarketDepth(coinTeam, Boolean.FALSE);
+					// 盘口过大处理
+					if (buyList.size() > 100) {
+						buyList.subList(0, 100);
+					}
+					if (sellList.size() > 100) {
+						sellList.subList(0, 100);
+					}
+					// 发送数据处理
+					Map<String, List<Depth>> map = new HashMap<String, List<Depth>>();
+					map.put("buy", buyList);
+					map.put("sell", sellList);
+					// 推送深度
+					template.send("push_depth", JSON.toJSONString(map));
+				}
 			}
-			if (sellList.size() > 100) {
-				sellList.subList(0, 100);
-			}
-			// 发送数据处理
-			Map<String, List<Depth>> map = new HashMap<String, List<Depth>>();
-			map.put("buy", buyList);
-			map.put("sell", sellList);
-			// 推送深度
-			template.send("push_depth", JSON.toJSONString(map));
 		} catch (Exception e) {
 			log.error("深度数据处理错误：" + e);
 			e.printStackTrace();
@@ -94,16 +102,19 @@ public class PushDepthJob {
 			List<Depth> list = new ArrayList<Depth>();
 			if (isBuy) {
 				list = buyMap.entrySet().stream().sorted(Entry.<BigDecimal, BigDecimal>comparingByKey().reversed())
-						.map(obj -> new Depth(obj.getKey().toString(), obj.getValue().toString(),obj.getValue().toString(), 1, coinTeam, isBuy))
+						.map(obj -> new Depth(obj.getKey().toString(), obj.getValue().toString(),
+								obj.getValue().toString(), 1, coinTeam, isBuy))
 						.collect(Collectors.toList());
-			}else {
+			} else {
 				list = buyMap.entrySet().stream().sorted(Entry.<BigDecimal, BigDecimal>comparingByKey())
-						.map(obj -> new Depth(obj.getKey().toString(), obj.getValue().toString(),obj.getValue().toString(), 1, coinTeam, isBuy))
+						.map(obj -> new Depth(obj.getKey().toString(), obj.getValue().toString(),
+								obj.getValue().toString(), 1, coinTeam, isBuy))
 						.collect(Collectors.toList());
 			}
 			list.stream().reduce(new Depth("0", "0", "0", 1, coinTeam, isBuy), (one, two) -> {
 				one.setTotal((new BigDecimal(one.getTotal()).add(new BigDecimal(two.getNumber()))).toString());
-				depths.add(new Depth(two.getPrice(), two.getNumber(), one.getTotal(), two.getPlatform(),two.getCoinTeam(), two.getIsBuy()));
+				depths.add(new Depth(two.getPrice(), two.getNumber(), one.getTotal(), two.getPlatform(),
+						two.getCoinTeam(), two.getIsBuy()));
 				return one;
 			});
 		} else {
