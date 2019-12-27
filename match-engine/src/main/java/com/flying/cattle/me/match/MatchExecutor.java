@@ -69,6 +69,7 @@ public class MatchExecutor {
 			}
 		} catch (Exception e) {
 			log.error("执行撮合错误："+e);
+			log.error("执行撮合错误源数据："+input);
 			input.setState(3);//撤销掉
 		} 
 		return input;

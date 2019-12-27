@@ -48,10 +48,13 @@ public class MatchDetailHandler {
 	 */
 	@Async
 	public void sendTradeRecord(MatchOrder order, BigDecimal price, BigDecimal number, DealWay dealWay) {
-		Trade tarde = new Trade(null, order.getUid(), order.getId(), order.getIsBuy(), number, price,
-				number.multiply(price), order.getCoinTeam(), null, null, dealWay.value, null);
-		pushData.addTrade(tarde);
-	
+		try {
+			Trade tarde = new Trade(null, order.getUid(), order.getId(), order.getIsBuy(), number, price,
+					number.multiply(price), order.getCoinTeam(), null, null, dealWay.value, null);
+			pushData.addTrade(tarde);
+		} catch (Exception e) {
+			log.error("===新增交易记录处理异常,数据原型："+order.toJsonString()+"   本次异常："+e);
+		}
 	}
 
 	/**
@@ -82,7 +85,7 @@ public class MatchDetailHandler {
 			order_map.put(input.getId(), input);
 			//context.commitTransaction();//提交事务
 		} catch (Exception e) {
-			//context.rollbackTransaction();
+			//context.rollbackTransaction();//回滚事务
 			log.error("===入单数据处理异常,数据原型："+input.toJsonString()+"   本次异常："+e);
 		}
 	}
