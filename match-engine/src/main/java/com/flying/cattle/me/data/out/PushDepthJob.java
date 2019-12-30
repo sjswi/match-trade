@@ -31,11 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Copyright: Copyright (c) 2019
- * 
- * <p>
- * 说明：深度推送
- * </P>
- * 
+ * -说明：深度推送
  * @version: V1.0
  * @author: BianPeng
  * 
@@ -62,17 +58,10 @@ public class PushDepthJob {
 		try {
 			if (!coinTeams.isEmpty()) {
 				for (String coinTeam : coinTeams) {
-					// XBIT-USDT 买盘
+					//  买盘
 					List<Depth> buyList = this.getMarketDepth(coinTeam, Boolean.TRUE);
-					// XBIT-USDT 卖盘
+					//  卖盘
 					List<Depth> sellList = this.getMarketDepth(coinTeam, Boolean.FALSE);
-					// 盘口过大处理
-					if (buyList.size() > 100) {
-						buyList.subList(0, 100);
-					}
-					if (sellList.size() > 100) {
-						sellList.subList(0, 100);
-					}
 					// 发送数据处理
 					Map<String, List<Depth>> map = new HashMap<String, List<Depth>>();
 					map.put("buy", buyList);
@@ -103,12 +92,12 @@ public class PushDepthJob {
 			if (isBuy) {
 				list = buyMap.entrySet().stream().sorted(Entry.<BigDecimal, BigDecimal>comparingByKey().reversed())
 						.map(obj -> new Depth(obj.getKey().toString(), obj.getValue().toString(),
-								obj.getValue().toString(), 1, coinTeam, isBuy))
+								obj.getValue().toString(), 1, coinTeam, isBuy)).limit(100)
 						.collect(Collectors.toList());
 			} else {
 				list = buyMap.entrySet().stream().sorted(Entry.<BigDecimal, BigDecimal>comparingByKey())
 						.map(obj -> new Depth(obj.getKey().toString(), obj.getValue().toString(),
-								obj.getValue().toString(), 1, coinTeam, isBuy))
+								obj.getValue().toString(), 1, coinTeam, isBuy)).limit(100)
 						.collect(Collectors.toList());
 			}
 			list.stream().reduce(new Depth("0", "0", "0", 1, coinTeam, isBuy), (one, two) -> {

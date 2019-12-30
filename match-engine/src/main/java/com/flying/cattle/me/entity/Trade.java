@@ -19,14 +19,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * <p>
- * 自动生成工具：mybatis-dsc-generator
- * </p>
- * 
- * <p>
- * 说明： 交易记录实体类
- * </P>
- * 
+ * -自动生成工具：mybatis-dsc-generator
+ * -说明： 交易记录实体类
  * @version: V1.0
  * @author: BianPeng
  * 

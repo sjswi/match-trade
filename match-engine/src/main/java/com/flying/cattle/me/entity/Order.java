@@ -20,9 +20,7 @@ import lombok.NoArgsConstructor;
 /**
  * Copyright: Copyright (c) 2019
  * 
- * <p>
- * 说明： 订单实体类
- * </P>
+ *- 说明： 订单实体类
  * 
  * @version: V1.0
  * @author: BianPeng

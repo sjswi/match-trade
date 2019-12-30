@@ -1,3 +1,9 @@
+/**
+ * @filename: LevelMatch.java 2019年12月19日
+ * @project match-engine  V1.0
+ * Copyright(c) 2020 flying-cattle Co. Ltd. 
+ * All right reserved. 
+ */
 package com.flying.cattle.me.entity;
 
 import java.io.Serializable;
@@ -9,6 +15,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * @ClassName: LevelMatch
+ * @Description: TODO(水平已撮合记录数据)
+ * @author flying-cattle
+ * @date 2019年12月19日
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

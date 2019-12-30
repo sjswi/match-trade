@@ -1,3 +1,9 @@
+/**
+ * @filename: DisruptorConfig.java 2019年12月19日
+ * @project match-engine  V1.0
+ * Copyright(c) 2020 flying-cattle Co. Ltd. 
+ * All right reserved. 
+ */
 package com.flying.cattle.me.disruptor;
 
 import java.util.concurrent.ThreadFactory;
@@ -20,6 +26,12 @@ import com.lmax.disruptor.YieldingWaitStrategy;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
 
+/**
+ * @ClassName: DisruptorConfig
+ * @Description: TODO(Disruptor配置)
+ * @author flying-cattle
+ * @date 2019年12月19日
+ */
 @Configuration
 @ConditionalOnBean(HazelcastConfig.class)
 public class DisruptorConfig {

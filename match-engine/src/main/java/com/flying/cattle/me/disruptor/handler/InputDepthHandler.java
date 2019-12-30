@@ -1,3 +1,9 @@
+/**
+ * @filename: InputDepthHandler.java 2019年12月19日
+ * @project match-engine  V1.0
+ * Copyright(c) 2020 flying-cattle Co. Ltd. 
+ * All right reserved. 
+ */
 package com.flying.cattle.me.disruptor.handler;
 
 import com.flying.cattle.me.entity.MatchOrder;
@@ -7,6 +13,12 @@ import com.lmax.disruptor.EventHandler;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @ClassName: InputDepthHandler
+ * @Description: TODO(新订单深度处理消费者)
+ * @author flying-cattle
+ * @date 2019年12月19日
+ */
 @Slf4j
 public class InputDepthHandler implements EventHandler<MatchOrder> {
 

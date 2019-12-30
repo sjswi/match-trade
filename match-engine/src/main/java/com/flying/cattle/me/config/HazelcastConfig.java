@@ -1,3 +1,9 @@
+/**
+ * @filename: HazelcastConfig.java 2019年12月19日
+ * @project match-engine  V1.0
+ * Copyright(c) 2020 flying-cattle Co. Ltd. 
+ * All right reserved. 
+ */
 package com.flying.cattle.me.config;
 
 import org.springframework.context.annotation.Bean;
@@ -12,6 +18,12 @@ import com.hazelcast.jet.Jet;
 import com.hazelcast.jet.JetInstance;
 import com.hazelcast.jet.config.JetConfig;
 
+/**
+ * @ClassName: HazelcastConfig
+ * @Description: TODO(Hazelcast-jet配置)
+ * @author flying-cattle
+ * @date 2019年12月19日
+ */
 @Configuration
 public class HazelcastConfig {
 

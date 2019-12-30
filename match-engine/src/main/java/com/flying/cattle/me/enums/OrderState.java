@@ -1,10 +1,19 @@
+/**
+ * @filename: OrderState.java 2019年12月19日
+ * @project match-engine  V1.0
+ * Copyright(c) 2020 flying-cattle Co. Ltd. 
+ * All right reserved. 
+ */
 package com.flying.cattle.me.enums;
 
 import java.util.Arrays;
 import java.util.Optional;
 
 /**
- * -订单状态
+ * @ClassName: OrderState
+ * @Description: TODO(Order状态)
+ * @author flying-cattle
+ * @date 2019年12月19日
  */
 public enum OrderState {
     PUTUP(0, "挂单"),

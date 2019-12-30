@@ -1,3 +1,9 @@
+/**
+ * @filename: MyHandlerException.java 2019年12月19日
+ * @project match-engine  V1.0
+ * Copyright(c) 2020 flying-cattle Co. Ltd. 
+ * All right reserved. 
+ */
 package com.flying.cattle.me.disruptor.exception;
 
 import org.slf4j.Logger;
@@ -5,6 +11,12 @@ import org.slf4j.LoggerFactory;
 
 import com.lmax.disruptor.ExceptionHandler;
 
+/**
+ * @ClassName: MyHandlerException
+ * @Description: TODO(disruptor异常处理)
+ * @author flying-cattle
+ * @date 2019年12月19日
+ */
 public class MyHandlerException implements ExceptionHandler<Object> {
 
     private Logger logger = LoggerFactory.getLogger(MyHandlerException.class);
