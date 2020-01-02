@@ -34,12 +34,8 @@ public class HazelcastConfig {
 	@Bean
 	public Config config() {
 		String instanceKey = app_name + app_active + "-instance";
-
 		Config config = new Config();
-		MapConfig mapConfig = config.getMapConfig("*");
-		mapConfig.setInMemoryFormat(InMemoryFormat.BINARY)// 设置内存格式
-				.setBackupCount(1).setReadBackupData(true);// 默认从主库读写
-		config.setInstanceName(instanceKey).addMapConfig(mapConfig);
+		config.setInstanceName(instanceKey);
 		return config;
 	}
 
