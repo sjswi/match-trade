@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.hazelcast.config.Config;
-import com.hazelcast.config.GroupConfig;
 import com.hazelcast.config.InMemoryFormat;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.core.HazelcastInstance;
@@ -34,17 +33,13 @@ public class HazelcastConfig {
 
 	@Bean
 	public Config config() {
-
-		String configKey = app_name + app_active + "-config";
 		String instanceKey = app_name + app_active + "-instance";
 
 		Config config = new Config();
-		GroupConfig gc = new GroupConfig(configKey);
-		MapConfig mapConfig = new MapConfig();
+		MapConfig mapConfig = config.getMapConfig("*");
 		mapConfig.setInMemoryFormat(InMemoryFormat.BINARY)// 设置内存格式
 				.setBackupCount(1).setReadBackupData(true);// 默认从主库读写
-
-		config.setInstanceName(instanceKey).addMapConfig(mapConfig).setGroupConfig(gc);
+		config.setInstanceName(instanceKey).addMapConfig(mapConfig);
 		return config;
 	}
 

@@ -51,7 +51,7 @@ public class OrderData {
 	 * @return void 返回类型
 	 * @throws
 	 */
-	@KafkaListener(id = "new_order", topics = "new_order")
+	@KafkaListener(groupId = "new_order", topics = "new_order")
 	public void new_order(String param) {
 		log.info("===收到new_order:"+param);
 		OrderProducer producer = new OrderProducer(ringBuffer);
@@ -66,7 +66,7 @@ public class OrderData {
 	 * @return void 返回类型
 	 * @throws
 	 */
-	@KafkaListener(id = "cancel_order", topics = "cancel_order")
+	@KafkaListener(groupId = "cancel_order", topics = "cancel_order")
 	public void cancel_order(String param) {
 		log.info("===收到cancel_order:"+param);
 		CancelOrderParam cancel = JSON.parseObject(param, CancelOrderParam.class);
