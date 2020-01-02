@@ -37,13 +37,11 @@ public class HazelcastConfig {
 
 		String configKey = app_name + app_active + "-config";
 		String instanceKey = app_name + app_active + "-instance";
-		String mapKey = app_name + app_active + "-config-map";
 
 		Config config = new Config();
 		GroupConfig gc = new GroupConfig(configKey);
 		MapConfig mapConfig = new MapConfig();
-		mapConfig.setName(mapKey)// 设置Map名称
-				.setInMemoryFormat(InMemoryFormat.BINARY)// 设置内存格式
+		mapConfig.setInMemoryFormat(InMemoryFormat.BINARY)// 设置内存格式
 				.setBackupCount(1).setReadBackupData(true);// 默认从主库读写
 
 		config.setInstanceName(instanceKey).addMapConfig(mapConfig).setGroupConfig(gc);
