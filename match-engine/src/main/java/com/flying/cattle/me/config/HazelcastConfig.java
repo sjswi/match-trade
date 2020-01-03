@@ -41,9 +41,6 @@ public class HazelcastConfig {
 	@Autowired
 	HazelcastSetting hazelcastSetting;
 
-
-
-
 	@Bean
 	public Config config() {
 		String instanceKey = app_name + app_active + "-instance";
