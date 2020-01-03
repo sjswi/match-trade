@@ -23,6 +23,7 @@
 		<!-- 私有包版本 -->
 		<fastjson.version>1.2.57</fastjson.version>
 		<hazelcast-jet.version>3.1</hazelcast-jet.version>
+		<hazelcast-kubernetes.version>1.3.1</hazelcast-kubernetes.version>
 		<guava.version>r09</guava.version>
 		<disruptor.version>3.4.2</disruptor.version>
 		<springfox-swagger2>2.9.2</springfox-swagger2>
@@ -35,6 +36,11 @@
 				<groupId>com.hazelcast.jet</groupId>
 				<artifactId>hazelcast-jet</artifactId>
 				<version>${hazelcast-jet.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.hazelcast</groupId>
+				<artifactId>hazelcast-kubernetes</artifactId>
+				<version>${hazelcast-kubernetes.version}</version>
 			</dependency>
 			<!-- 数据库 End -->
 			<!-- 工具jar Start -->

@@ -1,0 +1,15 @@
+hazelcast:
+    #如果该配置为false使用内网自动发现
+    self-setting: true
+    #多种网络环境均开启只会启用第一个
+    #主动发现配置
+    tcp-ip:
+      enable: true
+      interface-ex: 172.16.10.*
+      members:
+      - 172.16.10.98
+    #k8s部署环境网络发现
+    kubernetes:
+      enable: true
+      service-dns: power-match.dev.svc.cluster.local
+
