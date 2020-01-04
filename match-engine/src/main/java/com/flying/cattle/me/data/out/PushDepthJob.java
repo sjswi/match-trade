@@ -53,7 +53,11 @@ public class PushDepthJob {
 	private List<String> coinTeams;
 
 	/**
-	 * -推送深度
+	 * @Title: PushOrder
+	 * @Description: TODO(推送深度，因为kafka用了Group的原因，准备改为redis来做广播，让所有match-service都收到消息。PS:如果kafka有解决方案的指教下，万分感谢)
+	 * @param  order
+	 * @return void 返回类型
+	 * @throws
 	 */
 	@Scheduled(fixedDelay = 1000)
 	public void pushDepth() {
