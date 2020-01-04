@@ -37,7 +37,7 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       # 值的反序列化方式
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      group-id: group_match #要保证唯一消费
+      #group-id: group_match #要保证唯一消费
 match: 
   engine:
     coinTeams: XBIT-USDT

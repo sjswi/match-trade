@@ -65,13 +65,13 @@ public class MatchDetailHandler {
 					number.multiply(price), order.getCoinTeam(), null, null, dealWay.value, null);
 			pushData.addTrade(tarde);
 		} catch (Exception e) {
+			e.printStackTrace();
 			log.error("===新增交易记录处理异常,数据原型："+order.toJsonString()+"   本次异常："+e);
 		}
 	}
 
 	/**
 	 * -推送订单变化
-	 * 
 	 * @param order 变化后的订单对象
 	 */
 	public void sendOrderChange(MatchOrder order) {
@@ -98,6 +98,7 @@ public class MatchDetailHandler {
 			//context.commitTransaction();//提交事务
 		} catch (Exception e) {
 			//context.rollbackTransaction();//回滚事务
+			e.printStackTrace();
 			log.error("===入单数据处理异常,数据原型："+input.toJsonString()+"   本次异常："+e);
 		}
 	}
@@ -148,6 +149,7 @@ public class MatchDetailHandler {
 				}
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			log.error("===出单数据处理异常,数据原型："+order.toJsonString()+"   本次异常："+e);
 		}
 	}

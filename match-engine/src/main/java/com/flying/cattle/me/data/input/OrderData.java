@@ -44,7 +44,7 @@ public class OrderData {
 	
 	@Autowired
 	PushData pushData;
-	
+	long start=0;
 	/**
 	 * @Title: new_order
 	 * @Description: TODO(接收委托订单数据，必须在同一个group中，保证分布式下线性撮合)
@@ -54,9 +54,15 @@ public class OrderData {
 	 */
 	@KafkaListener(id = "new_order", topics = "new_order")
 	public void new_order(String param) {
-		log.info("===收到new_order:"+param);
+		//log.info("===收到new_order:"+param);
 		OrderProducer producer = new OrderProducer(ringBuffer);
 		MatchOrder order = JSON.parseObject(param, MatchOrder.class);
+		if (order.getUid().longValue()==1) {
+			start=System.currentTimeMillis();
+		}
+		if (order.getUid().longValue()%10000==0) {
+			log.info("当前是第："+order.getUid()+"条数据，耗时："+(System.currentTimeMillis()-start)+"(毫秒)");
+		}
 		producer.onData(order);
 	}
 	

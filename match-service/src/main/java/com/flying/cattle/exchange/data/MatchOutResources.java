@@ -34,7 +34,7 @@ public class MatchOutResources {
 	@KafkaListener(id = "push_depth", topics = "push_depth")
 	public void push_depth(String echo) {
 		if (!push_depth.equals(echo)) {
-			log.info("===深度数据："+echo);
+			//log.info("===深度数据："+echo);
 			push_depth = echo;
 		}
 		PushDepth pd = JSON.parseObject(echo, PushDepth.class);
@@ -50,7 +50,7 @@ public class MatchOutResources {
 	 */
 	@KafkaListener(id = "update_order", topics = "update_order")
 	public void update_order(String echo) {
-		log.info("---订单变化："+echo);
+		//log.info("---订单变化："+echo);
 	}
 	
 
@@ -62,6 +62,6 @@ public class MatchOutResources {
 	 */
 	@KafkaListener(id = "new_trade", topics = "new_trade")
 	public void new_trade(String echo) {
-		log.info("~~~交易信息："+echo);
+		//log.info("~~~交易信息："+echo);
 	}
 }

@@ -6,8 +6,13 @@
  */
 package com.flying.cattle.exchange.data;
 
+import java.math.BigDecimal;
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +26,7 @@ import com.flying.cattle.exchange.util.DataUtil;
 import com.flying.cattle.exchange.util.SnowflakeIdWorker;
 import com.flying.cattle.exchange.util.ValidationResult;
 import com.flying.cattle.exchange.util.ValidationUtils;
-
 import lombok.extern.slf4j.Slf4j;
-import reactor.netty.http.server.HttpServerRequest;
 
 /**
  * @ClassName: OrderMatchInputResources
@@ -92,6 +95,36 @@ public class OrderMatchInputResources {
 			log.error("添加新的订单错误："+e);
 			e.printStackTrace();
 			return new JsonResult<Object>(e);
+		}
+	}
+	
+	
+	/**
+	 * @Title: addNewOrder
+	 * @Description: TODO(添加新的订单)
+	 * @param  参数
+	 * @return void 返回类型
+	 * @throws
+	 */
+	@Profile("local")
+	@PostMapping("/addNewOrders/{size}")
+	public JsonResult<Order> addNewOrders(@PathVariable("size") long size) {
+		try {
+			JsonResult<Order> res=new JsonResult<Order>();
+			for (long i = 1; i <= size; i++) {
+				Random random = new Random();
+				int price = random.nextInt(100)+1;
+				OrderParam param = new OrderParam(Boolean.TRUE, new BigDecimal(price), BigDecimal.ONE, BigDecimal.ONE, "XBIT-USDT", Boolean.FALSE);
+				Order order = DataUtil.paramToOrder(param);
+				order.setId(SnowflakeIdWorker.generateId());
+				order.setUid(i);
+				template.send("new_order", order.toJsonString());
+			}
+			return res.success("成功:"+size);
+		} catch (Exception e) {
+			log.error("添加新的订单错误："+e);
+			e.printStackTrace();
+			return new JsonResult<Order>(e);
 		}
 	}
 }
