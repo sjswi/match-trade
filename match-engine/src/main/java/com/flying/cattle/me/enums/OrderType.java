@@ -18,10 +18,10 @@ public enum OrderType {
     ;
 
     public final String value;
-    public final String name;
+    public final String label;
 
-    OrderType(String value, String name) {
+    OrderType(String value, String label) {
         this.value = value;
-        this.name = name;
+        this.label = label;
     }
 }

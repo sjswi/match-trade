@@ -7,21 +7,23 @@
 package com.flying.cattle.me.data.out;
 
 import java.math.BigDecimal;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
 import com.alibaba.fastjson.JSON;
+import com.flying.cattle.me.entity.ClusterInfo;
 import com.flying.cattle.me.entity.Depth;
 import com.flying.cattle.me.util.HazelcastUtil;
 import com.hazelcast.core.HazelcastInstance;
@@ -56,6 +58,9 @@ public class PushDepthJob {
 	@Scheduled(fixedDelay = 1000)
 	public void pushDepth() {
 		try {
+			if (!isMasterNode()) {
+				return;
+			}
 			if (!coinTeams.isEmpty()) {
 				for (String coinTeam : coinTeams) {
 					//  买盘
@@ -111,5 +116,38 @@ public class PushDepthJob {
 			depths.add(depth);
 		}
 		return depths;
+	}
+	
+	/**
+	 * @Title: isMasterNode
+	 * @Description: TODO(主节点判断)
+	 * @param  参数
+	 * @return void 返回类型
+	 * @throws
+	 */
+	private Boolean isMasterNode() {
+		try {
+			IMap<String, ClusterInfo> map = hzInstance.getMap("Cluster-IP");
+			long current = System.currentTimeMillis();
+			String ip = InetAddress.getLocalHost().getHostAddress();//获得本机IP  
+			if (!map.containsKey(ip)) {
+				map.put(ip, new ClusterInfo(ip, current, current));
+			}
+			Comparator<ClusterInfo> comparing = Comparator.comparing(ClusterInfo::getStartTime);
+			ClusterInfo ci =map.values().stream().min(comparing).get();
+			if (ci.getIp().equals(ip)) {
+				ci.setUpdateTime(System.currentTimeMillis());
+				map.put(ip, ci);
+				return Boolean.TRUE;
+			}else {
+				long interval = current - ci.getUpdateTime();
+				if (ci.getStartTime()!=ci.getUpdateTime()&&interval>3000) {
+					map.delete(ci.getIp());
+				}
+			}
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		return Boolean.FALSE;
 	}
 }

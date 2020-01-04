@@ -44,14 +44,15 @@ public class OrderData {
 	
 	@Autowired
 	PushData pushData;
+	
 	/**
 	 * @Title: new_order
-	 * @Description: TODO(接收委托订单数据)
+	 * @Description: TODO(接收委托订单数据，必须在同一个group中，保证分布式下线性撮合)
 	 * @param  参数
 	 * @return void 返回类型
 	 * @throws
 	 */
-	@KafkaListener(groupId = "new_order", topics = "new_order")
+	@KafkaListener(topics = "new_order")
 	public void new_order(String param) {
 		log.info("===收到new_order:"+param);
 		OrderProducer producer = new OrderProducer(ringBuffer);
@@ -61,12 +62,12 @@ public class OrderData {
 	
 	/**
 	 * @Title: new_order
-	 * @Description: TODO(接收撤销订单数据)
+	 * @Description: TODO(接收撤销订单数据，不需要线性)
 	 * @param  参数
 	 * @return void 返回类型
 	 * @throws
 	 */
-	@KafkaListener(groupId = "cancel_order", topics = "cancel_order")
+	@KafkaListener(groupId = "group_match" , topics = "cancel_order")
 	public void cancel_order(String param) {
 		log.info("===收到cancel_order:"+param);
 		CancelOrderParam cancel = JSON.parseObject(param, CancelOrderParam.class);

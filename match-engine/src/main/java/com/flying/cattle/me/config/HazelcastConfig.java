@@ -6,22 +6,20 @@
  */
 package com.flying.cattle.me.config;
 
-import com.flying.cattle.me.setting.hazelcast.HazelcastSetting;
-import com.flying.cattle.me.setting.hazelcast.TcpIpSetting;
-import com.hazelcast.config.JoinConfig;
-import com.hazelcast.config.NetworkConfig;
+import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
+import org.springframework.context.annotation.DependsOn;
+import com.flying.cattle.me.setting.hazelcast.HazelcastSetting;
+import com.flying.cattle.me.setting.hazelcast.TcpIpSetting;
 import com.hazelcast.config.Config;
+import com.hazelcast.config.JoinConfig;
+import com.hazelcast.config.NetworkConfig;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.jet.Jet;
 import com.hazelcast.jet.JetInstance;
 import com.hazelcast.jet.config.JetConfig;
-import org.springframework.context.annotation.DependsOn;
-
-import java.util.Objects;
 
 /**
  * @ClassName: HazelcastConfig

@@ -24,11 +24,11 @@ public enum OrderState {
     ;
 
     public final int value;
-    public final String name;
+    public final String label;
 
-    OrderState(int value, String name) {
+    OrderState(int value, String label) {
         this.value = value;
-        this.name = name;
+        this.label = label;
     }
 
     public static Optional<OrderState> of(int value) {

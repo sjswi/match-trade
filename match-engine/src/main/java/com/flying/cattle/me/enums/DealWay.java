@@ -19,10 +19,10 @@ public enum DealWay {
     ;
 
     public final String value;
-    public final String name;
+    public final String label;
 
-    DealWay(String value, String name) {
+    DealWay(String value, String label) {
         this.value = value;
-        this.name = name;
+        this.label = label;
     }
 }

@@ -1,6 +1,6 @@
 hazelcast:
     #如果该配置为false使用内网自动发现
-    self-setting: true
+    self-setting: false
     #多种网络环境均开启只会启用第一个
     #主动发现配置
     tcp-ip:
