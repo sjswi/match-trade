@@ -6,15 +6,13 @@
  */
 package com.flying.cattle.exchange.data;
 
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.flying.cattle.exchange.entity.Order;
 import com.flying.cattle.exchange.model.CancelOrderParam;
 import com.flying.cattle.exchange.model.JsonResult;
@@ -25,6 +23,7 @@ import com.flying.cattle.exchange.util.ValidationResult;
 import com.flying.cattle.exchange.util.ValidationUtils;
 
 import lombok.extern.slf4j.Slf4j;
+import reactor.netty.http.server.HttpServerRequest;
 
 /**
  * @ClassName: OrderMatchInputResources
@@ -36,9 +35,6 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/exchange/order")
 public class OrderMatchInputResources {
-	
-	@Autowired
-    private MessageSource messageSource;
 	
 	@Autowired
 	private KafkaTemplate<String, String> template;
@@ -82,11 +78,12 @@ public class OrderMatchInputResources {
 	 * @throws
 	 */
 	@PostMapping("/cancelOrder")
-	public JsonResult<Object> cancelOrder(@RequestBody @Valid CancelOrderParam param, BindingResult result) {
+	public JsonResult<Object> cancelOrder(@RequestBody CancelOrderParam param) {
 		try {
 			JsonResult<Object> res=new JsonResult<Object>();
-			if (result.hasErrors()) { //参数校验失败
-				return res.error(result, messageSource);
+			ValidationResult vr = ValidationUtils.validateEntity(param);
+			if (vr.isHasErrors()) {
+				return res.error(vr.getFirstErrors());
 			}
 			//查看是否是可以撤销的状态
 			template.send("cancel_order", param.toJsonString());

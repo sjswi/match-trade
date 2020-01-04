@@ -62,6 +62,11 @@
 				<version>${guava.version}</version>
 			</dependency>
 			<!-- disruptor End -->
+			<dependency>
+				<groupId>org.springframework.kafka</groupId>
+				<artifactId>spring-kafka</artifactId>
+				<version>2.4.0.RELEASE</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<modules>

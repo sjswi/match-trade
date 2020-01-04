@@ -10,12 +10,19 @@ import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 import com.alibaba.fastjson.JSON;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * @ClassName: CancelOrderParam
  * @Description: TODO(撤单参数)
  * @author flying-cattle
  * @date 2019年12月19日
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class CancelOrderParam implements Serializable {
 	
 	private static final long serialVersionUID = -2129129168099491810L;
