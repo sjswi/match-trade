@@ -4,16 +4,17 @@
  * Copyright(c) 2020 flying-cattle Co. Ltd. 
  * All right reserved. 
  */
-package com.flying.cattle.me.hazelcast;
+package com.flying.cattle.me.plugins.hazelcast;
 
 import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
-import com.flying.cattle.me.hazelcast.setting.HazelcastSetting;
-import com.flying.cattle.me.hazelcast.setting.TcpIpSetting;
+import com.flying.cattle.me.plugins.hazelcast.setting.HazelcastSetting;
+import com.flying.cattle.me.plugins.hazelcast.setting.TcpIpSetting;
 import com.hazelcast.config.Config;
 import com.hazelcast.config.JoinConfig;
 import com.hazelcast.config.NetworkConfig;

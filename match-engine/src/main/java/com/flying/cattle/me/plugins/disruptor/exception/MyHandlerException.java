@@ -4,7 +4,7 @@
  * Copyright(c) 2020 flying-cattle Co. Ltd. 
  * All right reserved. 
  */
-package com.flying.cattle.me.disruptor.exception;
+package com.flying.cattle.me.plugins.disruptor.exception;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

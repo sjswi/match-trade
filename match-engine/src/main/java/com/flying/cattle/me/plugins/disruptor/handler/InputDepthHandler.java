@@ -4,7 +4,7 @@
  * Copyright(c) 2020 flying-cattle Co. Ltd. 
  * All right reserved. 
  */
-package com.flying.cattle.me.disruptor.handler;
+package com.flying.cattle.me.plugins.disruptor.handler;
 
 import com.flying.cattle.me.entity.MatchOrder;
 import com.flying.cattle.me.match.MatchDetailHandler;

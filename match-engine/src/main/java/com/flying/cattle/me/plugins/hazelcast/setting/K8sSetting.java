@@ -1,4 +1,4 @@
-package com.flying.cattle.me.hazelcast.setting;
+package com.flying.cattle.me.plugins.hazelcast.setting;
 
 import lombok.Data;
 

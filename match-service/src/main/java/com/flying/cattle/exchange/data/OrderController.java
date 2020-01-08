@@ -22,6 +22,7 @@ import com.flying.cattle.exchange.entity.Order;
 import com.flying.cattle.exchange.model.CancelOrderParam;
 import com.flying.cattle.exchange.model.JsonResult;
 import com.flying.cattle.exchange.model.OrderParam;
+import com.flying.cattle.exchange.plugins.kafka.SendService;
 import com.flying.cattle.exchange.util.DataUtil;
 import com.flying.cattle.exchange.util.SnowflakeIdWorker;
 import com.flying.cattle.exchange.util.ValidationResult;
@@ -37,10 +38,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequestMapping("/exchange/order")
-public class OrderMatchInputResources {
+public class OrderController {
 	
 	@Autowired
-	private KafkaTemplate<String, String> template;
+	private SendService sendService;
 	
 	/**
 	 * @Title: addNewOrder
@@ -63,7 +64,7 @@ public class OrderMatchInputResources {
 			//关联用户，资产校验，或其他校验
 			
 			//校验完成推送消息
-			template.send("new_order", order.toJsonString());
+			sendService.sendNewOrder(order.toJsonString());
 			return res.success(order);
 		} catch (Exception e) {
 			log.error("添加新的订单错误："+e);
@@ -89,7 +90,7 @@ public class OrderMatchInputResources {
 				return res.error(vr.getFirstErrors());
 			}
 			//查看是否是可以撤销的状态
-			template.send("cancel_order", param.toJsonString());
+			sendService.sendCancelOrder(param.toJsonString());
 			return res.success("操作成功！");
 		} catch (Exception e) {
 			log.error("添加新的订单错误："+e);
@@ -118,7 +119,7 @@ public class OrderMatchInputResources {
 				Order order = DataUtil.paramToOrder(param);
 				order.setId(SnowflakeIdWorker.generateId());
 				order.setUid(i);
-				template.send("new_order", order.toJsonString());
+				sendService.sendNewOrder(order.toJsonString());
 			}
 			return res.success("成功:"+size);
 		} catch (Exception e) {

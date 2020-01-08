@@ -10,8 +10,18 @@ spring:
           brokers: 192.168.9.227:9092
           auto-create-topics: true
       bindings:
-        new-order:
+        in-new-order:
           destination: new-order-topic
-          group: group
-        cancel-order:
+          group: match-engin
+        in-cancel-order:
           destination: cancel-order-topic
+          group: match-engin
+        out-order-alter:
+          destination: order-alter-topic
+          content-type: application/json
+        out-new-trade:
+          destination: new-trade-topic
+          content-type: application/json
+        out-push-depth:
+          destination: push-depth-topic
+          content-type: application/json

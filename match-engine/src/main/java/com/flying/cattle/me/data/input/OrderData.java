@@ -12,9 +12,9 @@ import org.springframework.cloud.stream.annotation.StreamListener;
 
 import com.alibaba.fastjson.JSON;
 import com.flying.cattle.me.data.out.PushData;
-import com.flying.cattle.me.data.sink.MatchSink;
-import com.flying.cattle.me.disruptor.producer.OrderProducer;
 import com.flying.cattle.me.entity.MatchOrder;
+import com.flying.cattle.me.plugins.disruptor.producer.OrderProducer;
+import com.flying.cattle.me.plugins.kafka.MatchSink;
 import com.hazelcast.core.HazelcastInstance;
 import com.lmax.disruptor.RingBuffer;
 
@@ -47,18 +47,18 @@ public class OrderData {
 	 * @return void 返回类型
 	 * @throws
 	 */
-	@StreamListener(MatchSink.NEW_ORDER)
+	@StreamListener(MatchSink.IN_NEW_ORDER)
 	public void new_order(String param) {
-		//log.info("===收到new_order:"+param);
-		OrderProducer producer = new OrderProducer(ringBuffer);
-		MatchOrder order = JSON.parseObject(param, MatchOrder.class);
-		if (order.getUid().longValue()==1) {
-			start=System.currentTimeMillis();
-		}
-		if (order.getUid().longValue()%10000==0) {
-			log.info("当前是第："+order.getUid()+"条数据，耗时："+(System.currentTimeMillis()-start)+"(毫秒)");
-		}
-		producer.onData(order);
+		log.info("===收到new_order:"+param);
+//		OrderProducer producer = new OrderProducer(ringBuffer);
+//		MatchOrder order = JSON.parseObject(param, MatchOrder.class);
+//		if (order.getUid().longValue()==1) {
+//			start=System.currentTimeMillis();
+//		}
+//		if (order.getUid().longValue()%10000==0) {
+//			log.info("当前是第："+order.getUid()+"条数据，耗时："+(System.currentTimeMillis()-start)+"(毫秒)");
+//		}
+//		producer.onData(order);
 	}
 	
 	/**
@@ -68,7 +68,7 @@ public class OrderData {
 	 * @return void 返回类型
 	 * @throws
 	 */
-	@StreamListener(MatchSink.CANCEL_ORDER)
+	@StreamListener(MatchSink.IN_CANCEL_ORDER)
 	public void cancel_order(String param) {
 		log.info("===收到cancel_order:"+param);
 //		CancelOrderParam cancel = JSON.parseObject(param, CancelOrderParam.class);

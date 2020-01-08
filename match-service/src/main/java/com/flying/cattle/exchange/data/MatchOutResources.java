@@ -6,12 +6,11 @@
  */
 package com.flying.cattle.exchange.data;
 
-import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.annotation.StreamListener;
 import com.alibaba.fastjson.JSON;
 import com.flying.cattle.exchange.model.PushDepth;
-
+import com.flying.cattle.exchange.plugins.kafka.MatchSink;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -20,13 +19,10 @@ import lombok.extern.slf4j.Slf4j;
  * @author flying-cattle
  * @date 2019年12月20日
  */
-@RestController
+@EnableBinding(MatchSink.class)
 @Slf4j
 public class MatchOutResources {
-
-	String push_depth = "";
 	
-	private static final String topic ="";
 	/**
 	 * @Title: push_depth
 	 * @Description: TODO(盘口深度数据)
@@ -34,12 +30,8 @@ public class MatchOutResources {
 	 * @return void 返回类型
 	 * @throws
 	 */
-	@KafkaListener(id = "push_depth", groupId = topic , topics = "push_depth")
+	@StreamListener(MatchSink.IN_PUSH_DEPTH)
 	public void push_depth(String echo) {
-		if (!push_depth.equals(echo)) {
-			log.info("===深度数据："+echo);
-			push_depth = echo;
-		}
 		PushDepth pd = JSON.parseObject(echo, PushDepth.class);
 		pd.getBuy();
 	}
@@ -51,7 +43,7 @@ public class MatchOutResources {
 	 * @return void 返回类型
 	 * @throws
 	 */
-	@KafkaListener(id = "update_order", topics = "update_order")
+	@StreamListener(MatchSink.IN_ORDER_ALTER)
 	public void update_order(String echo) {
 		log.info("---订单变化："+echo);
 	}
@@ -63,7 +55,7 @@ public class MatchOutResources {
 	 * @return void 返回类型
 	 * @throws
 	 */
-	@KafkaListener(id = "new_trade", topics = "new_trade")
+	@StreamListener(MatchSink.IN_NEW_TRADE)
 	public void new_trade(String echo) {
 		log.info("~~~交易信息："+echo);
 	}

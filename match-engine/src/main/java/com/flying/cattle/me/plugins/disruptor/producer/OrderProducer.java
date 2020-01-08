@@ -1,4 +1,4 @@
-package com.flying.cattle.me.disruptor.producer;
+package com.flying.cattle.me.plugins.disruptor.producer;
 
 import org.springframework.beans.BeanUtils;
 import com.flying.cattle.me.entity.MatchOrder;
