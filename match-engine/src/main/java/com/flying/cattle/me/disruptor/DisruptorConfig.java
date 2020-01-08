@@ -12,13 +12,13 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.flying.cattle.me.config.HazelcastConfig;
 import com.flying.cattle.me.disruptor.exception.MyHandlerException;
 import com.flying.cattle.me.disruptor.factory.OrderFactory;
 import com.flying.cattle.me.disruptor.handler.InputDepthHandler;
 import com.flying.cattle.me.disruptor.handler.MatchHandler;
 import com.flying.cattle.me.disruptor.handler.OutDepthHandler;
 import com.flying.cattle.me.entity.MatchOrder;
+import com.flying.cattle.me.hazelcast.HazelcastConfig;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.lmax.disruptor.EventFactory;
 import com.lmax.disruptor.RingBuffer;

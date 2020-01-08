@@ -6,11 +6,12 @@
  */
 package com.flying.cattle.exchange.data;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.alibaba.fastjson.JSON;
 import com.flying.cattle.exchange.model.PushDepth;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
