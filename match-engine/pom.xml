@@ -52,9 +52,10 @@
 		<!-- disruptor End -->
 		<!-- MQ Start -->
 		<dependency>
-			<groupId>org.springframework.kafka</groupId>
-			<artifactId>spring-kafka</artifactId>
-		</dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-stream-binder-kafka</artifactId>
+            <version>3.0.0.RELEASE</version>
+        </dependency>
 		<!-- MQ End -->
 		<!-- junit -->
 		<dependency>

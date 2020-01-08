@@ -49,8 +49,8 @@ public class PushDepthJob {
 	@Autowired
 	private KafkaTemplate<String, String> template;
 
-	@Value("#{'${match.engine.coinTeams}'.split(',')}")
-	private List<String> coinTeams;
+	//@Value("#{'${match.engine.coinTeams}'.split(',')}")
+	private List<String> coinTeams = new ArrayList<String>() {{add("XBIT-USDT");}};
 
 	/**
 	 * @Title: PushOrder
