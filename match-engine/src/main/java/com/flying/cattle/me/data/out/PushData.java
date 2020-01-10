@@ -8,12 +8,12 @@ package com.flying.cattle.me.data.out;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 import com.flying.cattle.me.entity.MatchOrder;
 import com.flying.cattle.me.entity.Order;
 import com.flying.cattle.me.entity.Trade;
+import com.flying.cattle.me.plugins.mq.SendService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 public class PushData {
 	
 	@Autowired
-	private KafkaTemplate<String, String> template;
+	SendService sendService;
 	
 	/**
 	 * @Title: PushOrder
@@ -41,7 +41,7 @@ public class PushData {
 		try {
 			Order or = new Order();
 			BeanUtils.copyProperties(order, or);
-			template.send("update_order", order.toJsonString());
+			sendService.sendOrderAlter(or.toJsonString());
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("===推送订单失败，数据原型为："+order.toJsonString());
@@ -57,7 +57,7 @@ public class PushData {
 	 */
 	public void addTrade(Trade trade) {
 		try {
-			template.send("new_trade", trade.toJsonString());
+			sendService.sendNewTrade(trade.toJsonString());
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("===推送交易失败，数据原型为："+trade.toJsonString());

@@ -5,23 +5,25 @@ spring:
     active: local
   cloud:
     stream:
-      kafka:
+      rocketmq:
         binder:
-          brokers: 192.168.9.227:9092
-          auto-create-topics: true
+          name-server: 192.168.9.227:9876
       bindings:
-        in-new-order:
+        in-new-order: 
           destination: new-order-topic
-          group: match-engin
-        in-cancel-order:
+          group: match-order
+        in-cancel-order: 
           destination: cancel-order-topic
-          group: match-engin
-        out-order-alter:
+          group: match-cancel
+        out-order-alter: 
           destination: order-alter-topic
           content-type: application/json
-        out-new-trade:
+        out-new-trade: 
           destination: new-trade-topic
           content-type: application/json
-        out-push-depth:
+        out-push-depth: 
           destination: push-depth-topic
           content-type: application/json
+
+
+ 

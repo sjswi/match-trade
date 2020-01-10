@@ -3,22 +3,26 @@ server:
 spring:
   cloud:
     stream:
-      kafka:
+      default-binder: rocketmq
+      rocketmq:
         binder:
-          brokers: 192.168.9.227:9092
-          auto-create-topics: true
+          name-server: 192.168.9.227:9876
+        bindings:
+          in-push-depth: {consumer.broadcasting: true}
+          in-order-alter: {consumer.orderly: true}
       bindings:
-        out-new-order:
+        out-new-order: 
           destination: new-order-topic
           content-type: application/json
-        out-cancel-order:
+        out-cancel-order: 
           destination: cancel-order-topic
           content-type: application/json
-        in-order-alter:
+        in-order-alter: 
           destination: order-alter-topic
-          group: match-service
-        in-new-trade:
+          group: service-order
+        in-new-trade: 
           destination: new-trade-topic
-          group: match-service
-        in-push-depth:
+          group: service-trade
+        in-push-depth: 
           destination: push-depth-topic
+          group: service-depth

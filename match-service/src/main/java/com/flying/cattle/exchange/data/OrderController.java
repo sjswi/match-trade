@@ -7,11 +7,11 @@
 package com.flying.cattle.exchange.data;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,11 +22,12 @@ import com.flying.cattle.exchange.entity.Order;
 import com.flying.cattle.exchange.model.CancelOrderParam;
 import com.flying.cattle.exchange.model.JsonResult;
 import com.flying.cattle.exchange.model.OrderParam;
-import com.flying.cattle.exchange.plugins.kafka.SendService;
+import com.flying.cattle.exchange.plugins.mq.SendService;
 import com.flying.cattle.exchange.util.DataUtil;
 import com.flying.cattle.exchange.util.SnowflakeIdWorker;
 import com.flying.cattle.exchange.util.ValidationResult;
 import com.flying.cattle.exchange.util.ValidationUtils;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -65,6 +66,7 @@ public class OrderController {
 			
 			//校验完成推送消息
 			sendService.sendNewOrder(order.toJsonString());
+			log.error("添加新的订单"+new Date().getTime());
 			return res.success(order);
 		} catch (Exception e) {
 			log.error("添加新的订单错误："+e);
@@ -91,9 +93,10 @@ public class OrderController {
 			}
 			//查看是否是可以撤销的状态
 			sendService.sendCancelOrder(param.toJsonString());
+			log.error("撤销订单"+new Date().getTime());
 			return res.success("操作成功！");
 		} catch (Exception e) {
-			log.error("添加新的订单错误："+e);
+			log.error("撤销订单错误："+e);
 			e.printStackTrace();
 			return new JsonResult<Object>(e);
 		}

@@ -10,8 +10,10 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import com.alibaba.fastjson.JSON;
 import com.flying.cattle.exchange.model.PushDepth;
-import com.flying.cattle.exchange.plugins.kafka.MatchSink;
+import com.flying.cattle.exchange.plugins.mq.MatchSink;
+
 import lombok.extern.slf4j.Slf4j;
+import reactor.core.publisher.Flux;
 
 /**
  * @ClassName: MatchOutResources
@@ -31,9 +33,11 @@ public class MatchOutResources {
 	 * @throws
 	 */
 	@StreamListener(MatchSink.IN_PUSH_DEPTH)
-	public void push_depth(String echo) {
-		PushDepth pd = JSON.parseObject(echo, PushDepth.class);
-		pd.getBuy();
+	public void push_depth(Flux<String> flux) {
+		flux.subscribe(message -> {
+			PushDepth pd = JSON.parseObject(message, PushDepth.class);
+			log.info("当前深度：" + message);
+		});
 	}
 	
 	/**
@@ -44,8 +48,10 @@ public class MatchOutResources {
 	 * @throws
 	 */
 	@StreamListener(MatchSink.IN_ORDER_ALTER)
-	public void update_order(String echo) {
-		log.info("---订单变化："+echo);
+	public void update_order(Flux<String> flux) {
+		flux.subscribe(message -> {
+			log.info("订单变化：" + message);
+		});
 	}
 	
 
@@ -56,7 +62,9 @@ public class MatchOutResources {
 	 * @throws
 	 */
 	@StreamListener(MatchSink.IN_NEW_TRADE)
-	public void new_trade(String echo) {
-		log.info("~~~交易信息："+echo);
+	public void new_trade(Flux<String> flux) {
+		flux.subscribe(message -> {
+			log.info("交易记录：" + message);
+		});
 	}
 }

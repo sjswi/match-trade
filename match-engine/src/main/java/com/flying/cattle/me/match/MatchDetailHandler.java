@@ -12,7 +12,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.ReactiveRedisTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
@@ -44,9 +43,6 @@ public class MatchDetailHandler {
 
 	@Autowired
 	HazelcastInstance hzInstance;
-
-	@Autowired
-	ReactiveRedisTemplate<String, String> reactiveRedisTemplate;
 
 	@Autowired
 	PushData pushData;

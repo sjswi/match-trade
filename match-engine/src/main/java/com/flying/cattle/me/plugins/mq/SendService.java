@@ -4,7 +4,7 @@
  * Copyright(c) 2020 flying-cattle Co. Ltd. 
  * All right reserved. 
  */
-package com.flying.cattle.me.plugins.kafka;
+package com.flying.cattle.me.plugins.mq;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
@@ -12,7 +12,7 @@ import org.springframework.messaging.support.MessageBuilder;
 
 /**
  * @ClassName: SendService
- * @Description: TODO(kafka消息发送类)
+ * @Description: TODO(消息--生产者)
  * @author flying-cattle
  * @date 2020年1月8日
  */
