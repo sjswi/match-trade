@@ -22,6 +22,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import com.alibaba.fastjson.JSON;
 import com.flying.cattle.me.plugins.mq.SendService;
 import com.flying.cattle.me.util.HazelcastUtil;
 import com.flying.cattle.mt.entity.ClusterInfo;
@@ -49,7 +50,9 @@ public class PushDepthJob {
 	@Autowired
 	private SendService sendService;
 	//这里的交易队，可选择配置在缓存中，实现动态添加交易队
-	private List<String> coinTeams = new ArrayList<String>() {{add("XBIT-USDT");}};
+	private List<String> coinTeams = new ArrayList<String>() {
+		private static final long serialVersionUID = 1L;
+	{add("XBIT-USDT");}};
 
 	/**
 	 * @Title: PushOrder
@@ -75,7 +78,7 @@ public class PushDepthJob {
 					map.put("buy", buyList);
 					map.put("sell", sellList);
 					// 推送深度
-					//sendService.sendPushDepth(JSON.toJSONString(map));
+					sendService.sendPushDepth(JSON.toJSONString(map));
 				}
 			}
 		} catch (Exception e) {
