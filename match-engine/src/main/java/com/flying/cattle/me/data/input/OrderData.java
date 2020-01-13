@@ -14,6 +14,7 @@ import org.springframework.cloud.stream.annotation.StreamListener;
 
 import com.alibaba.fastjson.JSON;
 import com.flying.cattle.me.data.out.PushData;
+import com.flying.cattle.me.plugins.disruptor.producer.OrderProducer;
 import com.flying.cattle.me.plugins.mq.MatchSink;
 import com.flying.cattle.me.util.HazelcastUtil;
 import com.flying.cattle.mt.entity.CancelOrderParam;
@@ -58,21 +59,15 @@ public class OrderData {
 	public void new_order(Flux<String> flux) {
 		flux.subscribe(message -> {
 			MatchOrder order = JSON.parseObject(message, MatchOrder.class);
-			if (order.getUid()%10000==0) {
-				long end = System.currentTimeMillis();
-				long ss =end-start;
-				start = end;
-				log.info("===当前第{}条，收到添加订单:耗时{}毫秒 ", order.getUid(),ss);
-			}
 			
-//			OrderProducer producer = new OrderProducer(ringBuffer);
-//			if (order.getUid().longValue() == 1) {
-//				start = System.currentTimeMillis();
-//			}
-//			if (order.getUid().longValue() % 10000 == 0) {
-//				log.info("当前是第：" + order.getUid() + "条数据，耗时：" + (System.currentTimeMillis() - start) + "(毫秒)");
-//			}
-//			producer.onData(order);
+			OrderProducer producer = new OrderProducer(ringBuffer);
+			if (order.getUid().longValue() == 1) {
+				start = System.currentTimeMillis();
+			}
+			if (order.getUid().longValue() % 10000 == 0) {
+				log.info("当前是第：" + order.getUid() + "条数据，耗时：" + (System.currentTimeMillis() - start) + "(毫秒)");
+			}
+			producer.onData(order);
 		});
 	}
 
