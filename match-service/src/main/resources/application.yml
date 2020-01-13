@@ -8,8 +8,8 @@ spring:
         binder:
           name-server: 192.168.9.227:9876
         bindings:
-          in-push-depth: {consumer.broadcasting: true}
-          in-order-alter: {consumer.orderly: true}
+          in-order-alter: {consumer.orderly: true}  #是否排序
+          in-push-depth: {consumer.broadcasting: true} #是否广播
       bindings:
         out-new-order: 
           destination: new-order-topic

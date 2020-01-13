@@ -10,12 +10,12 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.flying.cattle.me.entity.MatchOrder;
-import com.flying.cattle.me.enums.OrderState;
-import com.flying.cattle.me.enums.OrderType;
 import com.flying.cattle.me.match.MatchExecutor;
 import com.flying.cattle.me.match.factory.MatchStrategyFactory;
 import com.flying.cattle.me.match.service.OrderMatchService;
+import com.flying.cattle.mt.entity.MatchOrder;
+import com.flying.cattle.mt.enums.OrderState;
+import com.flying.cattle.mt.enums.OrderType;
 
 /**
  * @ClassName: LimitOrderMatchService
@@ -33,7 +33,7 @@ public class MarketOrderMatchService implements OrderMatchService,InitializingBe
 	public MatchOrder startMatch(MatchOrder order) {
 		//不同的订单，可以选择不同的撮合逻辑，和不同处理
 		MatchOrder result = matchExecutors.doMatch(order);
-		if (result.getState().intValue()!=OrderState.ALL.value) {
+		if (result.getState().intValue()!=OrderState.FINISH_DEAL.value) {
 			//市价没吃完，直接撤销
 			result.setState(OrderState.CANCEL.value);
 		}

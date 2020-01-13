@@ -82,5 +82,6 @@
 	<modules>
 		<module>match-engine</module>
 		<module>match-service</module>
+		<module>match-common</module>
 	</modules>
 </project>

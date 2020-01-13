@@ -4,10 +4,12 @@
  * Copyright(c) 2020 flying-cattle Co. Ltd. 
  * All right reserved. 
  */
-package com.flying.cattle.exchange.model;
+package com.flying.cattle.mt.entity;
 
 import java.io.Serializable;
+
 import javax.validation.constraints.NotNull;
+
 import com.alibaba.fastjson.JSON;
 
 import lombok.AllArgsConstructor;
@@ -32,7 +34,6 @@ public class CancelOrderParam implements Serializable {
 	private Long id;
 	
 	//@ApiModelProperty(name = "isBuy", value = "是买挂单")
-	@NotNull(message = "buy不能为空")
 	private Boolean isBuy;
 	
 	//(name = "coinTeam" , value = "交易队")

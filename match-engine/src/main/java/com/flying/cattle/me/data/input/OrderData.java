@@ -14,11 +14,10 @@ import org.springframework.cloud.stream.annotation.StreamListener;
 
 import com.alibaba.fastjson.JSON;
 import com.flying.cattle.me.data.out.PushData;
-import com.flying.cattle.me.entity.CancelOrderParam;
-import com.flying.cattle.me.entity.MatchOrder;
-import com.flying.cattle.me.plugins.disruptor.producer.OrderProducer;
 import com.flying.cattle.me.plugins.mq.MatchSink;
 import com.flying.cattle.me.util.HazelcastUtil;
+import com.flying.cattle.mt.entity.CancelOrderParam;
+import com.flying.cattle.mt.entity.MatchOrder;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
 import com.hazelcast.transaction.TransactionContext;
@@ -50,28 +49,38 @@ public class OrderData {
 	long start = 0;
 
 	/**
-	 * @Title: new_order @Description: TODO(接收委托订单数据，必须在同一个group中，保证分布式下线性撮合) @param
-	 *         参数 @return void 返回类型 @throws
+	 * @Title: new_order 
+	 * @Description: 
+	 * TODO(接收委托订单数据，必须在同一个group中，保证分布式下线性撮合) 
+	 * @return void 返回类型 
 	 */
 	@StreamListener(MatchSink.IN_NEW_ORDER)
 	public void new_order(Flux<String> flux) {
 		flux.subscribe(message -> {
-			log.info("===收到添加订单: {}", message);
-			OrderProducer producer = new OrderProducer(ringBuffer);
 			MatchOrder order = JSON.parseObject(message, MatchOrder.class);
-			if (order.getUid().longValue() == 1) {
-				start = System.currentTimeMillis();
+			if (order.getUid()%10000==0) {
+				long end = System.currentTimeMillis();
+				long ss =end-start;
+				start = end;
+				log.info("===当前第{}条，收到添加订单:耗时{}毫秒 ", order.getUid(),ss);
 			}
-			if (order.getUid().longValue() % 10000 == 0) {
-				log.info("当前是第：" + order.getUid() + "条数据，耗时：" + (System.currentTimeMillis() - start) + "(毫秒)");
-			}
-			producer.onData(order);
+			
+//			OrderProducer producer = new OrderProducer(ringBuffer);
+//			if (order.getUid().longValue() == 1) {
+//				start = System.currentTimeMillis();
+//			}
+//			if (order.getUid().longValue() % 10000 == 0) {
+//				log.info("当前是第：" + order.getUid() + "条数据，耗时：" + (System.currentTimeMillis() - start) + "(毫秒)");
+//			}
+//			producer.onData(order);
 		});
 	}
 
 	/**
-	 * @Title: new_order @Description: TODO(接收撤销订单数据，不需要线性) @param 参数 @return void
-	 *         返回类型 @throws
+	 * @Title: new_order 
+	 * @Description: TODO(接收撤销订单数据，不需要线性) 
+	 * @param 参数  Flux<String>
+	 * @return void 返回类型 
 	 */
 	@StreamListener(MatchSink.IN_CANCEL_ORDER)
 	public void cancel_order(Flux<String> flux) {

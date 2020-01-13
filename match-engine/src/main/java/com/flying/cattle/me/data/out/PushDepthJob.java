@@ -16,15 +16,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import com.alibaba.fastjson.JSON;
-import com.flying.cattle.me.entity.ClusterInfo;
-import com.flying.cattle.me.entity.Depth;
+
 import com.flying.cattle.me.plugins.mq.SendService;
 import com.flying.cattle.me.util.HazelcastUtil;
+import com.flying.cattle.mt.entity.ClusterInfo;
+import com.flying.cattle.mt.entity.Depth;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
 
@@ -74,7 +75,7 @@ public class PushDepthJob {
 					map.put("buy", buyList);
 					map.put("sell", sellList);
 					// 推送深度
-					sendService.sendPushDepth(JSON.toJSONString(map));
+					//sendService.sendPushDepth(JSON.toJSONString(map));
 				}
 			}
 		} catch (Exception e) {

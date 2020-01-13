@@ -6,7 +6,7 @@
  */
 package com.flying.cattle.me.plugins.disruptor.factory;
 
-import com.flying.cattle.me.entity.MatchOrder;
+import com.flying.cattle.mt.entity.MatchOrder;
 import com.lmax.disruptor.EventFactory;
 
 /**

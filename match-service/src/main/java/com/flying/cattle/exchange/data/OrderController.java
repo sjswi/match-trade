@@ -7,10 +7,8 @@
 package com.flying.cattle.exchange.data;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.Random;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,15 +16,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.flying.cattle.exchange.entity.Order;
-import com.flying.cattle.exchange.model.CancelOrderParam;
 import com.flying.cattle.exchange.model.JsonResult;
-import com.flying.cattle.exchange.model.OrderParam;
-import com.flying.cattle.exchange.plugins.mq.SendService;
+import com.flying.cattle.exchange.order.OrderFactory;
+import com.flying.cattle.exchange.order.StateHandler;
 import com.flying.cattle.exchange.util.DataUtil;
 import com.flying.cattle.exchange.util.SnowflakeIdWorker;
 import com.flying.cattle.exchange.util.ValidationResult;
 import com.flying.cattle.exchange.util.ValidationUtils;
+import com.flying.cattle.mt.entity.CancelOrderParam;
+import com.flying.cattle.mt.entity.Order;
+import com.flying.cattle.mt.entity.OrderParam;
+import com.flying.cattle.mt.enums.OrderState;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,9 +40,6 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/exchange/order")
 public class OrderController {
-	
-	@Autowired
-	private SendService sendService;
 	
 	/**
 	 * @Title: addNewOrder
@@ -62,11 +59,9 @@ public class OrderController {
 			Order order = DataUtil.paramToOrder(param);
 			order.setId(SnowflakeIdWorker.generateId());
 			order.setUid(SnowflakeIdWorker.generateId());
-			//关联用户，资产校验，或其他校验
-			
 			//校验完成推送消息
-			sendService.sendNewOrder(order.toJsonString());
-			log.error("添加新的订单"+new Date().getTime());
+			StateHandler stateHandler = OrderFactory.getByOrderState(OrderState.PAID);
+			stateHandler.handler(order);
 			return res.success(order);
 		} catch (Exception e) {
 			log.error("添加新的订单错误："+e);
@@ -91,9 +86,12 @@ public class OrderController {
 			if (vr.isHasErrors()) {
 				return res.error(vr.getFirstErrors());
 			}
-			//查看是否是可以撤销的状态
-			sendService.sendCancelOrder(param.toJsonString());
-			log.error("撤销订单"+new Date().getTime());
+			Order order = new Order();
+			order.setId(param.getId());
+			order.setCoinTeam(param.getCoinTeam());
+			//实现-查看是否是可以撤销的状态
+			StateHandler stateHandler = OrderFactory.getByOrderState(OrderState.TO_UNDO);
+			stateHandler.handler(order);
 			return res.success("操作成功！");
 		} catch (Exception e) {
 			log.error("撤销订单错误："+e);
@@ -122,7 +120,8 @@ public class OrderController {
 				Order order = DataUtil.paramToOrder(param);
 				order.setId(SnowflakeIdWorker.generateId());
 				order.setUid(i);
-				sendService.sendNewOrder(order.toJsonString());
+				StateHandler stateHandler = OrderFactory.getByOrderState(OrderState.PAID);
+				stateHandler.handler(order);
 			}
 			return res.success("成功:"+size);
 		} catch (Exception e) {

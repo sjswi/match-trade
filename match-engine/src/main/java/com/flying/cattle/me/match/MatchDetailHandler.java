@@ -17,12 +17,12 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 
 import com.flying.cattle.me.data.out.PushData;
-import com.flying.cattle.me.entity.LevelMatch;
-import com.flying.cattle.me.entity.MatchOrder;
-import com.flying.cattle.me.entity.Trade;
-import com.flying.cattle.me.enums.DealWay;
-import com.flying.cattle.me.enums.OrderState;
 import com.flying.cattle.me.util.HazelcastUtil;
+import com.flying.cattle.mt.entity.LevelMatch;
+import com.flying.cattle.mt.entity.MatchOrder;
+import com.flying.cattle.mt.entity.Trade;
+import com.flying.cattle.mt.enums.DealWay;
+import com.flying.cattle.mt.enums.OrderState;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
 import com.hazelcast.query.Predicate;
@@ -128,13 +128,13 @@ public class MatchDetailHandler {
 								int cpr = dealNumber.compareTo(out.getUnFinishNumber());
 								if (cpr>0) {
 									dealNumber=dealNumber.subtract(out.getUnFinishNumber());
-									this.updateOutOder(out, OrderState.ALL, out.getUnFinishNumber());
+									this.updateOutOder(out, OrderState.FINISH_DEAL, out.getUnFinishNumber());
 								}else if (cpr==0) {
-									this.updateOutOder(out, OrderState.ALL, dealNumber);
+									this.updateOutOder(out, OrderState.FINISH_DEAL, dealNumber);
 									dealNumber = BigDecimal.ZERO;
 									break;
 								}else {
-									out = this.updateOutOder(out, OrderState.PART, dealNumber);
+									out = this.updateOutOder(out, OrderState.SOME_DEAL, dealNumber);
 									order_map.put(out.getId(), out);
 									dealNumber = BigDecimal.ZERO;
 									break;

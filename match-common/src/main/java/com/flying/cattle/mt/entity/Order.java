@@ -4,15 +4,18 @@
  * Copyright(c) 2018 BianPeng Co. Ltd. 
  * All right reserved. 
  */
-package com.flying.cattle.exchange.entity;
+package com.flying.cattle.mt.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.validation.constraints.DecimalMin;
+
 import org.springframework.format.annotation.DateTimeFormat;
+
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,9 +23,7 @@ import lombok.NoArgsConstructor;
 /**
  * Copyright: Copyright (c) 2019
  * 
- * <p>
- * 说明： 订单实体类
- * </P>
+ *- 说明： 订单实体类
  * 
  * @version: V1.0
  * @author: BianPeng
@@ -46,27 +47,27 @@ public class Order implements Serializable {
 	// @ApiModelProperty(name = "isMarket" , value = "是市价交易")
 	private Boolean isMarket;
 
-	@DecimalMin("0.00")
+	@DecimalMin("0")
 	// @ApiModelProperty(name = "number" , value = "交易数量")
 	private BigDecimal number;
 
-	@DecimalMin("0.00")
+	@DecimalMin("0")
 	// @ApiModelProperty(name = "price" , value = "单价")
 	private BigDecimal price;
 
-	@DecimalMin("0.0000")
+	@DecimalMin("0")
 	// @ApiModelProperty(name = "totalPrice" , value = "总价")
 	private BigDecimal totalPrice;
 
-	@DecimalMin("0.00")
+	@DecimalMin("0")
 	// @ApiModelProperty(name = "finishNumber" , value = "已完成数量")
 	private BigDecimal finishNumber;
 
-	@DecimalMin("0.00")
+	@DecimalMin("0")
 	// @ApiModelProperty(name = "unFinishNumber" , value = "未完成数量")
 	private BigDecimal unFinishNumber;
 
-	@DecimalMin("0.0000")
+	@DecimalMin("0")
 	// @ApiModelProperty(name = "surplusFrozen" , value = "剩余冻结")
 	private BigDecimal surplusFrozen;
 
@@ -74,25 +75,25 @@ public class Order implements Serializable {
 	private Integer priority;
 
 	// @ApiModelProperty(name = "state" , value =
-	// "状态（0挂单，1部分成交，2全部成交，3已撤销，4已结算，其他异常）")
+	// "状态（0未支付，1已支付，2部分撮合，3全部撮合，4已经撤销，5完成结算，6撤销结算）")
 	private Integer state;
 
 	// @ApiModelProperty(name = "decimalNumber" , value = "数量的小数位数，其他以传入为准")
 	private Integer decimalNumber;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	// @ApiModelProperty(name = "alterTime" , value = "修改时间")
 	private Date alterTime;
 
 	// @ApiModelProperty(name = "coinTeam" , value = "交易队")
-	private String coinTeam;
-
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	private String coinTeam;
+	
 	// @ApiModelProperty(name = "createTime" , value = "创建时间")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date createTime;
-
+	
 	// @ApiModelProperty(name = "dealWay" , value = "成交方式（taker市价，maker限价）")
 	private String dealWay;
 

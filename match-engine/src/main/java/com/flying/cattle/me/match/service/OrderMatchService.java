@@ -6,7 +6,7 @@
  */
 package com.flying.cattle.me.match.service;
 
-import com.flying.cattle.me.entity.MatchOrder;
+import com.flying.cattle.mt.entity.MatchOrder;
 
 /**
  * @ClassName: OrderMatchService

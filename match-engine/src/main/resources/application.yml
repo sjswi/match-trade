@@ -12,6 +12,8 @@ spring:
         in-new-order: 
           destination: new-order-topic
           group: match-order
+          consumer:
+            max-attempts: 1
         in-cancel-order: 
           destination: cancel-order-topic
           group: match-cancel

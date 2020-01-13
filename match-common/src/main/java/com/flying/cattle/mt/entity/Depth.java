@@ -4,7 +4,7 @@
  * Copyright(c) 2018 BianPeng Co. Ltd. 
  * All right reserved. 
  */
-package com.flying.cattle.exchange.model;
+package com.flying.cattle.mt.entity;
 
 import java.io.Serializable;
 import com.alibaba.fastjson.JSON;

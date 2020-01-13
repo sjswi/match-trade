@@ -1,26 +1,27 @@
 /**
- * @filename: OrderType.java 2019年12月19日
+ * @filename: DealWay.java 2019年12月19日
  * @project match-engine  V1.0
  * Copyright(c) 2020 flying-cattle Co. Ltd. 
  * All right reserved. 
  */
-package com.flying.cattle.me.enums;
+package com.flying.cattle.mt.enums;
 
 /**
- * @ClassName: OrderType
- * @Description: TODO(Order类型)
+ * @ClassName: DealWay
+ * @Description: TODO(交易方式)
  * @author flying-cattle
  * @date 2019年12月19日
  */
-public enum OrderType {
-	MARKET("market", "市价"),
-    LIMIT("limit", "限价"),
+public enum DealWay {
+    TAKER("taker", "市价"),
+    MAKER("maker", "限价"),
+    CANCEL("cancel", "系统撤单"),
     ;
 
     public final String value;
     public final String label;
 
-    OrderType(String value, String label) {
+    DealWay(String value, String label) {
         this.value = value;
         this.label = label;
     }

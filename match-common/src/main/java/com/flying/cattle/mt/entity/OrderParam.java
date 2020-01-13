@@ -1,4 +1,4 @@
-package com.flying.cattle.exchange.model;
+package com.flying.cattle.mt.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -25,18 +25,18 @@ public class OrderParam implements Serializable{
 	// 交易的价格
 	//@ApiModelProperty(name = "price" , value = "买单价")
 	@Digits(integer=10, fraction=2)
-	@DecimalMin("0.00")
+	@DecimalMin("0")
 	private BigDecimal price;
 
 	// 交易的数量
 	//@ApiModelProperty(name = "number" , value = "买数量")
 	@Digits(integer=10, fraction=4)
-	@DecimalMin("0.0000")
+	@DecimalMin("0")
 	private BigDecimal number;
 	
 	//@ApiModelProperty(name = "total" , value = "买总价")
 	@Digits(integer=10, fraction=6)
-	@DecimalMin("0.000000")
+	@DecimalMin("0")
 	private BigDecimal total;
 	
 	// 交易类型（用USDT-BTC）

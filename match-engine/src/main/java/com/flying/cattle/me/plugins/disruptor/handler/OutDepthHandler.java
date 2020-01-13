@@ -6,9 +6,9 @@
  */
 package com.flying.cattle.me.plugins.disruptor.handler;
 
-import com.flying.cattle.me.entity.MatchOrder;
 import com.flying.cattle.me.match.MatchDetailHandler;
 import com.flying.cattle.me.util.SpringContextUtils;
+import com.flying.cattle.mt.entity.MatchOrder;
 import com.lmax.disruptor.EventHandler;
 
 /**

@@ -12,11 +12,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.flying.cattle.me.entity.LevelMatch;
-import com.flying.cattle.me.entity.MatchOrder;
-import com.flying.cattle.me.enums.DealWay;
-import com.flying.cattle.me.enums.OrderState;
 import com.flying.cattle.me.util.HazelcastUtil;
+import com.flying.cattle.mt.entity.LevelMatch;
+import com.flying.cattle.mt.entity.MatchOrder;
+import com.flying.cattle.mt.enums.DealWay;
+import com.flying.cattle.mt.enums.OrderState;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
 
@@ -69,14 +69,14 @@ public class MatchExecutor {
 					input.setList(lms);
 					if (contrast == 1) {//水平价格被吃完
 						outMap.remove(outPrice);
-						input.setState(OrderState.PART.value);
+						input.setState(OrderState.SOME_DEAL.value);
 						doMatch(input); // 递归处理
 					}else if (contrast == 0) {//都被吃完
 						outMap.remove(outPrice);
-						input.setState(OrderState.ALL.value);
+						input.setState(OrderState.FINISH_DEAL.value);
 					}else {//水平价格有剩余
 						outMap.compute(outPrice, (k,v) -> v.subtract(dealNum));
-						input.setState(OrderState.ALL.value);
+						input.setState(OrderState.FINISH_DEAL.value);
 					}
 				}
 			}

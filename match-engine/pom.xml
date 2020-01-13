@@ -12,30 +12,17 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webflux</artifactId>
+			<groupId>com.flying.cattle</groupId>
+			<artifactId>match-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
 		<!-- 数据库 Start -->
 		<dependency>
 			<groupId>com.hazelcast.jet</groupId>
 			<artifactId>hazelcast-jet</artifactId>
 		</dependency>
 		<!-- 数据库 End -->
-		<!-- 工具jar Start -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-		</dependency>
-		<!-- 工具jar end -->
 		<!-- disruptor Start -->
 		<dependency>
 			<groupId>com.lmax</groupId>

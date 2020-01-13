@@ -4,7 +4,7 @@
  * Copyright(c) 2020 flying-cattle Co. Ltd. 
  * All right reserved. 
  */
-package com.flying.cattle.me.enums;
+package com.flying.cattle.mt.enums;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -16,11 +16,13 @@ import java.util.Optional;
  * @date 2019年12月19日
  */
 public enum OrderState {
-    PUTUP(0, "挂单"),
-    PART(1, "部分成交"),
-    ALL(2, "全部成交"),
+	UNPAID(-1, "支付失败"),
+    PAID(0, "已支付"),
+    SOME_DEAL(1, "部分成交"),
+    FINISH_DEAL(2, "全部成交"),
     CANCEL(3, "已撤销"),
-    FINISH(4, "已结算"),
+    TO_UNDO(4, "撤销申请"),
+    ERROR(5, "异常订单"),
     ;
 
     public final int value;

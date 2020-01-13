@@ -9,8 +9,8 @@ package com.flying.cattle.exchange.util;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import com.flying.cattle.exchange.entity.Order;
-import com.flying.cattle.exchange.model.OrderParam;
+import com.flying.cattle.mt.entity.Order;
+import com.flying.cattle.mt.entity.OrderParam;
 
 /**
  * @ClassName: DataUtil

@@ -4,7 +4,7 @@
  * Copyright(c) 2020 flying-cattle Co. Ltd. 
  * All right reserved. 
  */
-package com.flying.cattle.exchange.model;
+package com.flying.cattle.mt.entity;
 
 import java.util.List;
 
