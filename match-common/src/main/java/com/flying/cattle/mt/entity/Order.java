@@ -58,7 +58,10 @@ public class Order implements Serializable {
 	@DecimalMin("0")
 	// @ApiModelProperty(name = "totalPrice" , value = "总价")
 	private BigDecimal totalPrice;
-
+    
+    // @ApiModelProperty(name = "dealWay" , value = "成交方式（taker市价，maker限价）")
+	private String dealWay;
+    
 	@DecimalMin("0")
 	// @ApiModelProperty(name = "finishNumber" , value = "已完成数量")
 	private BigDecimal finishNumber;
@@ -81,21 +84,18 @@ public class Order implements Serializable {
 	// @ApiModelProperty(name = "decimalNumber" , value = "数量的小数位数，其他以传入为准")
 	private Integer decimalNumber;
 
-	// @ApiModelProperty(name = "alterTime" , value = "修改时间")
-	private Date alterTime;
-
 	// @ApiModelProperty(name = "coinTeam" , value = "交易队")
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private String coinTeam;
 	
 	// @ApiModelProperty(name = "createTime" , value = "创建时间")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date createTime;
-	
-	// @ApiModelProperty(name = "dealWay" , value = "成交方式（taker市价，maker限价）")
-	private String dealWay;
+
+    // @ApiModelProperty(name = "alterTime" , value = "修改时间")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	private Date alterTime;
 
 	// @ApiModelProperty(name = "remark" , value = "备用字段JSON格式")
 	private String remark;
