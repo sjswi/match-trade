@@ -11,8 +11,6 @@ import com.flying.cattle.me.util.SpringContextUtils;
 import com.flying.cattle.mt.entity.MatchOrder;
 import com.lmax.disruptor.EventHandler;
 
-import ch.qos.logback.core.joran.conditional.IfAction;
-
 /**
  * @ClassName: OutDepthHandler
  * @Description: TODO(已挂单深度处理消费者)
