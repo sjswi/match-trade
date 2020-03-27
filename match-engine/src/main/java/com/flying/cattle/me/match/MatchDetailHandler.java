@@ -7,15 +7,13 @@
 package com.flying.cattle.me.match;
 
 import java.math.BigDecimal;
-import java.util.Collection;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
-
 import com.flying.cattle.me.data.out.PushData;
 import com.flying.cattle.me.util.HazelcastUtil;
 import com.flying.cattle.mt.entity.LevelMatch;
@@ -27,7 +25,6 @@ import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
 import com.hazelcast.query.Predicate;
 import com.hazelcast.query.Predicates;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -121,24 +118,23 @@ public class MatchDetailHandler {
 						IMap<Long, MatchOrder> order_map = hzInstance.getMap(HazelcastUtil.getOrderBookKey(order.getCoinTeam(), !order.getIsBuy()));
 						@SuppressWarnings("rawtypes")
 						Predicate pricePredicate = Predicates.equal("price", lm.getPrice());
-						Collection<MatchOrder> orders = order_map.values(pricePredicate);
-						for (MatchOrder mor : orders) {
-							MatchOrder out = order_map.remove(mor.getId());
-							if (null!=out) {
-								int cpr = dealNumber.compareTo(out.getUnFinishNumber());
-								if (cpr>0) {
-									dealNumber=dealNumber.subtract(out.getUnFinishNumber());
-									this.updateOutOder(out, OrderState.FINISH_DEAL, out.getUnFinishNumber());
-								}else if (cpr==0) {
-									this.updateOutOder(out, OrderState.FINISH_DEAL, dealNumber);
-									dealNumber = BigDecimal.ZERO;
-									break;
-								}else {
-									out = this.updateOutOder(out, OrderState.SOME_DEAL, dealNumber);
-									order_map.put(out.getId(), out);
-									dealNumber = BigDecimal.ZERO;
-									break;
-								}
+						//相同价格，时间优先，
+						MatchOrder queueOrder = order_map.values(pricePredicate).parallelStream().min(Comparator.comparing(MatchOrder::getCreateTime)).get();
+						MatchOrder out = order_map.remove(queueOrder.getId());
+						if (null!=out) {
+							int cpr = dealNumber.compareTo(out.getUnFinishNumber());
+							if (cpr>0) {
+								dealNumber=dealNumber.subtract(out.getUnFinishNumber());
+								this.updateOutOder(out, OrderState.FINISH_DEAL, out.getUnFinishNumber());
+							}else if (cpr==0) {
+								this.updateOutOder(out, OrderState.FINISH_DEAL, dealNumber);
+								dealNumber = BigDecimal.ZERO;
+								break;
+							}else {
+								out = this.updateOutOder(out, OrderState.SOME_DEAL, dealNumber);
+								order_map.put(out.getId(), out);
+								dealNumber = BigDecimal.ZERO;
+								break;
 							}
 						}
 					}
