@@ -42,7 +42,7 @@ public class DisruptorConfig {
 		int ringBufferSize = 1024 * 1024;
 		ThreadFactory disruptorThreadPool = new ThreadFactoryBuilder().setNameFormat("DisruptorThreadPool").build();
 		Disruptor<MatchOrder> disruptor = new Disruptor<MatchOrder>(factory, ringBufferSize, disruptorThreadPool,
-				ProducerType.MULTI, new YieldingWaitStrategy());
+				ProducerType.SINGLE, new YieldingWaitStrategy());
 		disruptor.setDefaultExceptionHandler(new MyHandlerException());// Disruptor异常统计
 		// 单线处理撮合, 并行处理盘口和订单薄
 		disruptor.handleEventsWithWorkerPool(new MatchHandler(),new MatchHandler()).then(new InputDepthHandler(),new OutDepthHandler());
