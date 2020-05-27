@@ -86,7 +86,6 @@ public class MatchDetailHandler {
 			IMap<BigDecimal, BigDecimal> map = hzInstance.getMap(HazelcastUtil.getMatchKey(input.getCoinTeam(), input.getIsBuy()));
 			IMap<Long, MatchOrder> order_map = hzInstance.getMap(HazelcastUtil.getOrderBookKey(input.getCoinTeam(), input.getIsBuy()));
 			map.compute(input.getPrice(),(k, v) -> HazelcastUtil.numberAdd(v, input.getUnFinishNumber()));
-			input.setList(null);//清空吃单记录，减小内存。
 			order_map.put(input.getId(), input);
 			//context.commitTransaction();//提交事务
 		} catch (Exception e) {
