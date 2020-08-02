@@ -3,7 +3,7 @@ spring:
     stream:
       rocketmq:
         binder:
-          name-server: 39.97.187.226:9876
+          name-server: 127.0.0.1:9876
 
 hazelcast:
   self-setting: false #如果该配置为false使用内网自动发现
@@ -11,9 +11,9 @@ hazelcast:
   #主动发现配置
   tcp-ip:
     enable: true
-    interface-ex: 172.16.10.*
+    interface-ex: 172.17.10.*
     members:
-    - 172.16.10.98
+    - 127.0.0.1
   kubernetes:  #k8s部署环境网络发现
     enable: true
     service-dns:

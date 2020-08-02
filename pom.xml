@@ -22,11 +22,11 @@
 		<skipTests>true</skipTests>
 		<!-- 私有包版本 -->
 		<fastjson.version>1.2.57</fastjson.version>
-		<hazelcast-jet.version>3.1</hazelcast-jet.version>
-		<hazelcast-kubernetes.version>1.3.1</hazelcast-kubernetes.version>
 		<guava.version>r09</guava.version>
 		<disruptor.version>3.4.2</disruptor.version>
 		<springfox-swagger2>2.9.2</springfox-swagger2>
+		<ignite.version>2.8.1</ignite.version>
+		<h2.version>1.4.197</h2.version>
 	</properties>
 
 	<dependencyManagement>
@@ -46,18 +46,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-			<!-- 数据库 Start -->
-			<dependency>
-				<groupId>com.hazelcast.jet</groupId>
-				<artifactId>hazelcast-jet</artifactId>
-				<version>${hazelcast-jet.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.hazelcast</groupId>
-				<artifactId>hazelcast-kubernetes</artifactId>
-				<version>${hazelcast-kubernetes.version}</version>
-			</dependency>
-			<!-- 数据库 End -->
+	
 			<!-- 工具jar Start -->
 			<dependency>
 				<groupId>com.alibaba</groupId>
@@ -65,6 +54,34 @@
 				<version>${fastjson.version}</version>
 			</dependency>
 			<!-- 工具jar end -->
+			
+			<!-- 内存 -->
+			<dependency>
+				<groupId>org.apache.ignite</groupId>
+				<artifactId>ignite-core</artifactId>
+				<version>${ignite.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.ignite</groupId>
+				<artifactId>ignite-spring</artifactId>
+				<version>${ignite.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.ignite</groupId>
+				<artifactId>ignite-spring-data</artifactId>
+				<version>${ignite.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.ignite</groupId>
+				<artifactId>ignite-indexing</artifactId>
+				<version>${ignite.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>${h2.version}</version>
+			</dependency>
+			
 			<!-- disruptor Start -->
 			<dependency>
 				<groupId>com.lmax</groupId>
@@ -81,7 +98,6 @@
 	</dependencyManagement>
 	<modules>
 		<module>match-engine</module>
-		<module>match-service</module>
 		<module>match-common</module>
 	</modules>
 </project>

@@ -1,31 +1,48 @@
 server:
-  port: 8080
+  port: 8400 # ${random.int[8400,8499]}
 spring:
+  application:
+    name: exchange-match
   profiles:
     active: local
   cloud:
     stream:
       rocketmq:
-        binder:
-          name-server: 192.168.9.227:9876
+        bindings: 
+          input-new-order: 
+            consumer:
+              orderly: true
       bindings:
-        in-new-order: 
+        input-new-order: 
           destination: new-order-topic
           group: match-order
-          consumer:
-            max-attempts: 1
-        in-cancel-order: 
+        input-cancel-order: 
           destination: cancel-order-topic
-          group: match-cancel
-        out-order-alter: 
-          destination: order-alter-topic
+          group: cancel-topic
+        output-update-order: 
+          destination: update-order-topic
           content-type: application/json
-        out-new-trade: 
+          producer:
+            # 分区 key 表达式。该表达式基于 Spring EL，从消息中获得分区 key
+            partition-key-expression: payload['id']
+        output-trade: 
           destination: new-trade-topic
           content-type: application/json
-        out-push-depth: 
-          destination: push-depth-topic
-          content-type: application/json
+          producer:
+            # 分区 key 表达式。该表达式基于 Spring EL，从消息中获得分区 key
+            partition-key-expression: payload['makerUid']
 
+# 开启spring boot项目正确停止服务的姿势....
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include:
+          - shutdown
+          - health
 
- 

@@ -17,12 +17,29 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
-		<!-- 数据库 Start -->
+		<!-- 内存 -->
 		<dependency>
-			<groupId>com.hazelcast.jet</groupId>
-			<artifactId>hazelcast-jet</artifactId>
+			<groupId>org.apache.ignite</groupId>
+			<artifactId>ignite-core</artifactId>
 		</dependency>
-		<!-- 数据库 End -->
+		<dependency>
+			<groupId>org.apache.ignite</groupId>
+			<artifactId>ignite-spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.ignite</groupId>
+			<artifactId>ignite-spring-data</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.ignite</groupId>
+			<artifactId>ignite-indexing</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+		
 		<!-- disruptor Start -->
 		<dependency>
 			<groupId>com.lmax</groupId>

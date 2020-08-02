@@ -1,9 +1,3 @@
-/**
- * @filename: MatchStrategyFactory.java 2019年12月4日
- * @project match-engine  V1.0
- * Copyright(c) 2020 FlyCattle Co. Ltd. 
- * All right reserved. 
- */
 package com.flying.cattle.me.match.factory;
 
 import java.util.Map;
@@ -11,25 +5,24 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.util.Assert;
 
-import com.flying.cattle.me.match.service.OrderMatchService;
-import com.flying.cattle.mt.enums.OrderType;
+import com.flying.cattle.me.match.service.AbstractOrderMatchService;
+import com.flying.cattle.mt.enums.EnumOrderType;
 
 /**
- * @ClassName: MatchStrategyFactory
- * @Description: TODO(撮合策略工厂)
- * @author flying-cattle
- * @date 2019年12月4日
+ * 撮合策略工厂
+ * @author senkyouku
+ * @date 2020-07-02
  */
 public class MatchStrategyFactory {
 
-	private static Map<OrderType,OrderMatchService> services = new ConcurrentHashMap<OrderType,OrderMatchService>();
+    private static Map<Integer, AbstractOrderMatchService> services = new ConcurrentHashMap<>();
 
-    public  static OrderMatchService getByOrderType(OrderType orderType){
-        return services.get(orderType);
+    public static AbstractOrderMatchService getByOrderType(EnumOrderType orderType) {
+        return services.get(orderType.getCode());
     }
 
-    public static void register(OrderType orderType,OrderMatchService orderMatchService){
-        Assert.notNull(orderType,"userType can't be null");
-        services.put(orderType,orderMatchService);
+    public static void register(EnumOrderType orderType, AbstractOrderMatchService orderMatchService) {
+        Assert.notNull(orderType, "userType can't be null");
+        services.put(orderType.getCode(), orderMatchService);
     }
 }
