@@ -3,7 +3,7 @@ spring:
     stream:
       rocketmq:
         binder:
-          name-server: 39.97.187.226:9876
+          name-server: 127.0.0.1:9876
 
 hazelcast:
   self-setting: false #如果该配置为false使用内网自动发现
