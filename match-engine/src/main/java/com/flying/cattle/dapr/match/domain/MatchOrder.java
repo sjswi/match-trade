@@ -4,14 +4,15 @@
  * Copyright(c) 2020 kinbug Co. Ltd.
  * All right reserved.
  */
-package com.flying.cattle.me.match.domain;
+package com.flying.cattle.dapr.match.domain;
 
-import java.io.Serializable;
-import java.util.Date;
-import org.apache.ignite.cache.affinity.AffinityKey;
 import com.alibaba.fastjson.JSON;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.ignite.cache.affinity.AffinityKey;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author senkyouku

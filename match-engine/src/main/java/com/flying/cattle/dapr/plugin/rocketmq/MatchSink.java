@@ -1,4 +1,4 @@
-package com.flying.cattle.me.plugin.rocketmq;
+package com.flying.cattle.dapr.plugin.rocketmq;
 
 import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.messaging.SubscribableChannel;

@@ -1,5 +1,6 @@
 package com.flying.cattle.me.match.service.impl;
 
+import com.flying.cattle.me.plugin.mysql.MySQLUtil;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
 
@@ -7,7 +8,6 @@ import com.flying.cattle.me.match.EngineExecutor;
 import com.flying.cattle.me.match.domain.MatchOrder;
 import com.flying.cattle.me.match.factory.MatchStrategyFactory;
 import com.flying.cattle.me.match.service.AbstractOrderMatchService;
-import com.flying.cattle.me.plugin.ignite.IgniteUtil;
 import com.flying.cattle.mt.enums.EnumOrderType;
 
 /**
@@ -21,11 +21,11 @@ public class MtcMatchService extends AbstractOrderMatchService implements Initia
 
     private final EngineExecutor matchExecutors;
 
-    private final IgniteUtil igniteUtil;
+    private final MySQLUtil mySQLUtil;
 
-    public MtcMatchService(EngineExecutor matchExecutors, IgniteUtil igniteUtil) {
+    public MtcMatchService(EngineExecutor matchExecutors, MySQLUtil mySQLUtil) {
         this.matchExecutors = matchExecutors;
-        this.igniteUtil = igniteUtil;
+        this.mySQLUtil = mySQLUtil;
     }
 
     /**
@@ -53,7 +53,7 @@ public class MtcMatchService extends AbstractOrderMatchService implements Initia
         if (order.getNoDealNum() == 0 && order.getNoDealAmount() == 0) {
             return order;
         }
-        return igniteUtil.sendCancelOrder(order);
+        return mySQLUtil.sendCancelOrder(order);
     }
 
     /**

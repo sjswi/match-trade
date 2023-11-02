@@ -1,14 +1,13 @@
-package com.flying.cattle.me.match.service.impl;
+package com.flying.cattle.dapr.match.service.impl;
 
-import com.flying.cattle.me.plugin.mysql.MySQLUtil;
+import com.flying.cattle.dapr.match.EngineExecutor;
+import com.flying.cattle.dapr.match.domain.MatchOrder;
+import com.flying.cattle.dapr.match.factory.MatchStrategyFactory;
+import com.flying.cattle.dapr.match.service.AbstractOrderMatchService;
+import com.flying.cattle.dapr.plugin.dapr.DaprUtil;
+import com.flying.cattle.mt.enums.EnumOrderType;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
-
-import com.flying.cattle.me.match.EngineExecutor;
-import com.flying.cattle.me.match.domain.MatchOrder;
-import com.flying.cattle.me.match.factory.MatchStrategyFactory;
-import com.flying.cattle.me.match.service.AbstractOrderMatchService;
-import com.flying.cattle.mt.enums.EnumOrderType;
 
 /**
  * -市价转撤销单
@@ -21,11 +20,11 @@ public class MtcMatchService extends AbstractOrderMatchService implements Initia
 
     private final EngineExecutor matchExecutors;
 
-    private final MySQLUtil mySQLUtil;
+    private final DaprUtil daprUtil;
 
-    public MtcMatchService(EngineExecutor matchExecutors, MySQLUtil mySQLUtil) {
+    public MtcMatchService(EngineExecutor matchExecutors, DaprUtil daprUtil) {
         this.matchExecutors = matchExecutors;
-        this.mySQLUtil = mySQLUtil;
+        this.daprUtil = daprUtil;
     }
 
     /**
@@ -53,7 +52,7 @@ public class MtcMatchService extends AbstractOrderMatchService implements Initia
         if (order.getNoDealNum() == 0 && order.getNoDealAmount() == 0) {
             return order;
         }
-        return mySQLUtil.sendCancelOrder(order);
+        return daprUtil.sendCancelOrder(order);
     }
 
     /**

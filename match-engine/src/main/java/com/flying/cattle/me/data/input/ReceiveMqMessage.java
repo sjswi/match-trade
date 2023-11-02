@@ -1,5 +1,6 @@
 package com.flying.cattle.me.data.input;
 
+import com.flying.cattle.me.plugin.mysql.MySQLUtil;
 import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
@@ -7,7 +8,6 @@ import org.springframework.cloud.stream.annotation.StreamListener;
 import com.flying.cattle.me.match.domain.MatchOrder;
 import com.flying.cattle.me.match.factory.MatchStrategyFactory;
 import com.flying.cattle.me.match.service.AbstractOrderMatchService;
-import com.flying.cattle.me.plugin.ignite.IgniteUtil;
 import com.flying.cattle.me.plugin.rocketmq.MatchSink;
 import com.flying.cattle.mt.enums.EnumOrderType;
 import com.flying.cattle.mt.message.OrderDTO;
@@ -25,12 +25,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ReceiveMqMessage {
 	
-	public final IgniteUtil igniteUtil;
+	public final MySQLUtil mySQLUtil;
 	
 	final BeanCopier beanCopier = BeanCopier.create(OrderDTO.class, MatchOrder.class, false);
 
-	public ReceiveMqMessage(IgniteUtil igniteUtil) {
-		this.igniteUtil = igniteUtil;
+	public ReceiveMqMessage(MySQLUtil mySQLUtil) {
+		this.mySQLUtil = mySQLUtil;
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class ReceiveMqMessage {
 		log.info("newOrder request order  {}" + order.toString());
 		MatchOrder matchOrder = new MatchOrder();
 		beanCopier.copy(order, matchOrder, null);
-		if (igniteUtil.passUnioueVerify(matchOrder)) {
+		if (mySQLUtil.passUnioueVerify(matchOrder)) {
 			// 根据订单类型获取撮合策略
 			AbstractOrderMatchService service = MatchStrategyFactory.getByOrderType(EnumOrderType.of(matchOrder.getOrderType()));
 			if (service == null) {
@@ -69,7 +69,7 @@ public class ReceiveMqMessage {
 		log.info("cancelOrder request order {}" + order.toString());
 		MatchOrder matchOrder = new MatchOrder();
 		beanCopier.copy(order, matchOrder, null);
-		igniteUtil.doCancelOrder(matchOrder);
+		mySQLUtil.doCancelOrder(matchOrder);
 	}
 
 }

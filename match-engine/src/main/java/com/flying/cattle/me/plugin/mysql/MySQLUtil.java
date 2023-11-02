@@ -1,7 +1,9 @@
-package com.flying.cattle.me.plugin.dapr;
+package com.flying.cattle.me.plugin.mysql;
 
+import com.flying.cattle.me.data.out.SendService;
 import com.flying.cattle.me.match.domain.MatchOrder;
 import com.flying.cattle.me.util.EngineUtil;
+import com.flying.cattle.mt.enums.EnumOrderState;
 import com.flying.cattle.mt.message.DepthDTO;
 import com.flying.cattle.mt.message.OrderDTO;
 import org.apache.ignite.IgniteCache;
@@ -12,13 +14,26 @@ import org.apache.ignite.cache.query.QueryCursor;
 import org.apache.ignite.cache.query.ScanQuery;
 import org.apache.ignite.cache.query.SqlFieldsQuery;
 import org.apache.ignite.configuration.CacheConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanCopier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.cache.Cache;
 import javax.cache.expiry.CreatedExpiryPolicy;
 import javax.cache.expiry.Duration;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -29,7 +44,28 @@ import java.util.stream.Collectors;
  * @mail：a17281293@gmail.com
  * @date: 2023-10-29 16:36
  **/
-public class DaprUtil {
+@Component
+public class MySQLUtil {
+
+    @Autowired
+    private PlatformTransactionManager transactionManager;
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    private ConcurrentHashMap<String, String> cacheKeys;
+
+
+    final SendService sendService;
+
+    public MySQLUtil(ConcurrentHashMap<String, String> cacheKeys, SendService sendService) {
+        this.cacheKeys = cacheKeys;
+        this.sendService = sendService;
+    }
+
+//    private
     /**
      * TODO 判断是否通过唯一性校验
      *
@@ -37,64 +73,67 @@ public class DaprUtil {
      * @return Boolean 返回类型（true：通过，false：为通过）
      */
     public Boolean passUnioueVerify(MatchOrder order) {
-        IgniteCache<Long, Long> orderIds = this.getIgniteCacheIdskey(EngineUtil.getOrderDeWeigtKey(order));
-        if (!orderIds.containsKey(order.getId())) {
-            orderIds.put(order.getId(), order.getId());
+        // 获取表名
+        String tableName = EngineUtil.getOrderDeWeigtKey(order);
+
+        if (!this.idExist(order.getId(), tableName)) {
+//            orderIds.put(order.getId(), order.getId());
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
     }
 
-    /**
-     * TODO 获取对应币对去重的缓存
-     *
-     * @param idsKeyName 委托单
-     * @return Boolean 返回类型（true：通过，false：为通过）
-     */
-    public IgniteCache<Long, Long> getIgniteCacheIdskey(String idsKeyName) {
-        if (igniteCacheKeys.contains(idsKeyName)) {
-            return ignite.cache(idsKeyName);
-        } else {
-            igniteCacheKeys.put(idsKeyName, idsKeyName);
-            CacheConfiguration<Long, Long> idsCache = new CacheConfiguration<Long, Long>(idsKeyName);
-            idsCache.setExpiryPolicyFactory(CreatedExpiryPolicy.factoryOf(new Duration(TimeUnit.MINUTES, 30)));
-            idsCache.setAtomicityMode(CacheAtomicityMode.TRANSACTIONAL);
-            return ignite.getOrCreateCache(idsCache);
-        }
+
+
+    public void createTable(String tableName){
+        String sql = "CREATE TABLE `" + tableName + "` (" +
+                "`id` bigint NOT NULL AUTO_INCREMENT," +
+                "`accountId` bigint NOT NULL," +
+                "`uid` bigint NOT NULL," +
+                "`price` bigint DEFAULT NULL," +
+                "`num` bigint NOT NULL," +
+                "`amount` bigint NOT NULL," +
+                "`ifBid` tinyint(1) NOT NULL," +
+                "`orderType` int NOT NULL," +
+                "`symbolId` int NOT NULL," +
+                "`state` int NOT NULL," +
+                "`dealNum` bigint NOT NULL," +
+                "`noDealNum` bigint NOT NULL," +
+                "`dealAmount` bigint NOT NULL," +
+                "`noDealAmount` bigint NOT NULL," +
+                "`createTime` datetime DEFAULT NULL," +
+                "`alterTime` datetime DEFAULT NULL," +
+                "`priority` int NOT NULL," +
+                "PRIMARY KEY (`id`)" +
+                ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci";
+        jdbcTemplate.execute(sql);
     }
 
+
+
+    public boolean idExist(Long id, String tableName) {
+        String sql = "SELECT COUNT(*) FROM " + tableName + " WHERE id = ?";
+        Integer count = jdbcTemplate.queryForObject(sql, new Object[]{id}, Integer.class);
+        return count != null && count > 0;
+    }
+
+//    public MatchOrder getOrder(Long id){
+//
+//    }
     /**
      * TODO 获取对应币对的订单薄
      *
      * @param orderBookKey 委托单
      * @return Boolean 返回类型（true：通过，false：为通过）
      */
-    public IgniteCache<Long, MatchOrder> getIgniteOrderBook(String orderBookKey) {
-        if (igniteCacheKeys.contains(orderBookKey)) {
-            return ignite.cache(orderBookKey);
+    public String getIgniteOrderBook(String orderBookKey) {
+        if (cacheKeys.contains(orderBookKey)) {
+            return cacheKeys.get(orderBookKey);
         } else {
-            igniteCacheKeys.put(orderBookKey, orderBookKey);
-            CacheConfiguration<Long, MatchOrder> orderBookCache = new CacheConfiguration<Long, MatchOrder>(orderBookKey);
-            // 构建查询对象
-            QueryEntity queryEntity = new QueryEntity();
-            queryEntity.setKeyType(Long.class.getName());
-            queryEntity.setValueType(MatchOrder.class.getName());
-            // 构建结果字段
-            LinkedHashMap<String, String> fields = EngineUtil.propertyToMap(MatchOrder.class);
-            queryEntity.setFields(fields);
-            // 构建price的索引
-            boolean sort = true; // 由小到大
-            if (orderBookKey.contains("BID")) {
-                sort = false;
-            }
-            Collection<QueryIndex> indexes = new ArrayList<>(1);
-            indexes.add(new QueryIndex("price", sort));
-            queryEntity.setIndexes(indexes);
-            orderBookCache.setQueryEntities(Arrays.asList(queryEntity));
-            // 副本级配置
-            orderBookCache.setBackups(1);
-            orderBookCache.setAtomicityMode(CacheAtomicityMode.ATOMIC);
-            return ignite.getOrCreateCache(orderBookCache);
+            cacheKeys.put(orderBookKey, orderBookKey);
+            this.createTable(orderBookKey );
+
+            return cacheKeys.get(orderBookKey);
         }
     }
 
@@ -105,20 +144,16 @@ public class DaprUtil {
      * @param order 委托单
      * @return Boolean 返回类型（true：通过，false：为通过）
      */
-    public List<Long> getOrderBookHead(IgniteCache<Long, MatchOrder> order, boolean ifBid, int limitNum) {
-//		String sql = "from MatchOrder ORDER BY price limit "+limitNum;
-//		if (ifBid) {
-//			sql = "from MatchOrder ORDER BY price DESC limit "+limitNum;
-//		}
-//		SqlQuery<Long, MatchOrder> query = new SqlQuery<>(MatchOrder.class, sql);
 
-        SqlFieldsQuery query;
+
+    public List<Long> getOrderBookHead(String tableName, boolean ifBid, int limitNum) {
+        String query;
         if (ifBid) {
-            query = new SqlFieldsQuery("SELECT id from MatchOrder ORDER BY price DESC limit " + limitNum);
+            query = "SELECT id FROM " + tableName + " ORDER BY price DESC LIMIT ?";
         } else {
-            query = new SqlFieldsQuery("SELECT id from MatchOrder ORDER BY price limit " + limitNum);
+            query = "SELECT id FROM " + tableName + " ORDER BY price ASC LIMIT ?";
         }
-        return order.query(query).getAll().stream().map(lit -> (Long) lit.get(0)).collect(Collectors.toList());
+        return jdbcTemplate.queryForList(query, Long.class, limitNum);
     }
 
     /**
@@ -128,10 +163,12 @@ public class DaprUtil {
      * @param order 委托单
      * @return Boolean 返回类型（true：通过，false：为通过）
      */
-    public List<MatchOrder> getOrderBookHot(IgniteCache<Long, MatchOrder> order, boolean ifBid, int limitNum) {
-        SqlFieldsQuery query = new SqlFieldsQuery("SELECT id,price from MatchOrder ORDER BY price limit " + limitNum);
-        return order.query(query).getAll().stream().map(lit -> new MatchOrder((Long) lit.get(0), (Long) lit.get(1))
-        ).collect(Collectors.toList());
+
+    public List<MatchOrder> getOrderBookHot(String tableName, boolean ifBid, int limitNum) {
+        String orderBy = ifBid ? "DESC" : "ASC";
+        String sql = "SELECT id, price FROM " + tableName + " ORDER BY price " + orderBy + " LIMIT " + limitNum;
+
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(MatchOrder.class));
     }
 
 
@@ -143,8 +180,9 @@ public class DaprUtil {
      */
     @Async
     public void doCancelOrder(MatchOrder order) {
-        IgniteCache<Long, MatchOrder> map = ignite.cache(EngineUtil.getOrderBookKey(order));
-        MatchOrder cancel = map.getAndRemove(order.getId());
+
+//        IgniteCache<Long, MatchOrder> map = ignite.cache(EngineUtil.getOrderBookKey(order));
+        MatchOrder cancel = this.getAndRemove(order.getId(), EngineUtil.getOrderBookKey(order));
         if (null != cancel) {
             sendService.sendCancelOrder(cancel);
         }
@@ -170,9 +208,103 @@ public class DaprUtil {
      */
     public MatchOrder addToOrderBook(MatchOrder order) {
         String orderBookKey = EngineUtil.getOrderBookKey(order);
-        IgniteCache<Long, MatchOrder> orderBook = getIgniteOrderBook(orderBookKey);
-        return orderBook.getAndPut(order.getId(), order);
+        String tableName = getIgniteOrderBook(orderBookKey);
+        return this.insertOrUpdateOrder(order, tableName);
+
     }
+    private MatchOrder insertOrUpdateOrder(MatchOrder order, String tableName) {
+        String selectSql = "SELECT * FROM " + tableName + " WHERE id = ?";
+        try {
+            MatchOrder oldOrder = jdbcTemplate.queryForObject(selectSql, new BeanPropertyRowMapper<>(MatchOrder.class), order.getId());
+
+            // If oldOrder is not null, then update the existing order.
+            String updateSql = "UPDATE " + tableName + " SET " +
+                    "accountId = ?, " +
+                    "uid = ?, " +
+                    "price = ?, " +
+                    "num = ?, " +
+                    "amount = ?, " +
+                    "ifBid = ?, " +
+                    "orderType = ?, " +
+                    "symbolId = ?, " +
+                    "state = ?, " +
+                    "dealNum = ?, " +
+                    "noDealNum = ?, " +
+                    "dealAmount = ?, " +
+                    "noDealAmount = ?, " +
+                    "createTime = ?, " +
+                    "alterTime = ?, " +
+                    "priority = ? " +
+                    "WHERE id = ?";
+            jdbcTemplate.update(updateSql,
+                    order.getAccountId(),
+                    order.getUid(),
+                    order.getPrice(),
+                    order.getNum(),
+                    order.getAmount(),
+                    order.isIfBid(),
+                    order.getOrderType(),
+                    order.getSymbolId(),
+                    order.getState(),
+                    order.getDealNum(),
+                    order.getNoDealNum(),
+                    order.getDealAmount(),
+                    order.getNoDealAmount(),
+                    order.getCreateTime(),
+                    order.getAlterTime(),
+                    order.getPriority(),
+                    order.getId()
+            );
+
+            return oldOrder;
+        } catch (EmptyResultDataAccessException e) {
+            // This exception is thrown if the result set is empty, i.e., the order doesn't exist.
+            // Insert the new order.
+            String insertSql = "INSERT INTO " + tableName + " " +
+                    "(id, accountId, uid, price, num, amount, ifBid, orderType, symbolId, state, dealNum, noDealNum, dealAmount, noDealAmount, createTime, alterTime, priority) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            jdbcTemplate.update(insertSql,
+                    order.getId(),
+                    order.getAccountId(),
+                    order.getUid(),
+                    order.getPrice(),
+                    order.getNum(),
+                    order.getAmount(),
+                    order.isIfBid(),
+                    order.getOrderType(),
+                    order.getSymbolId(),
+                    order.getState(),
+                    order.getDealNum(),
+                    order.getNoDealNum(),
+                    order.getDealAmount(),
+                    order.getNoDealAmount(),
+                    order.getCreateTime(),
+                    order.getAlterTime(),
+                    order.getPriority()
+            );
+            return null;
+        }
+    }
+
+
+    private MatchOrder getAndRemove(Long id, String tableName) {
+        String selectSql = "SELECT * FROM " + tableName + " WHERE id = ?";
+        try {
+            MatchOrder oldOrder = jdbcTemplate.queryForObject(selectSql, new BeanPropertyRowMapper<>(MatchOrder.class), id);
+
+            // If oldOrder is not null, then delete the order from the table.
+            if (oldOrder != null) {
+                String deleteSql = "DELETE FROM " + tableName + " WHERE id = ?";
+                jdbcTemplate.update(deleteSql, id);
+            }
+
+            return oldOrder;
+        } catch (EmptyResultDataAccessException e) {
+            // This exception is thrown if the result set is empty, i.e., the order doesn't exist.
+            return null;
+        }
+    }
+
 
     /**
      * 获取币对下
@@ -182,38 +314,54 @@ public class DaprUtil {
      * @return List<OrderDTO>
      * @author senkyouku
      */
-    public List<MatchOrder> listAll(int symbol, boolean ifBid) {
-        IgniteCache<Long, MatchOrder> cache = ignite.cache(EngineUtil.getOrderBookKey(symbol, ifBid));
-        QueryCursor<Cache.Entry<Long, MatchOrder>> cursor = cache.query(new ScanQuery<>());
-        List<Cache.Entry<Long, MatchOrder>> list = cursor.getAll();
-        return list.stream().map(Cache.Entry::getValue).collect(Collectors.toList());
+    public List<MatchOrder> listAll(int symbolId, boolean ifBid) {
+        String sql = "SELECT * FROM MatchOrder WHERE symbolId = ? AND ifBid = ?";
+        List<MatchOrder> result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(MatchOrder.class), symbolId, ifBid);
+        return result;
     }
 
-    /**
-     * 获取第一档深度
-     *
-     * @param symbol 币对标识
-     * @param ifBid  买卖标识
-     * @return List<OrderDTO>
-     * @author senkyouku
-     */
-    public List<DepthDTO> listFirstDepth(int symbol, boolean ifBid) {
-        IgniteCache<Long, MatchOrder> cache = ignite.cache(EngineUtil.getOrderBookKey(symbol, ifBid));
 
-        String sql = ifBid ? "select price,SUM(noDealNum) from MatchOrder GROUP BY price ORDER BY price DESC"
-                : "select price,SUM(noDealNum) from MatchOrder GROUP BY price ORDER BY price ASC";
-
-        SqlFieldsQuery query = new SqlFieldsQuery(sql);
-        QueryCursor<List<?>> cursor = cache.query(query);
-
-        List<DepthDTO> rt = new ArrayList<>();
-        for (List<?> row : cursor) {
-            rt.add(new DepthDTO((Long) row.get(0), Long.parseLong(row.get(1).toString()), 0L));
-        }
-        return rt;
-    }
 
 
     final BeanCopier beanCopier = BeanCopier.create(OrderDTO.class, MatchOrder.class, false);
+    public MatchOrder get(Long id, String tableName) {
+        String sql = "SELECT * FROM "+tableName+" WHERE id = ?";
+        try {
+            MatchOrder order = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(MatchOrder.class), id);
+            return order;
+        } catch (EmptyResultDataAccessException e) {
+            // 这个异常会在查询结果为空时抛出，即没有找到匹配的订单
+            return null;
+        }
+    }
+    public MatchOrder updateOrderInDB(MatchOrder maker, String tableName) {
+        TransactionTemplate transactionTemplate = new TransactionTemplate(transactionManager);
+        transactionTemplate.setIsolationLevel(TransactionDefinition.ISOLATION_SERIALIZABLE);
+
+        return transactionTemplate.execute(new TransactionCallback<MatchOrder>() {
+            @Override
+            public MatchOrder doInTransaction(TransactionStatus status) {
+                String selectSql = "SELECT * FROM "+tableName+" WHERE id = ?";
+                MatchOrder order = jdbcTemplate.queryForObject(selectSql, new BeanPropertyRowMapper<>(MatchOrder.class), maker.getId());
+
+                if (order != null) {
+                    order.setState(maker.getState());
+                    order.setDealNum(maker.getDealNum());
+                    order.setNoDealNum(maker.getNoDealNum());
+                    order.setDealAmount(maker.getDealAmount());
+                    order.setNoDealAmount(maker.getNoDealAmount());
+
+                    String updateSql = "UPDATE "+tableName+" SET state = ?, dealNum = ?, noDealNum = ?, dealAmount = ?, noDealAmount = ? WHERE id = ?";
+                    jdbcTemplate.update(updateSql, order.getState(), order.getDealNum(), order.getNoDealNum(), order.getDealAmount(), order.getNoDealAmount(), order.getId());
+
+                    if (maker.getState() == EnumOrderState.ALL_DEAL.getCode()) {
+                        String deleteSql = "DELETE FROM "+tableName+" WHERE id = ?";
+                        jdbcTemplate.update(deleteSql, order.getId());
+                    }
+                }
+                return order;
+            }
+        });
+    }
 
 }

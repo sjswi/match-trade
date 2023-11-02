@@ -4,15 +4,14 @@
  * Copyright(c) 2020 kinbug Co. Ltd. 
  * All right reserved. 
  */
-package com.flying.cattle.me.match.domain;
+package com.flying.cattle.dapr.match.domain;
 
-import java.util.Date;
-
-import org.springframework.stereotype.Component;
-
-import com.flying.cattle.me.data.out.SendService;
+import com.flying.cattle.dapr.data.out.SendService;
 import com.flying.cattle.mt.enums.EnumTradeType;
 import com.flying.cattle.mt.message.TradeDTO;
+import org.springframework.stereotype.Component;
+
+import java.util.Date;
 
 /**
  * @ClassName: TradeModel

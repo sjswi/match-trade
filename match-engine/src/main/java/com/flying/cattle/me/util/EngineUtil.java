@@ -20,25 +20,25 @@ public class EngineUtil {
 	/**
 	 * 买订单簿BID
 	 */
-	private static final String ORDER_BOOK_BID_MAP = "BOOK-BID-";
+	private static final String ORDER_BOOK_BID_MAP = "BOOK_BID_";
 	/**
 	 * 卖订单簿ASK
 	 */
-	private static final String ORDER_BOOK_ASK_MAP = "BOOK-ASK-";
+	private static final String ORDER_BOOK_ASK_MAP = "BOOK_ASK_";
 
 	/**
 	 * 买订单簿BID
 	 */
-	private static final String ORDER_BOOK_BID_PRICE_MAP = "BOOK-BID-PRICE-";
+	private static final String ORDER_BOOK_BID_PRICE_MAP = "BOOK_BID_PRICE_";
 	/**
 	 * 卖订单簿ASK
 	 */
-	private static final String ORDER_BOOK_ASK_PRICE_MAP = "BOOK-ASK-PRICE-";
+	private static final String ORDER_BOOK_ASK_PRICE_MAP = "BOOK_ASK_PRICE_";
 
 	/**
 	 * 卖订单簿ASK
 	 */
-	private static final String ORDER_DE_WEIGHT = "ORDER-DE-WEIGHT-";
+	private static final String ORDER_DE_WEIGHT = "ORDER_DE_WEIGHT_";
 
 	/**
 	 * 市价，或者价格实时变动的

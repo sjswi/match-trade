@@ -4,26 +4,14 @@
  * Copyright(c) 2020 kinbug Co. Ltd. 
  * All right reserved. 
  */
-package com.flying.cattle.me.data.out;
+package com.flying.cattle.dapr.data.out;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import com.flying.cattle.me.plugin.mysql.MySQLUtil;
-import org.apache.ignite.IgniteCache;
-import org.apache.ignite.cache.query.QueryCursor;
-import org.apache.ignite.cache.query.ScanQuery;
+import com.flying.cattle.dapr.plugin.dapr.DaprUtil;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-
-
-import javax.cache.Cache;
 
 /**
  * @ClassName: DepthData
@@ -36,9 +24,9 @@ import javax.cache.Cache;
 @Profile("local")
 public class DepthData {
 
-	final MySQLUtil mySQLUtil;
+	final DaprUtil mySQLUtil;
 
-	public DepthData(MySQLUtil mySQLUtil) {
+	public DepthData(DaprUtil mySQLUtil) {
 		this.mySQLUtil = mySQLUtil;
 	}
 

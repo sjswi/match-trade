@@ -1,5 +1,6 @@
 package com.flying.cattle.me.match.service.impl;
 
+import com.flying.cattle.me.plugin.mysql.MySQLUtil;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
 
@@ -7,7 +8,7 @@ import com.flying.cattle.me.match.EngineExecutor;
 import com.flying.cattle.me.match.domain.MatchOrder;
 import com.flying.cattle.me.match.factory.MatchStrategyFactory;
 import com.flying.cattle.me.match.service.AbstractOrderMatchService;
-import com.flying.cattle.me.plugin.ignite.IgniteUtil;
+
 import com.flying.cattle.mt.enums.EnumOrderState;
 import com.flying.cattle.mt.enums.EnumOrderType;
 
@@ -22,11 +23,11 @@ public class GtcMatchService extends AbstractOrderMatchService implements Initia
 
     private final EngineExecutor matchExecutors;
 
-    private final IgniteUtil igniteUtil;
+    private final MySQLUtil mySQLUtil;
 
-    public GtcMatchService(EngineExecutor matchExecutors, IgniteUtil igniteUtil) {
+    public GtcMatchService(EngineExecutor matchExecutors, MySQLUtil igniteUtil) {
         this.matchExecutors = matchExecutors;
-        this.igniteUtil = igniteUtil;
+        this.mySQLUtil = igniteUtil;
     }
 
     /**
@@ -52,7 +53,7 @@ public class GtcMatchService extends AbstractOrderMatchService implements Initia
     public MatchOrder afterTakerMatch(MatchOrder order) {
         if (order.getState() == EnumOrderState.ORDER.getCode() ||
                 order.getState() == EnumOrderState.SOME_DEAL.getCode()) {
-            return igniteUtil.addToOrderBook(order);
+            return mySQLUtil.addToOrderBook(order);
         }
         return order;
     }

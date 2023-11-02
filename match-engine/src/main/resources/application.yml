@@ -1,6 +1,14 @@
 server:
-  port: 8400 # ${random.int[8400,8499]}
+  port: 8888
 spring:
+  redis:
+    host: 10.10.150.26
+    port: 30003
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/trade
+    username: root
+    password: 12345678
+    driver-class-name: com.mysql.cj.jdbc.Driver
   application:
     name: exchange-match
   profiles:
@@ -33,16 +41,16 @@ spring:
             partition-key-expression: payload['makerUid']
 
 # 开启spring boot项目正确停止服务的姿势....
-management:
-  endpoint:
-    shutdown:
-      enabled: true
-    health:
-      show-details: always
-  endpoints:
-    web:
-      exposure:
-        include:
-          - shutdown
-          - health
+#management:
+#  endpoint:
+#    shutdown:
+#      enabled: true
+#    health:
+#      show-details: always
+#  endpoints:
+#    web:
+#      exposure:
+#        include:
+#          - shutdown
+#          - health
 

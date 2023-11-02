@@ -1,4 +1,4 @@
-package com.flying.cattle.me;
+package com.flying.cattle.dapr;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;

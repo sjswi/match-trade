@@ -1,0 +1,588 @@
+[INFO ] [] [2023-11-02 18:42:44] com.flying.cattle.me.MatchApplication - Starting MatchApplication on yudeMacBook-Pro.local with PID 16232 (/Users/yu/IdeaProjects/match-trade/match-engine/target/classes started by yu in /Users/yu/IdeaProjects/match-trade)
+[INFO ] [] [2023-11-02 18:42:44] com.flying.cattle.me.MatchApplication - The following profiles are active: local
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 7ms. Found 0 repository interfaces.
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2ms. Found 0 repository interfaces.
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.integration.config.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.integration.config.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.alibaba.cloud.stream.binder.rocketmq.config.RocketMQComponent4BinderAutoConfiguration' of type [com.alibaba.cloud.stream.binder.rocketmq.config.RocketMQComponent4BinderAutoConfiguration$$EnhancerBySpringCGLIB$$e1e818dd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'defaultMQProducer' of type [org.apache.rocketmq.client.producer.DefaultMQProducer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperConfiguration$$EnhancerBySpringCGLIB$$dc8b655f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperBuilderConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperBuilderConfiguration$$EnhancerBySpringCGLIB$$8ed82778] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$Jackson2ObjectMapperBuilderCustomizerConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$Jackson2ObjectMapperBuilderCustomizerConfiguration$$EnhancerBySpringCGLIB$$49ef0d67] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'BindingHandlerAdvise' of type [org.springframework.cloud.stream.config.BindingHandlerAdvise] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'spelConverter' of type [org.springframework.cloud.stream.config.SpelExpressionConverterConfiguration$SpelConverter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'spring.jackson-org.springframework.boot.autoconfigure.jackson.JacksonProperties' of type [org.springframework.boot.autoconfigure.jackson.JacksonProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'standardJacksonObjectMapperBuilderCustomizer' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$Jackson2ObjectMapperBuilderCustomizerConfiguration$StandardJackson2ObjectMapperBuilderCustomizer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$ParameterNamesModuleConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$ParameterNamesModuleConfiguration$$EnhancerBySpringCGLIB$$70ba8495] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'parameterNamesModule' of type [com.fasterxml.jackson.module.paramnames.ParameterNamesModule] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$$EnhancerBySpringCGLIB$$be9702ee] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'jsonComponentModule' of type [org.springframework.boot.jackson.JsonComponentModule] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'jacksonObjectMapperBuilder' of type [org.springframework.http.converter.json.Jackson2ObjectMapperBuilder] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'jacksonObjectMapper' of type [com.fasterxml.jackson.databind.ObjectMapper] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'rocketMQTemplate' of type [org.apache.rocketmq.spring.core.RocketMQTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'transactionHandlerRegistry' of type [org.apache.rocketmq.spring.config.TransactionHandlerRegistry] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'integrationDisposableAutoCreatedBeans' of type [org.springframework.integration.config.annotation.Disposables] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$80f7e5ce] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration$$EnhancerBySpringCGLIB$$ebe9a0fd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration' of type [org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration$$EnhancerBySpringCGLIB$$c77bac1d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration' of type [org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration$$EnhancerBySpringCGLIB$$6354ea] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:44] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'mbeanServer' of type [com.sun.jmx.mbeanserver.JmxMBeanServer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:42:45] org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[INFO ] [] [2023-11-02 18:42:45] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel output-trade
+[INFO ] [] [2023-11-02 18:42:45] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel nullChannel
+[INFO ] [] [2023-11-02 18:42:45] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel input-cancel-order
+[INFO ] [] [2023-11-02 18:42:45] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel output-update-order
+[INFO ] [] [2023-11-02 18:42:45] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel errorChannel
+[INFO ] [] [2023-11-02 18:42:45] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel input-new-order
+[INFO ] [] [2023-11-02 18:42:45] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageHandler errorLogger
+[INFO ] [] [2023-11-02 18:42:45] org.springframework.cloud.stream.messaging.DirectWithAttributesChannel - Channel 'exchange-match.input-new-order' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:42:45] org.springframework.cloud.stream.messaging.DirectWithAttributesChannel - Channel 'exchange-match.input-cancel-order' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:42:45] org.springframework.integration.endpoint.EventDrivenConsumer - Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+[INFO ] [] [2023-11-02 18:42:45] org.springframework.integration.channel.PublishSubscribeChannel - Channel 'exchange-match.errorChannel' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:42:45] org.springframework.integration.endpoint.EventDrivenConsumer - started _org.springframework.integration.errorLogger
+[INFO ] [] [2023-11-02 18:42:48] org.springframework.cloud.stream.messaging.DirectWithAttributesChannel - Channel 'exchange-match.output-trade' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:42:48] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:42:51] org.springframework.cloud.stream.messaging.DirectWithAttributesChannel - Channel 'exchange-match.output-update-order' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:42:51] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:42:51] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel new-order-topic.match-order.errors
+[INFO ] [] [2023-11-02 18:42:51] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.new-order-topic.match-order.errors' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:42:51] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.new-order-topic.match-order.errors' has 0 subscriber(s).
+[INFO ] [] [2023-11-02 18:42:51] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.new-order-topic.match-order.errors' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:42:51] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.new-order-topic.match-order.errors' has 2 subscriber(s).
+[INFO ] [] [2023-11-02 18:42:54] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:42:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:42:57] com.alibaba.cloud.stream.binder.rocketmq.consuming.RocketMQListenerBindingContainer - running container: RocketMQListenerBindingContainer{consumerGroup='match-order', nameServer='10.10.150.29:9876', topic='new-order-topic', consumeMode=ORDERLY, selectorType=TAG, selectorExpression='null', messageModel=CLUSTERING}
+[INFO ] [] [2023-11-02 18:42:57] com.alibaba.cloud.stream.binder.rocketmq.integration.RocketMQInboundChannelAdapter - started com.alibaba.cloud.stream.binder.rocketmq.integration.RocketMQInboundChannelAdapter@4337afd
+[INFO ] [] [2023-11-02 18:42:57] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel cancel-order-topic.cancel-topic.errors
+[INFO ] [] [2023-11-02 18:42:57] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.cancel-order-topic.cancel-topic.errors' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:42:57] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.cancel-order-topic.cancel-topic.errors' has 0 subscriber(s).
+[INFO ] [] [2023-11-02 18:42:57] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.cancel-order-topic.cancel-topic.errors' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:42:57] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.cancel-order-topic.cancel-topic.errors' has 2 subscriber(s).
+[INFO ] [] [2023-11-02 18:43:00] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:43:01] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:43:03] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:43:03] com.alibaba.cloud.stream.binder.rocketmq.consuming.RocketMQListenerBindingContainer - running container: RocketMQListenerBindingContainer{consumerGroup='cancel-topic', nameServer='10.10.150.29:9876', topic='cancel-order-topic', consumeMode=CONCURRENTLY, selectorType=TAG, selectorExpression='null', messageModel=CLUSTERING}
+[INFO ] [] [2023-11-02 18:43:03] com.alibaba.cloud.stream.binder.rocketmq.integration.RocketMQInboundChannelAdapter - started com.alibaba.cloud.stream.binder.rocketmq.integration.RocketMQInboundChannelAdapter@1b01a0d
+[INFO ] [] [2023-11-02 18:43:03] org.springframework.boot.web.embedded.netty.NettyWebServer - Netty started on port(s): 8888
+[INFO ] [] [2023-11-02 18:43:03] com.flying.cattle.me.MatchApplication - Started MatchApplication in 19.616 seconds (JVM running for 19.977)
+[INFO ] [] [2023-11-02 18:43:18] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:43:21] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:43:31] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:43:48] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:43:51] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:44:01] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:44:18] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:44:21] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:44:31] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:44:48] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:44:51] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:45:01] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:45:18] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:45:21] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:45:31] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:45:48] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:45:49] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] [] [2023-11-02 18:45:49] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] [] [2023-11-02 18:45:51] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:46:01] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:46:18] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:46:21] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:46:26] com.flying.cattle.me.MatchApplication - Starting MatchApplication on yudeMacBook-Pro.local with PID 16680 (/Users/yu/IdeaProjects/match-trade/match-engine/target/classes started by yu in /Users/yu/IdeaProjects/match-trade)
+[INFO ] [] [2023-11-02 18:46:26] com.flying.cattle.me.MatchApplication - The following profiles are active: local
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 5ms. Found 0 repository interfaces.
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 1ms. Found 0 repository interfaces.
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.integration.config.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.integration.config.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.alibaba.cloud.stream.binder.rocketmq.config.RocketMQComponent4BinderAutoConfiguration' of type [com.alibaba.cloud.stream.binder.rocketmq.config.RocketMQComponent4BinderAutoConfiguration$$EnhancerBySpringCGLIB$$be891ca4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'defaultMQProducer' of type [org.apache.rocketmq.client.producer.DefaultMQProducer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperConfiguration$$EnhancerBySpringCGLIB$$b92c6926] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperBuilderConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperBuilderConfiguration$$EnhancerBySpringCGLIB$$6b792b3f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$Jackson2ObjectMapperBuilderCustomizerConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$Jackson2ObjectMapperBuilderCustomizerConfiguration$$EnhancerBySpringCGLIB$$2690112e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'BindingHandlerAdvise' of type [org.springframework.cloud.stream.config.BindingHandlerAdvise] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'spelConverter' of type [org.springframework.cloud.stream.config.SpelExpressionConverterConfiguration$SpelConverter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'spring.jackson-org.springframework.boot.autoconfigure.jackson.JacksonProperties' of type [org.springframework.boot.autoconfigure.jackson.JacksonProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'standardJacksonObjectMapperBuilderCustomizer' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$Jackson2ObjectMapperBuilderCustomizerConfiguration$StandardJackson2ObjectMapperBuilderCustomizer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$ParameterNamesModuleConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$ParameterNamesModuleConfiguration$$EnhancerBySpringCGLIB$$4d5b885c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'parameterNamesModule' of type [com.fasterxml.jackson.module.paramnames.ParameterNamesModule] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$$EnhancerBySpringCGLIB$$9b3806b5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'jsonComponentModule' of type [org.springframework.boot.jackson.JsonComponentModule] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'jacksonObjectMapperBuilder' of type [org.springframework.http.converter.json.Jackson2ObjectMapperBuilder] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'jacksonObjectMapper' of type [com.fasterxml.jackson.databind.ObjectMapper] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'rocketMQTemplate' of type [org.apache.rocketmq.spring.core.RocketMQTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'transactionHandlerRegistry' of type [org.apache.rocketmq.spring.config.TransactionHandlerRegistry] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'integrationDisposableAutoCreatedBeans' of type [org.springframework.integration.config.annotation.Disposables] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$5d98e995] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration$$EnhancerBySpringCGLIB$$c88aa4c4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration' of type [org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration$$EnhancerBySpringCGLIB$$a41cafe4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration' of type [org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration$$EnhancerBySpringCGLIB$$dd0458b1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'mbeanServer' of type [com.sun.jmx.mbeanserver.JmxMBeanServer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:46:27] org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[INFO ] [] [2023-11-02 18:46:28] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel input-cancel-order
+[INFO ] [] [2023-11-02 18:46:28] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel output-update-order
+[INFO ] [] [2023-11-02 18:46:28] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel output-trade
+[INFO ] [] [2023-11-02 18:46:28] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel nullChannel
+[INFO ] [] [2023-11-02 18:46:28] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel errorChannel
+[INFO ] [] [2023-11-02 18:46:28] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel input-new-order
+[INFO ] [] [2023-11-02 18:46:28] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageHandler errorLogger
+[INFO ] [] [2023-11-02 18:46:28] org.springframework.cloud.stream.messaging.DirectWithAttributesChannel - Channel 'exchange-match.input-cancel-order' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:46:28] org.springframework.cloud.stream.messaging.DirectWithAttributesChannel - Channel 'exchange-match.input-new-order' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:46:28] org.springframework.integration.endpoint.EventDrivenConsumer - Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+[INFO ] [] [2023-11-02 18:46:28] org.springframework.integration.channel.PublishSubscribeChannel - Channel 'exchange-match.errorChannel' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:46:28] org.springframework.integration.endpoint.EventDrivenConsumer - started _org.springframework.integration.errorLogger
+[INFO ] [] [2023-11-02 18:46:31] org.springframework.cloud.stream.messaging.DirectWithAttributesChannel - Channel 'exchange-match.output-trade' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:46:31] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:46:34] org.springframework.cloud.stream.messaging.DirectWithAttributesChannel - Channel 'exchange-match.output-update-order' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:46:34] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:46:34] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel new-order-topic.match-order.errors
+[INFO ] [] [2023-11-02 18:46:34] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.new-order-topic.match-order.errors' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:46:34] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.new-order-topic.match-order.errors' has 0 subscriber(s).
+[INFO ] [] [2023-11-02 18:46:34] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.new-order-topic.match-order.errors' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:46:34] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.new-order-topic.match-order.errors' has 2 subscriber(s).
+[INFO ] [] [2023-11-02 18:46:37] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:46:40] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:46:40] com.alibaba.cloud.stream.binder.rocketmq.consuming.RocketMQListenerBindingContainer - running container: RocketMQListenerBindingContainer{consumerGroup='match-order', nameServer='10.10.150.29:9876', topic='new-order-topic', consumeMode=ORDERLY, selectorType=TAG, selectorExpression='null', messageModel=CLUSTERING}
+[INFO ] [] [2023-11-02 18:46:40] com.alibaba.cloud.stream.binder.rocketmq.integration.RocketMQInboundChannelAdapter - started com.alibaba.cloud.stream.binder.rocketmq.integration.RocketMQInboundChannelAdapter@2753316c
+[INFO ] [] [2023-11-02 18:46:40] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel cancel-order-topic.cancel-topic.errors
+[INFO ] [] [2023-11-02 18:46:40] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.cancel-order-topic.cancel-topic.errors' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:46:40] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.cancel-order-topic.cancel-topic.errors' has 0 subscriber(s).
+[INFO ] [] [2023-11-02 18:46:40] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.cancel-order-topic.cancel-topic.errors' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:46:40] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.cancel-order-topic.cancel-topic.errors' has 2 subscriber(s).
+[INFO ] [] [2023-11-02 18:46:43] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:46:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:46:46] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:46:46] com.alibaba.cloud.stream.binder.rocketmq.consuming.RocketMQListenerBindingContainer - running container: RocketMQListenerBindingContainer{consumerGroup='cancel-topic', nameServer='10.10.150.29:9876', topic='cancel-order-topic', consumeMode=CONCURRENTLY, selectorType=TAG, selectorExpression='null', messageModel=CLUSTERING}
+[INFO ] [] [2023-11-02 18:46:46] com.alibaba.cloud.stream.binder.rocketmq.integration.RocketMQInboundChannelAdapter - started com.alibaba.cloud.stream.binder.rocketmq.integration.RocketMQInboundChannelAdapter@47148f3f
+[INFO ] [] [2023-11-02 18:46:46] org.springframework.boot.web.embedded.netty.NettyWebServer - Netty started on port(s): 8888
+[INFO ] [] [2023-11-02 18:46:46] com.flying.cattle.me.MatchApplication - Started MatchApplication in 19.681 seconds (JVM running for 20.009)
+[INFO ] [] [2023-11-02 18:47:01] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:47:04] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:47:06] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] [] [2023-11-02 18:47:06] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] [] [2023-11-02 18:47:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:47:31] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:47:34] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:47:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:48:01] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:48:04] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:48:13] com.flying.cattle.me.data.input.OrderOptController - 初始,数量:100000,耗时:66876
+[INFO ] [] [2023-11-02 18:48:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:48:31] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:48:34] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:48:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:49:01] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:49:04] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:49:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:49:31] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:49:34] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:49:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:50:01] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:50:04] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:50:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:50:31] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:50:34] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:50:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:51:01] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:51:04] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:51:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:51:31] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:51:34] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:51:40] com.flying.cattle.me.MatchApplication - Starting MatchApplication on yudeMacBook-Pro.local with PID 17299 (/Users/yu/IdeaProjects/match-trade/match-engine/target/classes started by yu in /Users/yu/IdeaProjects/match-trade)
+[INFO ] [] [2023-11-02 18:51:40] com.flying.cattle.me.MatchApplication - The following profiles are active: local
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 5ms. Found 0 repository interfaces.
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 1ms. Found 0 repository interfaces.
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.integration.config.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.integration.config.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.alibaba.cloud.stream.binder.rocketmq.config.RocketMQComponent4BinderAutoConfiguration' of type [com.alibaba.cloud.stream.binder.rocketmq.config.RocketMQComponent4BinderAutoConfiguration$$EnhancerBySpringCGLIB$$9243128a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'defaultMQProducer' of type [org.apache.rocketmq.client.producer.DefaultMQProducer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperConfiguration$$EnhancerBySpringCGLIB$$8ce65f0c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperBuilderConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperBuilderConfiguration$$EnhancerBySpringCGLIB$$3f332125] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$Jackson2ObjectMapperBuilderCustomizerConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$Jackson2ObjectMapperBuilderCustomizerConfiguration$$EnhancerBySpringCGLIB$$fa4a0714] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'BindingHandlerAdvise' of type [org.springframework.cloud.stream.config.BindingHandlerAdvise] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'spelConverter' of type [org.springframework.cloud.stream.config.SpelExpressionConverterConfiguration$SpelConverter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'spring.jackson-org.springframework.boot.autoconfigure.jackson.JacksonProperties' of type [org.springframework.boot.autoconfigure.jackson.JacksonProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'standardJacksonObjectMapperBuilderCustomizer' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$Jackson2ObjectMapperBuilderCustomizerConfiguration$StandardJackson2ObjectMapperBuilderCustomizer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$ParameterNamesModuleConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$ParameterNamesModuleConfiguration$$EnhancerBySpringCGLIB$$21157e42] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'parameterNamesModule' of type [com.fasterxml.jackson.module.paramnames.ParameterNamesModule] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$$EnhancerBySpringCGLIB$$6ef1fc9b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'jsonComponentModule' of type [org.springframework.boot.jackson.JsonComponentModule] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'jacksonObjectMapperBuilder' of type [org.springframework.http.converter.json.Jackson2ObjectMapperBuilder] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'jacksonObjectMapper' of type [com.fasterxml.jackson.databind.ObjectMapper] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'rocketMQTemplate' of type [org.apache.rocketmq.spring.core.RocketMQTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'transactionHandlerRegistry' of type [org.apache.rocketmq.spring.config.TransactionHandlerRegistry] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'integrationDisposableAutoCreatedBeans' of type [org.springframework.integration.config.annotation.Disposables] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$3152df7b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration$$EnhancerBySpringCGLIB$$9c449aaa] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration' of type [org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration$$EnhancerBySpringCGLIB$$77d6a5ca] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration' of type [org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration$$EnhancerBySpringCGLIB$$b0be4e97] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:40] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'mbeanServer' of type [com.sun.jmx.mbeanserver.JmxMBeanServer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 18:51:41] org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[INFO ] [] [2023-11-02 18:51:41] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel nullChannel
+[INFO ] [] [2023-11-02 18:51:41] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel input-new-order
+[INFO ] [] [2023-11-02 18:51:41] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel output-update-order
+[INFO ] [] [2023-11-02 18:51:41] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel errorChannel
+[INFO ] [] [2023-11-02 18:51:41] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel input-cancel-order
+[INFO ] [] [2023-11-02 18:51:41] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel output-trade
+[INFO ] [] [2023-11-02 18:51:41] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageHandler errorLogger
+[INFO ] [] [2023-11-02 18:51:41] org.springframework.cloud.stream.messaging.DirectWithAttributesChannel - Channel 'exchange-match.input-new-order' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:51:41] org.springframework.cloud.stream.messaging.DirectWithAttributesChannel - Channel 'exchange-match.input-cancel-order' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:51:41] org.springframework.integration.endpoint.EventDrivenConsumer - Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+[INFO ] [] [2023-11-02 18:51:41] org.springframework.integration.channel.PublishSubscribeChannel - Channel 'exchange-match.errorChannel' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:51:41] org.springframework.integration.endpoint.EventDrivenConsumer - started _org.springframework.integration.errorLogger
+[INFO ] [] [2023-11-02 18:51:44] org.springframework.cloud.stream.messaging.DirectWithAttributesChannel - Channel 'exchange-match.output-trade' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:51:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:51:47] org.springframework.cloud.stream.messaging.DirectWithAttributesChannel - Channel 'exchange-match.output-update-order' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:51:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:51:47] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel new-order-topic.match-order.errors
+[INFO ] [] [2023-11-02 18:51:47] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.new-order-topic.match-order.errors' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:51:47] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.new-order-topic.match-order.errors' has 0 subscriber(s).
+[INFO ] [] [2023-11-02 18:51:47] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.new-order-topic.match-order.errors' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:51:47] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.new-order-topic.match-order.errors' has 2 subscriber(s).
+[INFO ] [] [2023-11-02 18:51:50] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:51:53] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:51:53] com.alibaba.cloud.stream.binder.rocketmq.consuming.RocketMQListenerBindingContainer - running container: RocketMQListenerBindingContainer{consumerGroup='match-order', nameServer='10.10.150.29:9876', topic='new-order-topic', consumeMode=ORDERLY, selectorType=TAG, selectorExpression='null', messageModel=CLUSTERING}
+[INFO ] [] [2023-11-02 18:51:53] com.alibaba.cloud.stream.binder.rocketmq.integration.RocketMQInboundChannelAdapter - started com.alibaba.cloud.stream.binder.rocketmq.integration.RocketMQInboundChannelAdapter@68b366e2
+[INFO ] [] [2023-11-02 18:51:53] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel cancel-order-topic.cancel-topic.errors
+[INFO ] [] [2023-11-02 18:51:53] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.cancel-order-topic.cancel-topic.errors' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:51:53] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.cancel-order-topic.cancel-topic.errors' has 0 subscriber(s).
+[INFO ] [] [2023-11-02 18:51:53] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.cancel-order-topic.cancel-topic.errors' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 18:51:53] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.cancel-order-topic.cancel-topic.errors' has 2 subscriber(s).
+[INFO ] [] [2023-11-02 18:51:56] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:51:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:51:59] com.alibaba.cloud.stream.binder.rocketmq.consuming.RocketMQListenerBindingContainer - running container: RocketMQListenerBindingContainer{consumerGroup='cancel-topic', nameServer='10.10.150.29:9876', topic='cancel-order-topic', consumeMode=CONCURRENTLY, selectorType=TAG, selectorExpression='null', messageModel=CLUSTERING}
+[INFO ] [] [2023-11-02 18:51:59] com.alibaba.cloud.stream.binder.rocketmq.integration.RocketMQInboundChannelAdapter - started com.alibaba.cloud.stream.binder.rocketmq.integration.RocketMQInboundChannelAdapter@4e224df5
+[INFO ] [] [2023-11-02 18:51:59] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:51:59] org.springframework.boot.web.embedded.netty.NettyWebServer - Netty started on port(s): 8888
+[INFO ] [] [2023-11-02 18:51:59] com.flying.cattle.me.MatchApplication - Started MatchApplication in 19.471 seconds (JVM running for 19.914)
+[INFO ] [] [2023-11-02 18:52:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:52:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:52:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:52:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:52:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:52:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:53:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:53:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:53:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:53:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:53:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:53:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:54:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:54:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:54:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:54:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:54:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:54:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:55:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:55:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:55:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:55:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:55:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:55:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:56:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:56:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:56:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:56:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:56:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:56:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:57:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:57:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:57:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:57:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:57:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:57:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:58:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:58:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:58:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:58:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:58:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:58:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:59:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:59:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:59:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:59:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:59:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 18:59:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:00:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:00:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:00:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:00:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:00:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:00:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:01:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:01:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:01:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:01:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:01:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:01:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:02:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:02:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:02:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:02:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:02:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:02:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:03:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:03:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:03:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:03:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:03:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:03:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:04:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:04:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:04:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:04:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:04:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:04:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:05:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:05:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:05:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:05:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:05:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:05:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:06:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:06:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:06:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:06:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:06:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:06:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:07:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:07:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:07:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:07:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:07:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:07:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:08:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:08:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:08:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:08:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:08:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:08:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:09:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:09:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:09:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:09:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:09:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:09:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:10:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:10:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:10:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:10:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:10:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:10:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:11:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:11:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:11:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:11:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:11:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:11:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:12:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:12:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:12:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:12:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:12:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:12:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:13:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:13:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:13:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:13:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:13:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:13:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:14:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:14:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:14:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:14:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:14:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:14:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:15:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:15:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:15:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:15:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:15:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:15:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:16:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:16:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:16:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:16:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:16:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:16:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:17:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:17:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:17:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:17:44] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:17:47] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:17:59] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:18:11] RocketmqRemoting - closeChannel: close the connection to remote address[10.10.150.29:9876] result: true
+[INFO ] [] [2023-11-02 19:18:19] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:18:22] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:18:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:20:53] com.flying.cattle.me.MatchApplication - Starting MatchApplication on yudeMacBook-Pro.local with PID 20653 (/Users/yu/IdeaProjects/match-trade/match-engine/target/classes started by yu in /Users/yu/IdeaProjects/match-trade)
+[INFO ] [] [2023-11-02 19:20:53] com.flying.cattle.me.MatchApplication - The following profiles are active: local
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 6ms. Found 0 repository interfaces.
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2ms. Found 0 repository interfaces.
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.integration.config.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.integration.config.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.alibaba.cloud.stream.binder.rocketmq.config.RocketMQComponent4BinderAutoConfiguration' of type [com.alibaba.cloud.stream.binder.rocketmq.config.RocketMQComponent4BinderAutoConfiguration$$EnhancerBySpringCGLIB$$bd63dc85] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'defaultMQProducer' of type [org.apache.rocketmq.client.producer.DefaultMQProducer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperConfiguration$$EnhancerBySpringCGLIB$$b8072907] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperBuilderConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperBuilderConfiguration$$EnhancerBySpringCGLIB$$6a53eb20] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$Jackson2ObjectMapperBuilderCustomizerConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$Jackson2ObjectMapperBuilderCustomizerConfiguration$$EnhancerBySpringCGLIB$$256ad10f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'BindingHandlerAdvise' of type [org.springframework.cloud.stream.config.BindingHandlerAdvise] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'spelConverter' of type [org.springframework.cloud.stream.config.SpelExpressionConverterConfiguration$SpelConverter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'spring.jackson-org.springframework.boot.autoconfigure.jackson.JacksonProperties' of type [org.springframework.boot.autoconfigure.jackson.JacksonProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'standardJacksonObjectMapperBuilderCustomizer' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$Jackson2ObjectMapperBuilderCustomizerConfiguration$StandardJackson2ObjectMapperBuilderCustomizer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$ParameterNamesModuleConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$ParameterNamesModuleConfiguration$$EnhancerBySpringCGLIB$$4c36483d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'parameterNamesModule' of type [com.fasterxml.jackson.module.paramnames.ParameterNamesModule] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$$EnhancerBySpringCGLIB$$9a12c696] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'jsonComponentModule' of type [org.springframework.boot.jackson.JsonComponentModule] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'jacksonObjectMapperBuilder' of type [org.springframework.http.converter.json.Jackson2ObjectMapperBuilder] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'jacksonObjectMapper' of type [com.fasterxml.jackson.databind.ObjectMapper] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'rocketMQTemplate' of type [org.apache.rocketmq.spring.core.RocketMQTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'transactionHandlerRegistry' of type [org.apache.rocketmq.spring.config.TransactionHandlerRegistry] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'integrationDisposableAutoCreatedBeans' of type [org.springframework.integration.config.annotation.Disposables] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$5c73a976] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration$$EnhancerBySpringCGLIB$$c76564a5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration' of type [org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration$$EnhancerBySpringCGLIB$$a2f76fc5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration' of type [org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration$$EnhancerBySpringCGLIB$$dbdf1892] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:53] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'mbeanServer' of type [com.sun.jmx.mbeanserver.JmxMBeanServer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:20:54] org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[INFO ] [] [2023-11-02 19:20:54] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel input-cancel-order
+[INFO ] [] [2023-11-02 19:20:54] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel output-trade
+[INFO ] [] [2023-11-02 19:20:54] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel nullChannel
+[INFO ] [] [2023-11-02 19:20:54] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel errorChannel
+[INFO ] [] [2023-11-02 19:20:54] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel input-new-order
+[INFO ] [] [2023-11-02 19:20:54] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel output-update-order
+[INFO ] [] [2023-11-02 19:20:54] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageHandler errorLogger
+[INFO ] [] [2023-11-02 19:20:54] org.springframework.cloud.stream.messaging.DirectWithAttributesChannel - Channel 'exchange-match.input-new-order' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 19:20:54] org.springframework.cloud.stream.messaging.DirectWithAttributesChannel - Channel 'exchange-match.input-cancel-order' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 19:20:54] org.springframework.integration.endpoint.EventDrivenConsumer - Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+[INFO ] [] [2023-11-02 19:20:54] org.springframework.integration.channel.PublishSubscribeChannel - Channel 'exchange-match.errorChannel' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 19:20:54] org.springframework.integration.endpoint.EventDrivenConsumer - started _org.springframework.integration.errorLogger
+[INFO ] [] [2023-11-02 19:20:57] org.springframework.cloud.stream.messaging.DirectWithAttributesChannel - Channel 'exchange-match.output-trade' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 19:20:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:21:00] org.springframework.cloud.stream.messaging.DirectWithAttributesChannel - Channel 'exchange-match.output-update-order' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 19:21:00] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:21:00] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel new-order-topic.match-order.errors
+[INFO ] [] [2023-11-02 19:21:00] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.new-order-topic.match-order.errors' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 19:21:00] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.new-order-topic.match-order.errors' has 0 subscriber(s).
+[INFO ] [] [2023-11-02 19:21:00] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.new-order-topic.match-order.errors' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 19:21:00] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.new-order-topic.match-order.errors' has 2 subscriber(s).
+[INFO ] [] [2023-11-02 19:21:03] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:21:06] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:21:06] com.alibaba.cloud.stream.binder.rocketmq.consuming.RocketMQListenerBindingContainer - running container: RocketMQListenerBindingContainer{consumerGroup='match-order', nameServer='10.10.150.29:9876', topic='new-order-topic', consumeMode=ORDERLY, selectorType=TAG, selectorExpression='null', messageModel=CLUSTERING}
+[INFO ] [] [2023-11-02 19:21:06] com.alibaba.cloud.stream.binder.rocketmq.integration.RocketMQInboundChannelAdapter - started com.alibaba.cloud.stream.binder.rocketmq.integration.RocketMQInboundChannelAdapter@45545e7a
+[INFO ] [] [2023-11-02 19:21:06] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel cancel-order-topic.cancel-topic.errors
+[INFO ] [] [2023-11-02 19:21:06] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.cancel-order-topic.cancel-topic.errors' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 19:21:06] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.cancel-order-topic.cancel-topic.errors' has 0 subscriber(s).
+[INFO ] [] [2023-11-02 19:21:06] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.cancel-order-topic.cancel-topic.errors' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 19:21:06] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.cancel-order-topic.cancel-topic.errors' has 2 subscriber(s).
+[INFO ] [] [2023-11-02 19:21:09] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:21:10] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:21:12] com.alibaba.cloud.stream.binder.rocketmq.consuming.RocketMQListenerBindingContainer - running container: RocketMQListenerBindingContainer{consumerGroup='cancel-topic', nameServer='10.10.150.29:9876', topic='cancel-order-topic', consumeMode=CONCURRENTLY, selectorType=TAG, selectorExpression='null', messageModel=CLUSTERING}
+[INFO ] [] [2023-11-02 19:21:12] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:21:12] com.alibaba.cloud.stream.binder.rocketmq.integration.RocketMQInboundChannelAdapter - started com.alibaba.cloud.stream.binder.rocketmq.integration.RocketMQInboundChannelAdapter@6723610b
+[INFO ] [] [2023-11-02 19:21:12] org.springframework.boot.web.embedded.netty.NettyWebServer - Netty started on port(s): 8888
+[INFO ] [] [2023-11-02 19:21:12] com.flying.cattle.me.MatchApplication - Started MatchApplication in 19.666 seconds (JVM running for 19.984)
+[INFO ] [] [2023-11-02 19:21:24] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] [] [2023-11-02 19:21:24] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] [] [2023-11-02 19:21:25] com.flying.cattle.me.data.input.OrderOptController - 初始,数量:1000,耗时:992
+[INFO ] [] [2023-11-02 19:21:27] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:21:30] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:21:38] com.flying.cattle.me.data.input.OrderOptController - 撮合数量: 1000, 总耗时: 1004 ms, RPS: 996.02, 平均耗时: 1.00 ms, 中位数耗时: 1 ms, P90耗时: 1 ms, P95耗时: 2 ms, P99耗时: 7 ms, 最大耗时：19 ms, 最小耗时：0 ms.
+[INFO ] [] [2023-11-02 19:21:40] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:21:57] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:22:00] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:22:10] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:33:01] com.flying.cattle.me.MatchApplication - Starting MatchApplication on yudeMacBook-Pro.local with PID 22331 (/Users/yu/IdeaProjects/match-trade/match-engine/target/classes started by yu in /Users/yu/IdeaProjects/match-trade)
+[INFO ] [] [2023-11-02 19:33:01] com.flying.cattle.me.MatchApplication - The following profiles are active: local
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 7ms. Found 0 repository interfaces.
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2ms. Found 0 repository interfaces.
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.integration.config.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.integration.config.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.alibaba.cloud.stream.binder.rocketmq.config.RocketMQComponent4BinderAutoConfiguration' of type [com.alibaba.cloud.stream.binder.rocketmq.config.RocketMQComponent4BinderAutoConfiguration$$EnhancerBySpringCGLIB$$99346a87] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'defaultMQProducer' of type [org.apache.rocketmq.client.producer.DefaultMQProducer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperConfiguration$$EnhancerBySpringCGLIB$$93d7b709] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperBuilderConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperBuilderConfiguration$$EnhancerBySpringCGLIB$$46247922] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$Jackson2ObjectMapperBuilderCustomizerConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$Jackson2ObjectMapperBuilderCustomizerConfiguration$$EnhancerBySpringCGLIB$$13b5f11] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'BindingHandlerAdvise' of type [org.springframework.cloud.stream.config.BindingHandlerAdvise] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'spelConverter' of type [org.springframework.cloud.stream.config.SpelExpressionConverterConfiguration$SpelConverter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'spring.jackson-org.springframework.boot.autoconfigure.jackson.JacksonProperties' of type [org.springframework.boot.autoconfigure.jackson.JacksonProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'standardJacksonObjectMapperBuilderCustomizer' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$Jackson2ObjectMapperBuilderCustomizerConfiguration$StandardJackson2ObjectMapperBuilderCustomizer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$ParameterNamesModuleConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$ParameterNamesModuleConfiguration$$EnhancerBySpringCGLIB$$2806d63f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'parameterNamesModule' of type [com.fasterxml.jackson.module.paramnames.ParameterNamesModule] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration' of type [org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$$EnhancerBySpringCGLIB$$75e35498] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'jsonComponentModule' of type [org.springframework.boot.jackson.JsonComponentModule] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'jacksonObjectMapperBuilder' of type [org.springframework.http.converter.json.Jackson2ObjectMapperBuilder] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:01] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'jacksonObjectMapper' of type [com.fasterxml.jackson.databind.ObjectMapper] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:02] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'rocketMQTemplate' of type [org.apache.rocketmq.spring.core.RocketMQTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:02] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'transactionHandlerRegistry' of type [org.apache.rocketmq.spring.config.TransactionHandlerRegistry] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:02] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'integrationDisposableAutoCreatedBeans' of type [org.springframework.integration.config.annotation.Disposables] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:02] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$38443778] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:02] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration$$EnhancerBySpringCGLIB$$a335f2a7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:02] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration' of type [org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration$$EnhancerBySpringCGLIB$$7ec7fdc7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:02] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration' of type [org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration$$EnhancerBySpringCGLIB$$b7afa694] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:02] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'mbeanServer' of type [com.sun.jmx.mbeanserver.JmxMBeanServer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] [] [2023-11-02 19:33:02] org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[INFO ] [] [2023-11-02 19:33:02] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel output-update-order
+[INFO ] [] [2023-11-02 19:33:02] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel input-cancel-order
+[INFO ] [] [2023-11-02 19:33:02] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel input-new-order
+[INFO ] [] [2023-11-02 19:33:02] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel output-trade
+[INFO ] [] [2023-11-02 19:33:02] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel errorChannel
+[INFO ] [] [2023-11-02 19:33:02] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel nullChannel
+[INFO ] [] [2023-11-02 19:33:02] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageHandler errorLogger
+[INFO ] [] [2023-11-02 19:33:02] org.springframework.cloud.stream.messaging.DirectWithAttributesChannel - Channel 'exchange-match.input-cancel-order' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 19:33:02] org.springframework.cloud.stream.messaging.DirectWithAttributesChannel - Channel 'exchange-match.input-new-order' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 19:33:02] org.springframework.integration.endpoint.EventDrivenConsumer - Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+[INFO ] [] [2023-11-02 19:33:02] org.springframework.integration.channel.PublishSubscribeChannel - Channel 'exchange-match.errorChannel' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 19:33:02] org.springframework.integration.endpoint.EventDrivenConsumer - started _org.springframework.integration.errorLogger
+[INFO ] [] [2023-11-02 19:33:05] org.springframework.cloud.stream.messaging.DirectWithAttributesChannel - Channel 'exchange-match.output-trade' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 19:33:05] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:33:08] org.springframework.cloud.stream.messaging.DirectWithAttributesChannel - Channel 'exchange-match.output-update-order' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 19:33:08] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:33:08] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel new-order-topic.match-order.errors
+[INFO ] [] [2023-11-02 19:33:08] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.new-order-topic.match-order.errors' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 19:33:08] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.new-order-topic.match-order.errors' has 0 subscriber(s).
+[INFO ] [] [2023-11-02 19:33:08] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.new-order-topic.match-order.errors' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 19:33:08] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.new-order-topic.match-order.errors' has 2 subscriber(s).
+[INFO ] [] [2023-11-02 19:33:11] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:33:14] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:33:14] com.alibaba.cloud.stream.binder.rocketmq.consuming.RocketMQListenerBindingContainer - running container: RocketMQListenerBindingContainer{consumerGroup='match-order', nameServer='10.10.150.29:9876', topic='new-order-topic', consumeMode=ORDERLY, selectorType=TAG, selectorExpression='null', messageModel=CLUSTERING}
+[INFO ] [] [2023-11-02 19:33:14] com.alibaba.cloud.stream.binder.rocketmq.integration.RocketMQInboundChannelAdapter - started com.alibaba.cloud.stream.binder.rocketmq.integration.RocketMQInboundChannelAdapter@55f4887d
+[INFO ] [] [2023-11-02 19:33:14] org.springframework.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel cancel-order-topic.cancel-topic.errors
+[INFO ] [] [2023-11-02 19:33:14] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.cancel-order-topic.cancel-topic.errors' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 19:33:14] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.cancel-order-topic.cancel-topic.errors' has 0 subscriber(s).
+[INFO ] [] [2023-11-02 19:33:14] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.cancel-order-topic.cancel-topic.errors' has 1 subscriber(s).
+[INFO ] [] [2023-11-02 19:33:14] org.springframework.cloud.stream.binder.BinderErrorChannel - Channel 'exchange-match.cancel-order-topic.cancel-topic.errors' has 2 subscriber(s).
+[INFO ] [] [2023-11-02 19:33:17] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:33:18] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:33:20] com.alibaba.cloud.stream.binder.rocketmq.consuming.RocketMQListenerBindingContainer - running container: RocketMQListenerBindingContainer{consumerGroup='cancel-topic', nameServer='10.10.150.29:9876', topic='cancel-order-topic', consumeMode=CONCURRENTLY, selectorType=TAG, selectorExpression='null', messageModel=CLUSTERING}
+[INFO ] [] [2023-11-02 19:33:20] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:33:20] com.alibaba.cloud.stream.binder.rocketmq.integration.RocketMQInboundChannelAdapter - started com.alibaba.cloud.stream.binder.rocketmq.integration.RocketMQInboundChannelAdapter@58a2d9f9
+[INFO ] [] [2023-11-02 19:33:20] org.springframework.boot.web.embedded.netty.NettyWebServer - Netty started on port(s): 8888
+[INFO ] [] [2023-11-02 19:33:20] com.flying.cattle.me.MatchApplication - Started MatchApplication in 19.602 seconds (JVM running for 20.049)
+[INFO ] [] [2023-11-02 19:33:36] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:33:39] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:33:48] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:34:06] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:34:09] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:34:18] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:34:36] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:34:39] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+[INFO ] [] [2023-11-02 19:34:48] RocketmqRemoting - closeChannel: close the connection to remote address[] result: true

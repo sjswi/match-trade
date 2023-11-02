@@ -1,18 +1,18 @@
-package com.flying.cattle.me.data.input;
+package com.flying.cattle.dapr.data.input;
 
-import com.flying.cattle.me.plugin.mysql.MySQLUtil;
+import com.flying.cattle.dapr.match.domain.MatchOrder;
+import com.flying.cattle.dapr.match.factory.MatchStrategyFactory;
+import com.flying.cattle.dapr.plugin.rocketmq.MatchSink;
+import com.flying.cattle.dapr.match.service.AbstractOrderMatchService;
+import com.flying.cattle.dapr.plugin.dapr.DaprUtil;
+import com.flying.cattle.mt.enums.EnumOrderType;
+import com.flying.cattle.mt.message.OrderDTO;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
-
-import com.flying.cattle.me.match.domain.MatchOrder;
-import com.flying.cattle.me.match.factory.MatchStrategyFactory;
-import com.flying.cattle.me.match.service.AbstractOrderMatchService;
-import com.flying.cattle.me.plugin.rocketmq.MatchSink;
-import com.flying.cattle.mt.enums.EnumOrderType;
-import com.flying.cattle.mt.message.OrderDTO;
-
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 /**
  * @ClassName: ReceiveMqMessage
@@ -21,16 +21,18 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2020年6月29日
  */
 
+@Component
 @EnableBinding(MatchSink.class)
 @Slf4j
 public class ReceiveMqMessage {
-	
-	public final MySQLUtil mySQLUtil;
+
+
+	public final DaprUtil daprUtil;
 	
 	final BeanCopier beanCopier = BeanCopier.create(OrderDTO.class, MatchOrder.class, false);
 
-	public ReceiveMqMessage(MySQLUtil mySQLUtil) {
-		this.mySQLUtil = mySQLUtil;
+	public ReceiveMqMessage(DaprUtil daprUtil) {
+		this.daprUtil = daprUtil;
 	}
 
 	/**
@@ -44,7 +46,7 @@ public class ReceiveMqMessage {
 		log.info("newOrder request order  {}" + order.toString());
 		MatchOrder matchOrder = new MatchOrder();
 		beanCopier.copy(order, matchOrder, null);
-		if (mySQLUtil.passUnioueVerify(matchOrder)) {
+		if (daprUtil.passUnioueVerify(matchOrder)) {
 			// 根据订单类型获取撮合策略
 			AbstractOrderMatchService service = MatchStrategyFactory.getByOrderType(EnumOrderType.of(matchOrder.getOrderType()));
 			if (service == null) {
@@ -69,7 +71,7 @@ public class ReceiveMqMessage {
 		log.info("cancelOrder request order {}" + order.toString());
 		MatchOrder matchOrder = new MatchOrder();
 		beanCopier.copy(order, matchOrder, null);
-		mySQLUtil.doCancelOrder(matchOrder);
+		daprUtil.doCancelOrder(matchOrder);
 	}
 
 }

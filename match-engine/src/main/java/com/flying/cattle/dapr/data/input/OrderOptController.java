@@ -4,22 +4,25 @@
  * Copyright(c) 2020 kinbug Co. Ltd.
  * All right reserved.
  */
-package com.flying.cattle.me.data.input;
+package com.flying.cattle.dapr.data.input;
 
-import com.flying.cattle.me.plugin.mysql.MySQLUtil;
+import com.flying.cattle.dapr.match.EngineExecutor;
 import com.flying.cattle.mt.enums.EnumOrderType;
-import com.flying.cattle.me.match.EngineExecutor;
-import com.flying.cattle.me.match.domain.MatchOrder;
-import com.flying.cattle.me.match.factory.MatchStrategyFactory;
-import com.flying.cattle.me.match.service.AbstractOrderMatchService;
-
+import com.flying.cattle.dapr.match.domain.MatchOrder;
+import com.flying.cattle.dapr.match.factory.MatchStrategyFactory;
+import com.flying.cattle.dapr.match.service.AbstractOrderMatchService;
+import com.flying.cattle.dapr.plugin.dapr.DaprUtil;
+import com.google.common.primitives.Longs;
 import lombok.extern.slf4j.Slf4j;
+import com.flying.cattle.mt.enums.EnumOrderType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 
 /**
@@ -34,7 +37,7 @@ import java.util.Date;
 public class OrderOptController {
 
     @Autowired
-    MySQLUtil mySQLUtil;
+    DaprUtil daprUtil;
     @Autowired
     EngineExecutor matchExecutors;
     @Autowired
@@ -73,32 +76,53 @@ public class OrderOptController {
         for (long i = 0; i < orderNum; i++) {
             MatchOrder bidOrder = this.builtOrder(i, true, symbol, max, min, orderType);
             MatchOrder askOrder = this.builtOrder(i, false, symbol, max, min, orderType);
-            mySQLUtil.addToOrderBook(bidOrder);
-            mySQLUtil.addToOrderBook(askOrder);
+            daprUtil.addToOrderBook(bidOrder);
+            daprUtil.addToOrderBook(askOrder);
         }
         Long endTime = System.currentTimeMillis();
         log.info("初始,数量:{},耗时:{}", orderNum, endTime - startTime);
         return "初始,数量:"+orderNum+",耗时:"+(endTime - startTime);
     }
 
+
     @GetMapping("/eat-order/{symbol}/{num}/{startNum}/{orderType}/{max}/{min}")
     public String eat(@PathVariable("symbol") int symbol,
                       @PathVariable("num") int num,
                       @PathVariable("startNum") int startNum,
                       @PathVariable("orderType") int orderType,
-                      @PathVariable("max")int max,
-                      @PathVariable("min")int min) {
-        Long startTime = System.currentTimeMillis();
-        for (long i = 0; i < num; i++, startNum++) {
+                      @PathVariable("max") int max,
+                      @PathVariable("min") int min) {
+        long startTime = System.currentTimeMillis();
+        Long[] latencies = new Long[num];
+        for (int i = 0; i < num; i++, startNum++) {
+            long startTime1 = System.currentTimeMillis();
             MatchOrder matchOrder = this.builtOrder(startNum, true, symbol, max, min, orderType);
             // 根据订单类型获取撮合策略
             AbstractOrderMatchService service = MatchStrategyFactory.getByOrderType(EnumOrderType.of(matchOrder.getOrderType()));
             // 开始撮合
             service.match(matchOrder);
+            long endTime1 = System.currentTimeMillis();
+            latencies[i] = endTime1 - startTime1;
         }
-        Long endTime = System.currentTimeMillis();
-        log.info("撮合,数量:{},耗时:{}", num, endTime - startTime);
-        return "耗时:" + (endTime - startTime);
+        Arrays.sort(latencies);
+        long endTime = System.currentTimeMillis();
+        long totalTime = endTime - startTime;
+        double rps = num / (totalTime / 1000.0); // 转换为秒
+        // 计算平均耗时
+        double avgLatency = Arrays.stream(latencies).mapToLong(Long::longValue).average().orElse(0);
+        // 获取P90, P95, P99和中位数耗时
+        long p90Latency = latencies[(int) Math.ceil(90.0 / 100 * num) - 1];
+        long p95Latency = latencies[(int) Math.ceil(95.0 / 100 * num) - 1];
+        long p99Latency = latencies[(int) Math.ceil(99.0 / 100 * num) - 1];
+        long medianLatency = latencies[num / 2];
+        // 获取最大和最小耗时
+        long maxLatency = latencies[num - 1];
+        long minLatency = latencies[0];
+        // 构建返回字符串
+        String result = String.format("撮合数量: %d, 总耗时: %d ms, RPS: %.2f, 平均耗时: %.2f ms, 中位数耗时: %d ms, P90耗时: %d ms, P95耗时: %d ms, P99耗时: %d ms, 最大耗时：%d ms, 最小耗时：%d ms.",
+                num, totalTime, rps, avgLatency, medianLatency, p90Latency, p95Latency, p99Latency, maxLatency, minLatency);
+        log.info(result);
+        return result;
     }
 
 
@@ -137,7 +161,7 @@ public class OrderOptController {
     /**
      * TODO 创建订单信息
      */
-    private MatchOrder builtOrder(long counter, boolean ifBid, int symbol, int max, int min,int orderType) {
+    private MatchOrder builtOrder(long counter, boolean ifBid, int symbol, int max, int min, int orderType) {
         long ran = (long) (Math.random() * (max - min) + min);
         long number = (long) (Math.random()*99 + 1);
 

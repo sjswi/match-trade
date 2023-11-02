@@ -1,4 +1,4 @@
-package com.flying.cattle.me;
+package com.flying.cattle.dapr;
 
 import org.apache.ignite.Ignite;
 import org.apache.ignite.IgniteCache;
@@ -8,10 +8,8 @@ import org.apache.ignite.configuration.IgniteConfiguration;
 import org.apache.ignite.lang.IgniteRunnable;
 import org.apache.ignite.resources.IgniteInstanceResource;
 import org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi;
-import org.apache.ignite.spi.discovery.tcp.ipfinder.multicast.TcpDiscoveryMulticastIpFinder;
 import org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder;
 
-import java.util.Arrays;
 import java.util.Collections;
 
 /**

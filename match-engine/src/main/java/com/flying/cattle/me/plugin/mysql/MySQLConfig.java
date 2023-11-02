@@ -1,6 +1,9 @@
-package com.flying.cattle.me.plugin.dapr;
+package com.flying.cattle.me.plugin.mysql;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Bean;
+
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @program: match-trade
@@ -11,5 +14,10 @@ import org.springframework.context.annotation.Configuration;
  **/
 
 @Configuration
-public class DaprConfig {
+public class MySQLConfig {
+
+    @Bean
+	public ConcurrentHashMap<String, String> igniteCacheKeys() {
+		return new ConcurrentHashMap<String, String>();
+	}
 }

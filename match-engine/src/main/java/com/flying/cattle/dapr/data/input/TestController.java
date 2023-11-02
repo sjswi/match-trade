@@ -4,14 +4,9 @@
  * Copyright(c) 2020 kinbug Co. Ltd.
  * All right reserved.
  */
-package com.flying.cattle.me.data.input;
+package com.flying.cattle.dapr.data.input;
 
-import java.util.Date;
-
-import com.flying.cattle.me.plugin.mysql.MySQLUtil;
-import org.apache.ignite.Ignite;
-import org.apache.ignite.IgniteCache;
-import org.apache.ignite.configuration.CacheConfiguration;
+import com.flying.cattle.dapr.plugin.dapr.DaprUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,7 +26,7 @@ public class TestController {
 
 
     @Autowired
-    private MySQLUtil mySQLUtil;
+    private DaprUtil daprUtil;
 
     @GetMapping("/input/{key}")
     public String input(@PathVariable String key) {

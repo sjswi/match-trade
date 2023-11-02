@@ -1,6 +1,9 @@
-package com.flying.cattle.me.plugin.dapr;
+package com.flying.cattle.dapr.plugin.dapr;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @program: match-trade
@@ -12,4 +15,13 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class DaprConfig {
+    @Bean
+    public DaprClient daprClient() {
+        return new DaprClient();
+    }
+
+    @Bean
+    public ConcurrentHashMap<String, String> igniteCacheKeys() {
+        return new ConcurrentHashMap<String, String>();
+    }
 }

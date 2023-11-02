@@ -2,7 +2,7 @@
 <configuration debug="false" scan="true" scanPeriod="30 seconds">
     <jmxConfigurator/>
     <property name="FILE_LOG_PATTERN" value="[%-5level] [%X{logId}] [%date{yyyy-MM-dd HH:mm:ss}] %logger{96} - %msg%n"/>
-    <property name="log.home" value="/data/logs/walk-exchange-match"/>
+    <property name="log.home" value="/Users/yu/IdeaProjects/match-trade/walk-exchange-match"/>
     <property name="log.level" value="INFO"/>
     <property name="log.max.file.size" value="100MB"/>
     <property name="log.max.history" value="72"/>

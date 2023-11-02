@@ -1,16 +1,14 @@
-package com.flying.cattle.me.match.service.impl;
+package com.flying.cattle.dapr.match.service.impl;
 
-import com.flying.cattle.me.plugin.mysql.MySQLUtil;
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.stereotype.Service;
-
-import com.flying.cattle.me.match.EngineExecutor;
-import com.flying.cattle.me.match.domain.MatchOrder;
-import com.flying.cattle.me.match.factory.MatchStrategyFactory;
-import com.flying.cattle.me.match.service.AbstractOrderMatchService;
-
+import com.flying.cattle.dapr.match.EngineExecutor;
+import com.flying.cattle.dapr.match.domain.MatchOrder;
+import com.flying.cattle.dapr.match.factory.MatchStrategyFactory;
+import com.flying.cattle.dapr.match.service.AbstractOrderMatchService;
+import com.flying.cattle.dapr.plugin.dapr.DaprUtil;
 import com.flying.cattle.mt.enums.EnumOrderState;
 import com.flying.cattle.mt.enums.EnumOrderType;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.stereotype.Service;
 
 /**
  * -限价单撮合
@@ -23,11 +21,11 @@ public class GtcMatchService extends AbstractOrderMatchService implements Initia
 
     private final EngineExecutor matchExecutors;
 
-    private final MySQLUtil mySQLUtil;
+    private final DaprUtil daprUtil;
 
-    public GtcMatchService(EngineExecutor matchExecutors, MySQLUtil igniteUtil) {
+    public GtcMatchService(EngineExecutor matchExecutors, DaprUtil daprUtil) {
         this.matchExecutors = matchExecutors;
-        this.mySQLUtil = igniteUtil;
+        this.daprUtil = daprUtil;
     }
 
     /**
@@ -53,7 +51,7 @@ public class GtcMatchService extends AbstractOrderMatchService implements Initia
     public MatchOrder afterTakerMatch(MatchOrder order) {
         if (order.getState() == EnumOrderState.ORDER.getCode() ||
                 order.getState() == EnumOrderState.SOME_DEAL.getCode()) {
-            return mySQLUtil.addToOrderBook(order);
+            return daprUtil.addToOrderBook(order);
         }
         return order;
     }

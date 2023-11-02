@@ -1,19 +1,15 @@
-package com.flying.cattle.me.match;
+package com.flying.cattle.dapr.match;
 
-import java.util.List;
-
-import com.flying.cattle.me.plugin.mysql.MySQLUtil;
-import org.apache.ignite.IgniteCache;
+import com.flying.cattle.dapr.match.domain.MatchOrder;
+import com.flying.cattle.dapr.match.domain.TradeModel;
+import com.flying.cattle.dapr.plugin.dapr.DaprUtil;
+import com.flying.cattle.dapr.util.EngineUtil;
+import com.flying.cattle.mt.enums.EnumOrderState;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
-import com.flying.cattle.me.match.domain.MatchOrder;
-import com.flying.cattle.me.match.domain.TradeModel;
-
-import com.flying.cattle.me.util.EngineUtil;
-import com.flying.cattle.mt.enums.EnumOrderState;
-
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
 
 /**
  * 撮合处理器(撮合过程)
@@ -25,14 +21,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EngineExecutor {
 
-	final MySQLUtil mySQLUtil;
+	final DaprUtil daprUtil;
 
 	final TradeModel tradeModel;
 
 	private StringBuffer makerOids;
 
-	public EngineExecutor(MySQLUtil mySQLUtil, TradeModel tradeModel) {
-		this.mySQLUtil = mySQLUtil;
+	public EngineExecutor(DaprUtil daprUtil, TradeModel tradeModel) {
+		this.daprUtil = daprUtil;
 		this.tradeModel = tradeModel;
 	}
 
@@ -46,15 +42,15 @@ public class EngineExecutor {
 	 * TODO 处理撮合
 	 */
 	public MatchOrder doMatch(MatchOrder taker) {
-		String tableName = mySQLUtil
+		String tableName = daprUtil
 				.getIgniteOrderBook(EngineUtil.getReOrderBookKey(taker));
-		List<Long> outData = mySQLUtil.getOrderBookHead(tableName, !taker.isIfBid(),20);
+		List<Long> outData = daprUtil.getOrderBookHead(tableName, !taker.isIfBid(),20);
 		if (CollectionUtils.isEmpty(outData)) {
 			return taker;
 		}
 
 		for (int i = 0; i < outData.size(); i++) {
-			MatchOrder maker = mySQLUtil.get(outData.get(i), tableName);
+			MatchOrder maker = daprUtil.get(outData.get(i), tableName);
 			// 判断是否可以成交,并给市价买赋值数量
 			if (!EngineUtil.tradable(taker, maker)) {
 				return taker;
@@ -63,7 +59,7 @@ public class EngineExecutor {
 			// 成交数量
 			long dealNum = contrast < 0 ? taker.getNoDealNum() : maker.getNoDealNum();
 			EngineUtil.makerHandle(maker, dealNum, contrast);
-			MatchOrder matchOrder =mySQLUtil.updateOrderInDB(maker, tableName);
+			MatchOrder matchOrder =daprUtil.updateOrderInDB(maker, tableName);
 			// maker 处理是成功的
 			if (null != matchOrder) {
 				EngineUtil.takerHandle(taker, maker.getPrice(), dealNum, contrast);
@@ -76,7 +72,7 @@ public class EngineExecutor {
 			}
 			// outData 遍历最后一条纪录时自动取数
 			if (i == (outData.size()-1)) {
-				outData = mySQLUtil.getOrderBookHead(tableName, !taker.isIfBid(),20);
+				outData = daprUtil.getOrderBookHead(tableName, !taker.isIfBid(),20);
 				i = -1;
 			}
 		}
