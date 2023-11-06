@@ -113,6 +113,20 @@
 
 		<!-- Spring Data Redis Starter -->
 	</dependencies>
+	<profiles>
+		<profile>
+			<id>dapr</id>
+			<properties>
+				<start-class>com.flying.cattle.dapr.MatchApplication</start-class>
+			</properties>
+		</profile>
+		<profile>
+			<id>mysql</id>
+			<properties>
+				<start-class>com.flying.cattle.me.MatchApplication</start-class>
+			</properties>
+		</profile>
+	</profiles>
 
 	<build>
 		<plugins>

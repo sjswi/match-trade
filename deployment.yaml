@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: match-trade-deploy
+  namespace: dapr-yxb
+  labels:
+    app: match-trade-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: match-trade-deploy
+  template:
+
+    metadata:
+      labels:
+        app: match-trade-deploy
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "match-trade"
+        dapr.io/app-port: "8888"
+        dapr.io/enable-api-logging: "true"
+    spec:
+      containers:
+        - name: match-trade
+          image: 10.10.150.23:35000/match-trade:0.1
+          imagePullPolicy: Always
+          env:
+            - name: APP_PORT
+              value: "8888"
+          ports:
+            - containerPort: 8888
+          resources:
+            limits:
+              cpu: 1700m
+              memory: 4Gi
+            requests:
+              cpu: 1700m
+              memory: 4Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: match-trade-svc
+  labels:
+    app: match-trade-deploy
+  namespace: dapr-yxb
+spec:
+  type: NodePort
+  ports:
+    - name: match-trade
+      port: 8080
+      targetPort: 8080
+      nodePort: 31999
+  selector:
+    app: match-trade-deploy
