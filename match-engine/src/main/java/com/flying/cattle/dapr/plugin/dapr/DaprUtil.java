@@ -1,12 +1,13 @@
 package com.flying.cattle.dapr.plugin.dapr;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.flying.cattle.dapr.data.out.SendService;
 import com.flying.cattle.dapr.match.domain.MatchOrder;
 import com.flying.cattle.dapr.util.EngineUtil;
 import com.flying.cattle.mt.enums.EnumOrderState;
 import com.flying.cattle.mt.message.OrderDTO;
-import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -22,8 +23,10 @@ import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -155,7 +158,10 @@ public class DaprUtil {
         List<Long> ans = new ArrayList<>();
         try {
             String invoke = daprClient.query(query);
-//            JSONArray jsonArray = JSON.parseArray(invoke);
+            JSONArray jsonArray = JSON.parseArray(invoke);
+            for (int i = 0; i < jsonArray.size(); i++) {
+                ans.add(jsonArray.getJSONObject(i).getLong("id"));
+            }
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -350,7 +356,44 @@ public class DaprUtil {
         return ans;
     }
 
+    private MatchOrder parse(String invoke) {
+        // 解析JSON数组字符串
+        JSONArray jsonArray = JSON.parseArray(invoke);
+        // 获取数组的第一个元素
+        JSONObject jsonObject = jsonArray.getJSONObject(0);
 
+        MatchOrder matchOrder = new MatchOrder();
+        matchOrder.setId(jsonObject.getLongValue("id"));
+        matchOrder.setAccountId(jsonObject.getLongValue("accountId"));
+        matchOrder.setUid(jsonObject.getLongValue("uid"));
+        matchOrder.setPrice(jsonObject.getLong("price"));
+        matchOrder.setNum(jsonObject.getLongValue("num"));
+        matchOrder.setAmount(jsonObject.getLongValue("amount"));
+        matchOrder.setIfBid(jsonObject.getIntValue("ifBid") == 1);
+        matchOrder.setOrderType(jsonObject.getIntValue("orderType"));
+        matchOrder.setSymbolId(jsonObject.getIntValue("symbolId"));
+        matchOrder.setState(jsonObject.getIntValue("state"));
+        matchOrder.setDealNum(jsonObject.getLongValue("dealNum"));
+        matchOrder.setNoDealNum(jsonObject.getLongValue("noDealNum"));
+        matchOrder.setDealAmount(jsonObject.getLongValue("dealAmount"));
+        matchOrder.setNoDealAmount(jsonObject.getLongValue("noDealAmount"));
+        matchOrder.setPriority(jsonObject.getIntValue("priority"));
+
+        // 解析日期时间
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+        try {
+            Date createTime = dateFormat.parse(jsonObject.getString("createTime"));
+            matchOrder.setCreateTime(createTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            // Handle the error according to your needs
+        }
+
+        // 由于示例中的JSON数据没有提供alterTime，这里我们可以设置为null或者当前时间
+        matchOrder.setAlterTime(null); // 或者 new Date()，取决于你的业务逻辑
+
+        return matchOrder;
+    }
 
 
     final BeanCopier beanCopier = BeanCopier.create(OrderDTO.class, MatchOrder.class, false);
@@ -359,8 +402,9 @@ public class DaprUtil {
         try {
             String invoke = daprClient.query(sql);
 //            MatchOrder order = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(MatchOrder.class), id);
-            MatchOrder order = new MatchOrder();
-            return order;
+
+
+            return parse(invoke);
         } catch (EmptyResultDataAccessException | IOException | InterruptedException e) {
             // 这个异常会在查询结果为空时抛出，即没有找到匹配的订单
             return null;

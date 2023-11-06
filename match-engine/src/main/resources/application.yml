@@ -5,9 +5,9 @@ spring:
     host: 10.10.150.26
     port: 30003
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/trade
+    url: jdbc:mysql://10.10.150.26:3306/test
     username: root
-    password: 12345678
+    password: Dev127336
     driver-class-name: com.mysql.cj.jdbc.Driver
   application:
     name: exchange-match
