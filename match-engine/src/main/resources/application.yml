@@ -5,11 +5,11 @@ spring:
     host: 10.10.150.26
     port: 30003
   datasource:
-    url: jdbc:mysql://10.10.150.26:3306/test
+    url: jdbc:mysql://10.10.150.24:3306/test
     username: root
 #    password: Dev127336
-    password: a1b2c3d4!P
-#    password: 12345678
+#    password: a1b2c3d4!P
+    password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
   application:
     name: exchange-match

@@ -8,7 +8,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-@Profile("mysql")
 public class MatchApplication {
 	public static void main(String[] args) {
 		SpringApplication application = new SpringApplication(MatchApplication.class);
