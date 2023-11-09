@@ -25,7 +25,7 @@ public class MtcMatchService extends AbstractOrderMatchService implements Initia
 
     private final DBUtil dbUtil;
 
-    public MtcMatchService(EngineExecutor matchExecutors, @Qualifier("DaprUtil") DBUtil dbUtil) {
+    public MtcMatchService(EngineExecutor matchExecutors, @Qualifier("MySQLUtil") DBUtil dbUtil) {
         this.matchExecutors = matchExecutors;
         this.dbUtil = dbUtil;
     }

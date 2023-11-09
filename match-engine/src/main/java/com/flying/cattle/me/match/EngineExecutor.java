@@ -33,7 +33,7 @@ public class EngineExecutor {
 
 	private StringBuffer makerOids;
 
-	public EngineExecutor(@Qualifier("DaprUtil") DBUtil dbUtil, TradeModel tradeModel) {
+	public EngineExecutor(@Qualifier("MySQLUtil") DBUtil dbUtil, TradeModel tradeModel) {
 		this.dbUtil = dbUtil;
 		this.tradeModel = tradeModel;
 	}

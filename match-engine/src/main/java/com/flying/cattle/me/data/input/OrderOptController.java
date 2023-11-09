@@ -6,6 +6,7 @@
  */
 package com.flying.cattle.me.data.input;
 
+import com.alibaba.fastjson.JSONObject;
 import com.flying.cattle.me.plugin.DBUtil;
 import com.flying.cattle.me.plugin.disruptor.DisruptorInsertService;
 import com.flying.cattle.mt.enums.EnumOrderType;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author senkyouku
@@ -39,7 +41,7 @@ import java.util.Date;
 public class OrderOptController {
 
     @Autowired
-    @Qualifier("DaprUtil")
+    @Qualifier("MySQLUtil")
     DBUtil dbUtil;
     @Autowired
     EngineExecutor matchExecutors;
@@ -193,6 +195,19 @@ public class OrderOptController {
         log.info("插入数据:{},耗时:{}", 1, endTime - startTime);
         return "耗时:" + (endTime - startTime);
     }
+
+
+    @GetMapping("/get/{symbol}/{ifBid}/{orderType}/{min}/{max}/{number}")
+    public String getOrder(@PathVariable("symbol") int symbol,
+                       @PathVariable("orderType") int orderType,
+                       @PathVariable("ifBid") boolean ifBid,
+                       @PathVariable("min") long min,
+                       @PathVariable("max") long max,
+                       @PathVariable("number") long number) {
+        List<MatchOrder> orders = dbUtil.getOrders(symbol, orderType, ifBid, min, max, number);
+        return JSONObject.toJSON(orders).toString();
+    }
+
 
     /**
      * TODO 创建订单信息

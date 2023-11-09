@@ -355,11 +355,8 @@ public class DaprUtil implements DBUtil{
         return ans;
     }
 
-    private MatchOrder parse(String invoke) {
+    private MatchOrder parse(JSONObject jsonObject) {
         // 解析JSON数组字符串
-        JSONArray jsonArray = JSON.parseArray(invoke);
-        // 获取数组的第一个元素
-        JSONObject jsonObject = jsonArray.getJSONObject(0);
 
         MatchOrder matchOrder = new MatchOrder();
         matchOrder.setId(jsonObject.getLongValue("id"));
@@ -401,9 +398,7 @@ public class DaprUtil implements DBUtil{
         try {
             String invoke = daprClient.query(sql);
 //            MatchOrder order = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(MatchOrder.class), id);
-
-
-            return parse(invoke);
+            return JSON.parseObject(invoke, MatchOrder.class);
         } catch (EmptyResultDataAccessException | IOException | InterruptedException e) {
             // 这个异常会在查询结果为空时抛出，即没有找到匹配的订单
             return null;
@@ -444,4 +439,22 @@ public class DaprUtil implements DBUtil{
     }
 
 
+    @Override
+    public List<MatchOrder> getOrders(int symbol, int orderType, boolean ifBid, long min, long max, long number){
+        String table = EngineUtil.getOrderTable(ifBid, symbol);
+        String sql = "SELECT * FROM " + table + " WHERE orderType = " + orderType + " AND price >= " + min + " AND price <= " + max + " ORDER BY price ASC LIMIT " + number;
+        try {
+            String query = this.daprClient.query(sql);
+            JSONArray jsonArray = JSON.parseArray(query);
+            List<MatchOrder> orders = new ArrayList<>();
+            for (int i = 0; i < jsonArray.size(); i++) {
+                orders.add(parse(jsonArray.getJSONObject(i)));
+            }
+            return orders;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

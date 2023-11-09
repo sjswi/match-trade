@@ -114,4 +114,5 @@ public interface DBUtil {
 
     MatchOrder get(Long id, String tableName);
     MatchOrder updateOrderInDB(MatchOrder maker, String tableName);
+    List<MatchOrder> getOrders(int symbol, int orderType, boolean ifBid, long min, long max, long number);
 }

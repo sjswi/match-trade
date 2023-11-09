@@ -73,6 +73,9 @@ public class EngineUtil {
 	public static String getOrderBookKey(MatchOrder order) {
 		return (order.isIfBid() ? ORDER_BOOK_BID_MAP : ORDER_BOOK_ASK_MAP) + order.getSymbolId();
 	}
+	public static String getOrderTable(boolean ifBid, long symbolId ) {
+		return (ifBid ? ORDER_BOOK_BID_MAP : ORDER_BOOK_ASK_MAP) + symbolId;
+	}
 
 	/**
 	 * 是否是出价单 是 买订单簿BID 否 卖订单簿ASK

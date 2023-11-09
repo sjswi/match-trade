@@ -371,5 +371,11 @@ public class MySQLUtil implements DBUtil {
             }
         });
     }
+    @Override
+    public List<MatchOrder> getOrders(int symbol, int orderType, boolean ifBid, long min, long max, long number){
+        String table = EngineUtil.getOrderTable(ifBid, symbol);
+        String sql = "SELECT * FROM " + table + " WHERE orderType = " + orderType + " AND price >= " + min + " AND price <= " + max + " ORDER BY price ASC LIMIT " + number;
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(MatchOrder.class));
+    }
 
 }

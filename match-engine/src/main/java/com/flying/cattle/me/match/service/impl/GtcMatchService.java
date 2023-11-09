@@ -27,7 +27,7 @@ public class GtcMatchService extends AbstractOrderMatchService implements Initia
 
     private final DBUtil dbUtil;
 
-    public GtcMatchService(EngineExecutor matchExecutors, @Qualifier("DaprUtil") DBUtil dbUtil) {
+    public GtcMatchService(EngineExecutor matchExecutors, @Qualifier("MySQLUtil") DBUtil dbUtil) {
         this.matchExecutors = matchExecutors;
         this.dbUtil = dbUtil;
     }
