@@ -6,7 +6,8 @@
  */
 package com.flying.cattle.me.data.input;
 
-import com.flying.cattle.me.plugin.mysql.MySQLUtil;
+import com.flying.cattle.me.plugin.DBUtil;
+import com.flying.cattle.me.plugin.disruptor.DisruptorInsertService;
 import com.flying.cattle.mt.enums.EnumOrderType;
 import com.flying.cattle.me.match.EngineExecutor;
 import com.flying.cattle.me.match.domain.MatchOrder;
@@ -15,6 +16,9 @@ import com.flying.cattle.me.match.service.AbstractOrderMatchService;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,9 +39,13 @@ import java.util.Date;
 public class OrderOptController {
 
     @Autowired
-    MySQLUtil mySQLUtil;
+    @Qualifier("DaprUtil")
+    DBUtil dbUtil;
     @Autowired
     EngineExecutor matchExecutors;
+
+    @Autowired
+    DisruptorInsertService insertService;
     @Autowired
     private AbstractOrderMatchService gtcMatchService;
 
@@ -76,8 +84,8 @@ public class OrderOptController {
             long startTime1 = System.currentTimeMillis();
             MatchOrder bidOrder = this.builtOrder(i, true, symbol, max, min, orderType);
             MatchOrder askOrder = this.builtOrder(i, false, symbol, max, min, orderType);
-            mySQLUtil.addToOrderBook(bidOrder);
-            mySQLUtil.addToOrderBook(askOrder);
+            dbUtil.addToOrderBook(bidOrder);
+            dbUtil.addToOrderBook(askOrder);
             long endTime1 = System.currentTimeMillis();
             latencies[i] = endTime1 - startTime1;
         }
@@ -166,12 +174,23 @@ public class OrderOptController {
         log.info("撮合,数量:{},耗时:{}", num, endTime - startTime);
         return "耗时:" + (endTime - startTime);
     }
-    @GetMapping("/test")
-    public String test() {
+    @GetMapping("/test/{symbol}/{startNum}/{orderType}/{price}/{number}")
+    public String test(@PathVariable("symbol") int symbol,
+                       @PathVariable("startNum") int startNum,
+                       @PathVariable("orderType") int orderType,
+                       @PathVariable("price") long price,
+                       @PathVariable("number") long number) {
+        long amount=price*number;
         Long startTime = System.currentTimeMillis();
+        MatchOrder bidOrder = new MatchOrder(startNum, startNum, startNum, price, number, amount, true, orderType, symbol, 1, 0L,
+                number, 0L, amount, new Date(), null, 10);
+        MatchOrder askOrder = new MatchOrder(startNum, startNum, startNum, price, number, amount, false, orderType, symbol, 1, 0L,
+                number, 0L, amount, new Date(), null, 10);
 
+        insertService.publish(bidOrder);
+        insertService.publish(askOrder);
         Long endTime = System.currentTimeMillis();
-        log.info("撮合,数量:{},耗时:{}", 1, endTime - startTime);
+        log.info("插入数据:{},耗时:{}", 1, endTime - startTime);
         return "耗时:" + (endTime - startTime);
     }
 
@@ -186,5 +205,6 @@ public class OrderOptController {
         return new MatchOrder(counter, counter, counter, ran, number, amount, ifBid, orderType, symbol, 1, 0L,
                 number, 0L, amount, new Date(), null, 10);
     }
-    
+
+
 }

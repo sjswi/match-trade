@@ -2,6 +2,7 @@ package com.flying.cattle.me.plugin.mysql;
 
 import com.flying.cattle.me.data.out.SendService;
 import com.flying.cattle.me.match.domain.MatchOrder;
+import com.flying.cattle.me.plugin.DBUtil;
 import com.flying.cattle.me.util.EngineUtil;
 import com.flying.cattle.mt.enums.EnumOrderState;
 import com.flying.cattle.mt.message.DepthDTO;
@@ -44,8 +45,8 @@ import java.util.stream.Collectors;
  * @mail：a17281293@gmail.com
  * @date: 2023-10-29 16:36
  **/
-@Component
-public class MySQLUtil {
+@Component("MySQLUtil")
+public class MySQLUtil implements DBUtil {
 
     @Autowired
     private PlatformTransactionManager transactionManager;
@@ -72,7 +73,8 @@ public class MySQLUtil {
      * @param order 委托单
      * @return Boolean 返回类型（true：通过，false：为通过）
      */
-    public Boolean passUnioueVerify(MatchOrder order) {
+    @Override
+    public synchronized Boolean passUniqueVerify(MatchOrder order) {
         // 获取表名
         String tableName = EngineUtil.getOrderDeWeigtKey(order);
 
@@ -126,6 +128,7 @@ public class MySQLUtil {
      * @param orderBookKey 委托单
      * @return Boolean 返回类型（true：通过，false：为通过）
      */
+    @Override
     public String getIgniteOrderBook(String orderBookKey) {
         if (cacheKeys.contains(orderBookKey)) {
             return cacheKeys.get(orderBookKey);
@@ -145,7 +148,7 @@ public class MySQLUtil {
      * @return Boolean 返回类型（true：通过，false：为通过）
      */
 
-
+    @Override
     public List<Long> getOrderBookHead(String tableName, boolean ifBid, int limitNum) {
         String query;
         if (ifBid) {
@@ -163,7 +166,7 @@ public class MySQLUtil {
      * @param order 委托单
      * @return Boolean 返回类型（true：通过，false：为通过）
      */
-
+    @Override
     public List<MatchOrder> getOrderBookHot(String tableName, boolean ifBid, int limitNum) {
         String orderBy = ifBid ? "DESC" : "ASC";
         String sql = "SELECT id, price FROM " + tableName + " ORDER BY price " + orderBy + " LIMIT " + limitNum;
@@ -178,6 +181,7 @@ public class MySQLUtil {
      * @param order 委托单
      * @return Boolean 返回类型
      */
+    @Override
     @Async
     public void doCancelOrder(MatchOrder order) {
 
@@ -194,6 +198,7 @@ public class MySQLUtil {
      * @param order 委托单
      * @return Boolean 返回类型
      */
+    @Override
     @Async
     public MatchOrder sendCancelOrder(MatchOrder order) {
         sendService.sendCancelOrder(order);
@@ -206,6 +211,7 @@ public class MySQLUtil {
      * @param order 委托单
      * @return Boolean 返回类型（true：通过，false：为通过）
      */
+    @Override
     public MatchOrder addToOrderBook(MatchOrder order) {
         String orderBookKey = EngineUtil.getOrderBookKey(order);
         String tableName = getIgniteOrderBook(orderBookKey);
@@ -314,6 +320,7 @@ public class MySQLUtil {
      * @return List<OrderDTO>
      * @author senkyouku
      */
+    @Override
     public List<MatchOrder> listAll(int symbolId, boolean ifBid) {
         String sql = "SELECT * FROM MatchOrder WHERE symbolId = ? AND ifBid = ?";
         List<MatchOrder> result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(MatchOrder.class), symbolId, ifBid);
@@ -334,6 +341,7 @@ public class MySQLUtil {
             return null;
         }
     }
+    @Override
     public MatchOrder updateOrderInDB(MatchOrder maker, String tableName) {
         TransactionTemplate transactionTemplate = new TransactionTemplate(transactionManager);
         transactionTemplate.setIsolationLevel(TransactionDefinition.ISOLATION_SERIALIZABLE);

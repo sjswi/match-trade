@@ -12,6 +12,7 @@ public class MatchApplication {
 	public static void main(String[] args) {
 		SpringApplication application = new SpringApplication(MatchApplication.class);
 		application.setWebApplicationType(WebApplicationType.REACTIVE);
+
 		application.run(args);
 	}
 }

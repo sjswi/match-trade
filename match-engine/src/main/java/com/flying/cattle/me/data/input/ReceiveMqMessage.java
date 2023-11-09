@@ -44,7 +44,7 @@ public class ReceiveMqMessage {
 		log.info("newOrder request order  {}" + order.toString());
 		MatchOrder matchOrder = new MatchOrder();
 		beanCopier.copy(order, matchOrder, null);
-		if (mySQLUtil.passUnioueVerify(matchOrder)) {
+		if (mySQLUtil.passUniqueVerify(matchOrder)) {
 			// 根据订单类型获取撮合策略
 			AbstractOrderMatchService service = MatchStrategyFactory.getByOrderType(EnumOrderType.of(matchOrder.getOrderType()));
 			if (service == null) {

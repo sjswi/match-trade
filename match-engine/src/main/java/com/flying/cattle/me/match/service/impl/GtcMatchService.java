@@ -1,7 +1,9 @@
 package com.flying.cattle.me.match.service.impl;
 
+import com.flying.cattle.me.plugin.DBUtil;
 import com.flying.cattle.me.plugin.mysql.MySQLUtil;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.flying.cattle.me.match.EngineExecutor;
@@ -23,11 +25,11 @@ public class GtcMatchService extends AbstractOrderMatchService implements Initia
 
     private final EngineExecutor matchExecutors;
 
-    private final MySQLUtil mySQLUtil;
+    private final DBUtil dbUtil;
 
-    public GtcMatchService(EngineExecutor matchExecutors, MySQLUtil igniteUtil) {
+    public GtcMatchService(EngineExecutor matchExecutors, @Qualifier("DaprUtil") DBUtil dbUtil) {
         this.matchExecutors = matchExecutors;
-        this.mySQLUtil = igniteUtil;
+        this.dbUtil = dbUtil;
     }
 
     /**
@@ -53,7 +55,7 @@ public class GtcMatchService extends AbstractOrderMatchService implements Initia
     public MatchOrder afterTakerMatch(MatchOrder order) {
         if (order.getState() == EnumOrderState.ORDER.getCode() ||
                 order.getState() == EnumOrderState.SOME_DEAL.getCode()) {
-            return mySQLUtil.addToOrderBook(order);
+            return dbUtil.addToOrderBook(order);
         }
         return order;
     }

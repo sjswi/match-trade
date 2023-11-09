@@ -1,13 +1,13 @@
-package com.flying.cattle.dapr.plugin.dapr;
+package com.flying.cattle.me.plugin.dapr;
 
 import org.json.JSONObject;
+import org.springframework.context.annotation.Bean;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-
 import java.net.URL;
 
 /**
@@ -17,6 +17,7 @@ import java.net.URL;
  * @mail：a17281293@gmail.com
  * @date: 2023-11-01 20:12
  **/
+
 
 public class DaprClient {
     private static final String sqlBindingName = "dapr-mysql";
@@ -109,7 +110,6 @@ public class DaprClient {
 
     public String get(String key) throws IOException, InterruptedException {
         JSONObject command = new JSONObject();
-//        command.put("sql", sql);
 
         JSONObject payload = new JSONObject();
         payload.put("metadata", command);
